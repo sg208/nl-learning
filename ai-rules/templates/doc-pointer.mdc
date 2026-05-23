@@ -1,0 +1,9 @@
+---
+description: Doc map snippet for new Cursor rule files
+---
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)

@@ -1,0 +1,53 @@
+---
+description: Web security rules for this static Astro site and client-side KNM app.
+alwaysApply: true
+---
+
+# Security rules
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
+
+## Secrets & credentials
+
+- Never commit secrets, API keys, tokens, or credentials. Use env vars and GitHub Actions secrets.
+- Do not log PII or session tokens to `console.*`.
+
+## XSS prevention
+
+- No `innerHTML` / `outerHTML` for user-facing KNM content — use text nodes.
+- If HTML injection is ever required, sanitize with DOMPurify and document why.
+- Do not construct URLs or `href`/`src` from unvalidated user input without encoding.
+- Avoid dynamic code evaluation and injected script tags.
+
+## Content Security Policy
+
+- Prefer Tailwind/CSS classes over inline `style` with user-supplied values.
+
+## Network
+
+- This site is static; question data is bundled at build time — no runtime public API by default.
+- Any future `fetch` to external APIs: validate responses at the boundary; encode URL segments with `encodeURIComponent`.
+- Do not use `mode: "no-cors"` on fetch — it hides errors.
+
+## Deploy secrets
+
+- Bunny CDN credentials only in CI secrets or local env — never in source. See ARCHITECTURE.md.
+
+## Input validation
+
+- Validate at boundaries: locale handoff JSON in `sessionStorage`, any future form input.
+- Never trust external API shapes without validation.
+
+## Dependency hygiene
+
+- Run `npm audit` before releases; address high/critical findings.
+- Avoid unmaintained packages without justification.
+
+## Legal & privacy copy
+
+- **Always ask before editing** `src/i18n/legal.ts` or legal pages under `src/pages/`.
+- Do not weaken consent, disclosure, or opt-out language.

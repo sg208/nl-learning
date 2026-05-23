@@ -1,0 +1,1 @@
+../ai-rules/.github/copilot-instructions.md

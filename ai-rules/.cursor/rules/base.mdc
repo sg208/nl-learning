@@ -1,0 +1,54 @@
+---
+description: Language- and framework-agnostic coding standards for every file in this repo.
+alwaysApply: true
+---
+
+# Base rules
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
+
+## TypeScript
+
+- No `enum`; use a `const` object or string union instead.
+- No `any` without a short inline comment explaining why.
+- Prefer explicit return types on exported functions.
+- Prefer `unknown` over `any` for truly unknown external data; narrow with a type guard.
+
+## Functions & naming
+
+- Prefer arrow functions for handlers, helpers, and callbacks.
+- No single-letter names except loop indices (`i`, `j`).
+- Use `event` (not `e`) for DOM event parameters.
+- Named handlers for non-trivial logic; one-line inline handlers are OK for trivial wiring.
+
+## File size & structure
+
+- ≤ ~120 lines per file (soft cap); split by responsibility when you exceed it.
+- One concept per file — don't bundle unrelated utilities.
+
+## Scope of changes
+
+- Do not add features, refactor code, or make "improvements" beyond what was asked.
+- Don't add docstrings, comments, or type annotations to code you didn't change.
+- Don't add error handling or fallbacks for scenarios that can't happen.
+- Validate only at system boundaries (user input, external APIs) — not deep inside pure logic.
+- Don't create helpers or abstractions for one-time use.
+
+## Comments
+
+- Add comments only where the logic isn't self-evident.
+- No redundant comments that restate what the code does.
+
+## Effort & token efficiency
+
+- Read PROJECT.md first; then only files relevant to the task.
+- Prefer a single targeted `Grep` or `Glob` over broad exploration.
+- Batch independent tool calls in parallel.
+
+## Repo hygiene
+
+- Run `npm run fix` before pushing: ESLint `--fix`, then Prettier.
