@@ -64,7 +64,7 @@ Workflow: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
 
 1. Trigger: push to `main` or `workflow_dispatch`
 2. `npm ci` → `npm run build` with secret `SITE_URL`
-3. `node scripts/upload-to-cdn.mjs` uploads `dist/` to Bunny storage (`nl-learning-prod` zone), then purges the pull zone
+3. `node scripts/upload-to-cdn.mjs` uploads `dist/` to Bunny storage (`nllearning-prod` zone), then purges the pull zone
 
 Required GitHub secrets: `SITE_URL`, `BUNNY_STORAGE_ACCESS_KEY`, `BUNNY_API_KEY`, `BUNNY_ZONE_ID`.
 
