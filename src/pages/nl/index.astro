@@ -1,0 +1,83 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import HomeHero from '~/components/HomeHero.astro';
+import { siteConfig, tSite } from '~/config/site';
+import { localizedPath } from '~/lib/i18n';
+
+const locale = 'nl' as const;
+
+const copy = {
+  eyebrow: 'Voor nieuwkomers in Nederland',
+  title: 'Leer de Nederlandse maatschappij — helder, in je eigen tempo.',
+  lead: 'Gratis KNM-oefening met grote tekst, hoog contrast en offline ondersteuning. Gemaakt voor mensen die zich voorbereiden op inburgering en uitleg in het Engels of Nederlands willen.',
+  ctaPrimary: 'Start KNM-oefening',
+  ctaSecondary: 'Over dit project',
+  cards: [
+    {
+      title: 'KNM oefenexamens',
+      body: "40 vragen met timer over 8 thema's — dezelfde opzet als het echte examen.",
+      href: '/knm',
+    },
+    {
+      title: 'Studienotities',
+      body: 'Samenvattingen over gezondheid, werk, overheid, wonen, onderwijs, politiek, geschiedenis en cultuur.',
+      href: '/knm',
+    },
+    {
+      title: 'Wie doet wat',
+      body: 'Referentietabel voor de vraag: waar moet deze persoon heen?',
+      href: '/knm',
+    },
+  ],
+  sectionTitle: 'Wat je hier kunt leren',
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.name,
+  url: `${Astro.site?.toString() ?? ''}/nl`,
+  description: tSite('description', locale),
+  inLanguage: 'nl-NL',
+};
+---
+
+<BaseLayout locale={locale} jsonLd={jsonLd}>
+  <HomeHero
+    locale={locale}
+    eyebrow={copy.eyebrow}
+    title={copy.title}
+    lead={copy.lead}
+    ctaPrimary={copy.ctaPrimary}
+    ctaSecondary={copy.ctaSecondary}
+  />
+
+  <section aria-labelledby="learn-heading" class="rise rise-2 mt-8">
+    <div class="mb-8 border-b border-[var(--rule)] pb-4">
+      <h2
+        id="learn-heading"
+        class="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl"
+      >
+        {copy.sectionTitle}
+      </h2>
+    </div>
+    <ul class="grid gap-5 md:grid-cols-3">
+      {
+        copy.cards.map((card) => (
+          <li class="h-full">
+            <a
+              href={localizedPath(card.href, locale)}
+              class="flex h-full flex-col rounded-[var(--radius-card)] border border-[var(--rule)] bg-[var(--surface)] p-5 no-underline transition-colors hover:border-[var(--info)]"
+            >
+              <h3 class="text-lg font-bold text-[var(--ink)]">{card.title}</h3>
+              <p class="mt-2 flex-1 text-base leading-relaxed text-[var(--muted)]">{card.body}</p>
+              <span class="mt-4 font-[family-name:var(--font-sans)] text-sm font-semibold text-[var(--accent-ink)]">
+                Open →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import { siteConfig } from '~/config/site';
+import type { Locale } from '~/lib/i18n';
+import { localizedPath } from '~/lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<a
+  href={localizedPath('/', locale)}
+  class="group inline-flex items-baseline gap-2 no-underline"
+  aria-label={siteConfig.name}
+>
+  <span
+    class="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight text-[var(--ink)] sm:text-2xl"
+  >
+    NL<span class="text-[var(--accent)]">.</span>Learning
+  </span>
+</a>

@@ -1,0 +1,129 @@
+---
+import NavLinks from './NavLinks.astro';
+import LocaleSwitch from './LocaleSwitch.astro';
+import SiteName from './SiteName.astro';
+import { tSite, siteConfig } from '~/config/site';
+import type { Locale } from '~/lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-[var(--rule)] bg-[color-mix(in_oklch,var(--bg)_88%,transparent)] backdrop-blur-md supports-[backdrop-filter]:bg-[color-mix(in_oklch,var(--bg)_72%,transparent)]"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+    <SiteName locale={locale} />
+
+    <div class="flex items-center gap-3">
+      <nav aria-label={siteConfig.navSections.language[locale]} class="hidden md:block">
+        <LocaleSwitch locale={locale} pathname={Astro.url.pathname} />
+      </nav>
+
+      <button
+        type="button"
+        data-menu-open
+        aria-label={siteConfig.ui.openMenu[locale]}
+        aria-controls="site-menu"
+        aria-expanded="false"
+        class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--rule)] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-ink)]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M4 7h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog
+  id="site-menu"
+  hidden
+  aria-labelledby="site-menu-title"
+  aria-modal="true"
+  class="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-[var(--bg)] text-[var(--ink)] backdrop:bg-[color-mix(in_oklch,var(--ink)_60%,transparent)] backdrop:backdrop-blur-sm open:flex open:flex-col"
+>
+  <div
+    class="flex items-center justify-between gap-4 border-b border-[var(--rule)] px-5 py-4 sm:px-8"
+  >
+    <h2 id="site-menu-title" class="text-xl tracking-tight">
+      <SiteName locale={locale} />
+    </h2>
+    <button
+      type="button"
+      data-menu-close
+      aria-label={siteConfig.ui.closeMenu[locale]}
+      class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--rule)] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-ink)]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        class="h-5 w-5"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M6 6l12 12"></path>
+        <path d="M18 6l-12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="flex-1 overflow-y-auto">
+    <div class="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8">
+      <p class="max-w-md text-lg text-[var(--muted)]">{tSite('tagline', locale)}</p>
+
+      <div class="mt-10 sm:mt-14">
+        <NavLinks locale={locale} label={siteConfig.ui.siteMenu[locale]} variant="menu" />
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('site-menu') as HTMLDialogElement | null;
+  const openButton = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+
+  if (dialog && openButton) {
+    const open = (): void => {
+      dialog.removeAttribute('hidden');
+      dialog.showModal();
+      openButton.setAttribute('aria-expanded', 'true');
+      closeButton?.focus();
+    };
+    const close = (): void => {
+      if (dialog.open) dialog.close();
+      dialog.setAttribute('hidden', '');
+    };
+
+    openButton.addEventListener('click', open);
+    closeButton?.addEventListener('click', close);
+    dialog.addEventListener('close', () => {
+      dialog.setAttribute('hidden', '');
+      openButton.setAttribute('aria-expanded', 'false');
+      openButton.focus();
+    });
+    dialog.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', close);
+    });
+  }
+</script>

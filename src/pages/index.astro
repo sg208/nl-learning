@@ -1,0 +1,87 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import HomeHero from '~/components/HomeHero.astro';
+import { siteConfig, tSite } from '~/config/site';
+import { localizedPath } from '~/lib/i18n';
+
+const locale = 'en' as const;
+
+const copy = {
+  eyebrow: 'For newcomers in the Netherlands',
+  title: 'Learn Dutch society — clearly, at your pace.',
+  lead: 'Free KNM practice with big text, high contrast, and offline support. Built for people preparing for civic integration who want explanations in English or Dutch.',
+  ctaPrimary: 'Start KNM practice',
+  ctaSecondary: 'About this project',
+  cards: [
+    {
+      title: 'KNM mock exams',
+      body: '40-question timed practice across 8 topics — the same shape as the real exam.',
+      href: '/knm',
+    },
+    {
+      title: 'Study notes',
+      body: 'Topic summaries for healthcare, work, government, housing, education, politics, history, and culture.',
+      href: '/knm',
+    },
+    {
+      title: 'Who does what',
+      body: 'A reference table for the most common question type: where should this person go?',
+      href: '/knm',
+    },
+  ],
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.name,
+  url: Astro.site?.toString(),
+  description: tSite('description', locale),
+  inLanguage: 'en',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${Astro.site?.toString() ?? ''}/knm`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<BaseLayout locale={locale} jsonLd={jsonLd}>
+  <HomeHero
+    locale={locale}
+    eyebrow={copy.eyebrow}
+    title={copy.title}
+    lead={copy.lead}
+    ctaPrimary={copy.ctaPrimary}
+    ctaSecondary={copy.ctaSecondary}
+  />
+
+  <section aria-labelledby="learn-heading" class="rise rise-2 mt-8">
+    <div class="mb-8 border-b border-[var(--rule)] pb-4">
+      <h2
+        id="learn-heading"
+        class="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl"
+      >
+        What you can study here
+      </h2>
+    </div>
+    <ul class="grid gap-5 md:grid-cols-3">
+      {
+        copy.cards.map((card) => (
+          <li class="h-full">
+            <a
+              href={localizedPath(card.href, locale)}
+              class="flex h-full flex-col rounded-[var(--radius-card)] border border-[var(--rule)] bg-[var(--surface)] p-5 no-underline transition-colors hover:border-[var(--info)]"
+            >
+              <h3 class="text-lg font-bold text-[var(--ink)]">{card.title}</h3>
+              <p class="mt-2 flex-1 text-base leading-relaxed text-[var(--muted)]">{card.body}</p>
+              <span class="mt-4 font-[family-name:var(--font-sans)] text-sm font-semibold text-[var(--accent-ink)]">
+                Open →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

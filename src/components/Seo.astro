@@ -1,0 +1,67 @@
+---
+import { siteConfig, tSite } from '~/config/site';
+import type { Locale } from '~/lib/i18n';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  canonical?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  locale?: Locale;
+}
+
+const {
+  title,
+  description,
+  image,
+  type = 'website',
+  canonical,
+  noindex = false,
+  jsonLd,
+  locale = 'en',
+} = Astro.props;
+
+const siteName = siteConfig.name;
+const pageTitle = title ? `${title} — ${siteName}` : `${siteName} — ${tSite('tagline', locale)}`;
+const metaDescription = description ?? tSite('description', locale);
+const url = new URL(canonical ?? Astro.url.pathname, Astro.site ?? Astro.url);
+const ogImage = image ? new URL(image, Astro.site ?? Astro.url).toString() : undefined;
+const jsonLdBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const htmlLang = locale === 'nl' ? 'nl' : 'en';
+
+function serializeJsonLd(block: Record<string, unknown>): string {
+  return JSON.stringify(block)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={metaDescription} />
+<link rel="canonical" href={url.toString()} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title ?? siteName} />
+<meta property="og:description" content={metaDescription} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url.toString()} />
+<meta property="og:locale" content={htmlLang === 'nl' ? 'nl_NL' : 'en_US'} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title ?? siteName} />
+<meta name="twitter:description" content={metaDescription} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+{
+  jsonLdBlocks.map((block) => (
+    <script is:inline type="application/ld+json" set:html={serializeJsonLd(block)} />
+  ))
+}

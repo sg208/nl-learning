@@ -1,0 +1,18 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Offline"
+  description="You are offline. Some cached pages may still be available."
+  noindex
+>
+  <section class="mx-auto max-w-xl py-10 text-center">
+    <h1 class="font-[family-name:var(--font-display)] text-4xl font-bold">You are offline</h1>
+    <p class="mt-4 text-lg text-[var(--muted)]">
+      NL Learning can show cached pages when your connection returns. Try again, or reopen a page
+      you visited recently.
+    </p>
+    <a href="/" class="btn btn-primary mt-8">Back to home</a>
+  </section>
+</BaseLayout>

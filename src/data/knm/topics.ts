@@ -1,0 +1,58 @@
+export const TOPICS = [
+  {
+    id: 'gezondheid',
+    label: 'Gezondheid',
+    labelEn: 'Healthcare',
+    color: '#e63946',
+    icon: '🏥',
+  },
+  {
+    id: 'werk',
+    label: 'Werk & Inkomen',
+    labelEn: 'Work & Income',
+    color: '#2a9d8f',
+    icon: '💼',
+  },
+  {
+    id: 'overheid',
+    label: 'Overheid',
+    labelEn: 'Government',
+    color: '#457b9d',
+    icon: '🏛️',
+  },
+  {
+    id: 'wonen',
+    label: 'Wonen',
+    labelEn: 'Housing',
+    color: '#e9c46a',
+    icon: '🏠',
+  },
+  {
+    id: 'onderwijs',
+    label: 'Onderwijs',
+    labelEn: 'Education',
+    color: '#8338ec',
+    icon: '🎓',
+  },
+  {
+    id: 'politiek',
+    label: 'Politiek',
+    labelEn: 'Politics',
+    color: '#f4a261',
+    icon: '🗳️',
+  },
+  {
+    id: 'geschiedenis',
+    label: 'Geschiedenis',
+    labelEn: 'History',
+    color: '#6d6875',
+    icon: '📜',
+  },
+  {
+    id: 'cultuur',
+    label: 'Cultuur',
+    labelEn: 'Culture',
+    color: '#e76f51',
+    icon: '🌷',
+  },
+] as const;

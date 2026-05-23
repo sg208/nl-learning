@@ -1,0 +1,63 @@
+---
+import { siteConfig } from '~/config/site';
+import type { Locale } from '~/lib/i18n';
+import { localizedPath } from '~/lib/i18n';
+
+interface Props {
+  locale: Locale;
+  labelledby?: string;
+  label?: string;
+  variant?: 'footer' | 'menu';
+}
+
+const { locale, labelledby, label, variant = 'footer' } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/^\/nl(?=\/|$)/, '') || '/';
+const textSize = variant === 'menu' ? 'text-lg' : 'text-base';
+const spacing = variant === 'menu' ? 'space-y-3' : 'space-y-2.5';
+const headingClass =
+  'font-[family-name:var(--font-sans)] text-xs font-semibold tracking-[0.2em] text-[var(--muted)] uppercase';
+const learnId = `${variant}-learn-heading`;
+const legalId = `${variant}-legal-heading`;
+const learnHeading = siteConfig.navSections.learn[locale];
+const legalHeading = siteConfig.navSections.legal[locale];
+---
+
+<nav aria-labelledby={labelledby} aria-label={labelledby ? undefined : label}>
+  <div class="grid gap-10 sm:grid-cols-2">
+    <section aria-labelledby={learnId}>
+      <h2 id={learnId} class={headingClass}>{learnHeading}</h2>
+      <ul class:list={['mt-3', spacing, textSize]}>
+        {
+          siteConfig.nav.map((link) => {
+            const href = localizedPath(link.href, locale);
+            return (
+              <li>
+                <a href={href} aria-current={currentPath === link.href ? 'page' : undefined}>
+                  {link.label[locale]}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+
+    <section aria-labelledby={legalId}>
+      <h2 id={legalId} class={headingClass}>{legalHeading}</h2>
+      <ul class:list={['mt-3', spacing, textSize]}>
+        {
+          siteConfig.footerLinks.map((link) => {
+            const href = localizedPath(link.href, locale);
+            return (
+              <li>
+                <a href={href} aria-current={currentPath === link.href ? 'page' : undefined}>
+                  {link.label[locale]}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+  </div>
+</nav>

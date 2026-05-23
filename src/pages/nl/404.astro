@@ -1,0 +1,29 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { localizedPath } from '~/lib/i18n';
+---
+
+<BaseLayout
+  locale="nl"
+  title="Pagina niet gevonden"
+  description="De gevraagde pagina bestaat niet."
+  noindex
+>
+  <section class="mx-auto max-w-xl py-10 text-center">
+    <p
+      class="font-[family-name:var(--font-mono)] text-sm tracking-[0.2em] text-[var(--muted)] uppercase"
+    >
+      404
+    </p>
+    <h1 class="mt-4 font-[family-name:var(--font-display)] text-4xl font-bold">
+      Pagina niet gevonden
+    </h1>
+    <p class="mt-4 text-lg text-[var(--muted)]">
+      Deze route bestaat niet. Ga terug naar home of start KNM-oefening.
+    </p>
+    <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+      <a href="/nl" class="btn btn-primary">Home</a>
+      <a href={localizedPath('/knm', 'nl')} class="btn btn-secondary">KNM oefenen</a>
+    </div>
+  </section>
+</BaseLayout>

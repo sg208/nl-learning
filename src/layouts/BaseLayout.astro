@@ -1,0 +1,115 @@
+---
+import '~/styles/global.css';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import Seo from '~/components/Seo.astro';
+import { siteConfig } from '~/config/site';
+import type { Locale } from '~/lib/i18n';
+import { getLocaleFromPath } from '~/lib/i18n';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  canonical?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  fullBleed?: boolean;
+  locale?: Locale;
+  mainPadding?: 'none' | 'hero' | 'content';
+}
+
+const {
+  title,
+  description,
+  image,
+  type,
+  canonical,
+  noindex,
+  jsonLd,
+  fullBleed = false,
+  locale = getLocaleFromPath(Astro.url.pathname),
+  mainPadding = 'none',
+} = Astro.props;
+
+const mainPaddingClass =
+  mainPadding === 'hero' ? 'pt-8 sm:pt-10' : mainPadding === 'content' ? 'pt-6 sm:pt-8' : 'pt-0';
+
+const htmlLang = locale === 'nl' ? 'nl' : 'en';
+const skipLabel = locale === 'nl' ? 'Ga naar inhoud' : 'Skip to content';
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content={siteConfig.themeColor} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      canonical={canonical}
+      noindex={noindex}
+      jsonLd={jsonLd}
+      locale={locale}
+    />
+
+    <script is:inline src="/sw-register.js"></script>
+  </head>
+  <body class="antialiased">
+    <a href="#main" class="skip-link">{skipLabel}</a>
+    <Header locale={locale} />
+    <main
+      id="main"
+      tabindex="-1"
+      class:list={[
+        fullBleed ? '' : 'mx-auto max-w-6xl px-5 sm:px-8',
+        'relative z-10 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:pb-20 md:pb-16',
+        mainPaddingClass,
+      ]}
+    >
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <script>
+      import '~/scripts/locale-switch';
+    </script>
+    <script is:inline>
+      const announcer = document.getElementById('route-announcer');
+      const title = document.title;
+      if (announcer && title) {
+        announcer.textContent = title;
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  dialog:not([open]) {
+    display: none;
+  }
+</style>

@@ -1,0 +1,37 @@
+name: Deploy to Bunny CDN
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+
+      - name: Upload to Bunny storage & purge cache
+        run: node scripts/upload-to-cdn.mjs
+        env:
+          BUNNY_STORAGE_ACCESS_KEY: ${{ secrets.BUNNY_STORAGE_ACCESS_KEY }}
+          BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
+          BUNNY_ZONE_ID: ${{ secrets.BUNNY_ZONE_ID }}

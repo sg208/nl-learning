@@ -1,0 +1,44 @@
+---
+import type { Locale } from '~/lib/i18n';
+import { switchLocalePath } from '~/lib/i18n';
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+  variant?: 'inline' | 'float';
+}
+
+const { locale, pathname, variant = 'inline' } = Astro.props;
+const isFloat = variant === 'float';
+---
+
+<ul class:list={['flex overflow-hidden rounded-full', !isFloat && 'border border-[var(--rule)]']}>
+  {
+    (['en', 'nl'] as const).map((lang) => {
+      const href = switchLocalePath(pathname, lang);
+      const isActive = lang === locale;
+      return (
+        <li>
+          <a
+            href={href}
+            lang={lang}
+            hreflang={lang}
+            data-locale-switch
+            aria-current={isActive ? 'true' : undefined}
+            class:list={[
+              'inline-flex items-center justify-center font-[family-name:var(--font-sans)] font-bold tracking-wide no-underline',
+              isFloat
+                ? 'min-h-[var(--touch-min)] min-w-[3.25rem] px-4 text-base'
+                : 'min-h-10 min-w-12 px-3 text-sm',
+              isActive
+                ? 'bg-[var(--accent)] text-white'
+                : 'text-[var(--muted)] hover:text-[var(--ink)]',
+            ]}
+          >
+            {lang.toUpperCase()}
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
