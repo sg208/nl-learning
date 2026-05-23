@@ -1,6 +1,9 @@
 # NL Learning — project overview
 
-Accessible PWA study site for non-Dutch speakers preparing for **KNM** (Kennis van de Nederlandse Maatschappij) and Dutch civic integration.
+Agent-oriented reference for stack, paths, and conventions.
+
+- **Setup & commands** → [README.md](./README.md)
+- **System design & deployment** → [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 ## Stack
 
@@ -14,40 +17,51 @@ Accessible PWA study site for non-Dutch speakers preparing for **KNM** (Kennis v
 | PWA       | `public/sw.js`, `public/sw-register.js`, web manifest |
 | Deploy    | GitHub Actions → Bunny CDN (`main`)                   |
 
-## Branches
-
-- **`develop`** — integration (CodeRabbit, PR target)
-- **`main`** — production deploy
-
 ## Key paths
 
-- `src/pages/` — routes
-- `src/pages/knm/`, `src/pages/nl/knm/` — KNM shell pages
-- `src/data/knm/` — question bank, topics, study notes, UI strings
-- `src/lib/knm-session.ts` — locale handoff + live session (`sessionStorage`)
-- `src/components/LocaleSwitch.astro` — EN/NL pill (header + mobile float)
-- `src/i18n/legal.ts` — legal page copy
-
-## Commands
-
-```bash
-npm install
-npm run dev          # preferred for development (SW cleared on localhost)
-SITE_URL=https://example.com npm run build
-npm run preview
-npm start            # serve dist (static MPA, no SPA rewrite)
-npm run check        # astro check + tsc
-npm run fix          # eslint --fix + prettier
-```
-
-## Environment
-
-- **`SITE_URL`** — required for production builds (canonical, OG, sitemap).
-
-Deploy secrets: see `.github/workflows/deploy.yml`.
+| Path | Purpose |
+| ---- | ------- |
+| `src/pages/` | Astro routes |
+| `src/pages/knm/`, `src/pages/nl/knm/` | KNM shell pages |
+| `src/data/knm/` | Question bank, topics, study notes, UI strings |
+| `src/lib/knm-session.ts` | Locale handoff + live session (`sessionStorage`) |
+| `src/lib/knm-content.ts` | Content helpers for KNM data |
+| `src/lib/i18n.ts` | Locale types and path helpers |
+| `src/components/LocaleSwitch.astro` | EN/NL pill (header + mobile) |
+| `src/i18n/legal.ts` | Legal page copy |
+| `src/config/site.ts` | Site name, nav, footer links |
+| `scripts/upload-to-cdn.mjs` | Production upload + cache purge |
+| `ai-rules/` | Shared agent rules (Cursor, Claude, Copilot) |
 
 ## Conventions
 
-- WCAG 2.1 / 2.2 AA targets: large touch targets, contrast, keyboard, skip link, route announcer.
-- KNM uses ARIA tabs, live regions for exam feedback, and text-node rendering (no `innerHTML` for user-facing content).
-- Legal copy in `src/i18n/legal.ts` — ask before editing privacy/terms/disclaimer wording.
+### TypeScript & structure
+
+- No `enum`; use `const` objects or string unions.
+- No `any` without a short inline comment.
+- Prefer arrow functions for handlers and helpers.
+- Keep files ≤ ~120 lines; split by responsibility.
+- Run `npm run fix` before pushing.
+
+### Astro
+
+- Pages in `src/pages/`; shared UI in `src/components/`; layouts in `src/layouts/`.
+- Use `~/` path alias (see `tsconfig.json`).
+- Prefer static content in `.astro` files; client behavior in `src/scripts/*.ts`.
+
+### Accessibility
+
+- WCAG 2.1 / 2.2 AA: contrast, keyboard, skip link, one `<h1>` per page, logical heading order.
+- KNM: ARIA tabs, live regions for exam feedback, text-node rendering (no `innerHTML` for user-facing content).
+
+### Security & legal
+
+- No secrets in source; env vars for build and deploy only.
+- **Always ask before editing** legal wording in `src/i18n/legal.ts` or legal page routes.
+
+### Agent workflow
+
+- Read this file first for stack, paths, and conventions.
+- Read [ARCHITECTURE.md](./ARCHITECTURE.md) for flows, PWA, and deploy.
+- Read [README.md](./README.md) for scripts and env vars.
+- Tool-specific lint/security/a11y rules: `ai-rules/.cursor/rules/`.
