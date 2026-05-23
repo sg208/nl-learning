@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const DIST_DIR = resolve(here, '..', 'dist');
-const STORAGE_BASE_URL = 'https://storage.bunnycdn.com/nl-learning-prod';
+const STORAGE_BASE_URL = 'https://storage.bunnycdn.com/nllearning-prod';
 const PURGE_URL = 'https://api.bunny.net/pullzone';
 
 const STORAGE_ACCESS_KEY = process.env.BUNNY_STORAGE_ACCESS_KEY;
