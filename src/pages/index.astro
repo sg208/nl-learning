@@ -3,6 +3,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import HomeHero from '~/components/HomeHero.astro';
 import { siteConfig, tSite } from '~/config/site';
 import { localizedPath } from '~/lib/i18n';
+import { organizationJsonLd } from '~/lib/seo';
 
 const locale = 'en' as const;
 
@@ -31,18 +32,20 @@ const copy = {
   ],
 };
 
+const siteUrl = Astro.site?.toString() ?? '';
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: siteConfig.name,
-  url: Astro.site?.toString(),
-  description: tSite('description', locale),
-  inLanguage: 'en',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${Astro.site?.toString() ?? ''}/knm`,
-    'query-input': 'required name=search_term_string',
-  },
+  '@graph': [
+    organizationJsonLd(siteUrl),
+    {
+      '@type': 'WebSite',
+      name: siteConfig.name,
+      url: siteUrl,
+      description: tSite('description', locale),
+      inLanguage: 'en',
+      publisher: { '@id': `${siteUrl}/#org` },
+    },
+  ],
 };
 ---
 
