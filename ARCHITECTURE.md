@@ -18,7 +18,7 @@ flowchart LR
   end
   subgraph runtime [Browser]
     Bunny --> Pages[HTML pages]
-    Pages --> KNM[knm-app.ts client UI]
+    Pages --> KNM[src/scripts/knm client UI]
     KNM --> Data[src/data/knm at build time]
     SW[public/sw.js] --> Cache[Cache API]
   end
@@ -33,7 +33,20 @@ flowchart LR
 
 ## KNM client app
 
-Shell pages (`src/pages/knm/`, `src/pages/nl/knm/`) mount an empty `#knm-app` div and load `src/scripts/knm-app.ts`.
+Shell pages (`src/pages/knm/`, `src/pages/nl/knm/`) mount an empty `#knm-app` div and load `src/scripts/knm/index.ts`.
+
+The KNM app is split into focused modules under `src/scripts/knm/`:
+
+| Module           | Responsibility                                       |
+| ---------------- | ---------------------------------------------------- |
+| `index.ts`       | Boot, locale handoff restore                         |
+| `state.ts`       | App state + snapshot read/write                      |
+| `exam-engine.ts` | Shuffle, build exam, timer                           |
+| `set-state.ts`   | State updates → re-render + persist                  |
+| `render.ts`      | View orchestrator                                    |
+| `dom/`           | `el()` helper, live-region announcements             |
+| `tabs/`          | Tab nav, sticky bar, mobile sheet, a11y sync         |
+| `views/`         | One file per screen (home, topics, exam, results, …) |
 
 | Concern     | Implementation                                                                           |
 | ----------- | ---------------------------------------------------------------------------------------- |

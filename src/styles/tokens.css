@@ -1,0 +1,41 @@
+@theme {
+  --font-sans: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Literata Variable', 'Literata', Georgia, serif;
+  --font-display: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --color-night: #0c1018;
+  --color-panel: #151b28;
+  --color-panel-raised: #1c2435;
+  --color-ink: #f2ebe0;
+  --color-ink-soft: #d8cfc0;
+  --color-muted: #9a9284;
+  --color-rule: #2a3347;
+  --color-coral: #e63946;
+  --color-coral-soft: #ff6b6b;
+  --color-teal: #2a9d8f;
+  --color-sky: #457b9d;
+  --color-gold: #e9c46a;
+
+  --radius-card: 0.875rem;
+  --radius-pill: 999px;
+  --shadow-panel: 0 12px 40px -16px rgb(0 0 0 / 0.55);
+  --measure: 68ch;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: var(--color-night);
+  --surface: var(--color-panel);
+  --surface-raised: var(--color-panel-raised);
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+  --muted: var(--color-muted);
+  --rule: var(--color-rule);
+  --accent: var(--color-coral);
+  --accent-soft: var(--color-coral-soft);
+  --accent-ink: #ffb4ba;
+  --success: var(--color-teal);
+  --info: var(--color-sky);
+  --touch-min: 3rem;
+}

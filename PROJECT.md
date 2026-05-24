@@ -13,7 +13,7 @@ Agent-oriented reference for stack, paths, and conventions.
 | Styling   | Tailwind CSS v4 (`src/styles/global.css`)             |
 | Fonts     | Sora (UI), Literata (body)                            |
 | i18n      | EN at `/`, NL at `/nl/...`                            |
-| KNM app   | Vanilla TS client renderer (`src/scripts/knm-app.ts`) |
+| KNM app   | Vanilla TS client app (`src/scripts/knm/`)            |
 | PWA       | `public/sw.js`, `public/sw-register.js`, web manifest |
 | Deploy    | GitHub Actions → Bunny CDN (`main`)                   |
 
@@ -22,15 +22,24 @@ Agent-oriented reference for stack, paths, and conventions.
 | Path                                  | Purpose                                          |
 | ------------------------------------- | ------------------------------------------------ |
 | `src/pages/`                          | Astro routes                                     |
-| `src/pages/knm/`, `src/pages/nl/knm/` | KNM shell pages                                  |
-| `src/data/knm/`                       | Question bank, topics, study notes, UI strings   |
+| `src/pages/knm/`, `src/pages/nl/knm/` | KNM routes (via `KnmPage.astro`)                 |
+| `src/data/knm/questions/`             | Question bank (per-topic files + `index.ts`)     |
+| `src/data/knm/study-notes/`           | Study notes (per-topic files + `index.ts`)       |
+| `src/data/knm/ui/`                    | KNM UI strings (`nl.ts`, `en.ts`)                |
+| `src/data/knm/translations.ts`        | EN heading/label maps for study & who-does-what  |
+| `src/scripts/knm/`                    | KNM client app (state, exam engine, tabs, views) |
+| `src/scripts/locale-handoff.ts`       | Shared locale-switch session handoff             |
+| `src/styles/knm/`                     | KNM scoped CSS (tokens, layout, tabs, exam)      |
 | `src/lib/knm-session.ts`              | Locale handoff + live session (`sessionStorage`) |
-| `src/lib/knm-content.ts`              | Content helpers for KNM data                     |
+| `src/lib/knm-content.ts`              | KNM locale/topic helpers                         |
 | `src/lib/i18n.ts`                     | Locale types and path helpers                    |
+| `src/components/KnmPage.astro`        | Shared EN/NL KNM page shell                      |
 | `src/components/LocaleSwitch.astro`   | EN/NL pill (header + mobile)                     |
-| `src/i18n/legal.ts`                   | Legal page copy                                  |
+| `src/i18n/legal/`                     | Legal page copy (per-page modules)               |
 | `src/config/site.ts`                  | Site name, nav, footer links                     |
-| `scripts/upload-to-cdn.mjs`           | Production upload + cache purge                  |
+| `scripts/upload-to-cdn.mjs`           | CDN upload orchestrator                          |
+| `scripts/collect-files.mjs`           | Recursive dist file collector                    |
+| `scripts/upload-batch.mjs`            | Bunny CDN batch upload + purge                   |
 | `ai-rules/`                           | Shared agent rules (Cursor, Claude, Copilot)     |
 
 ## Conventions
@@ -40,7 +49,7 @@ Agent-oriented reference for stack, paths, and conventions.
 - No `enum`; use `const` objects or string unions.
 - No `any` without a short inline comment.
 - Prefer arrow functions for handlers and helpers.
-- Keep files ≤ ~120 lines; split by responsibility.
+- Keep files ≤ ~120 lines (150 soft cap); split by responsibility.
 - Run `npm run fix` before pushing.
 
 ### Astro

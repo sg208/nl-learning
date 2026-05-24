@@ -1,0 +1,92 @@
+#knm-app .header {
+  width: 100%;
+}
+
+#knm-app .header-inner {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: 1.5rem 1.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  #knm-app .header-inner {
+    padding: 2rem 2rem 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #knm-app .header-inner {
+    padding-inline: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+#knm-app .header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+#knm-app .header-title {
+  flex: 1;
+  min-width: 0;
+}
+
+#knm-app .tagline {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  color: var(--color-coral-soft);
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+#knm-app .app-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--knm-ink);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+#knm-app .subtitle {
+  margin-top: 0.625rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+#knm-app .main {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 3rem;
+}
+
+@media (min-width: 640px) {
+  #knm-app .main {
+    padding: 2rem 2rem 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #knm-app .main {
+    padding-inline: 2.5rem;
+  }
+}
+
+#knm-app .spacer {
+  height: 1.5rem;
+}
+
+#knm-app ul {
+  padding-left: 1.25rem;
+}

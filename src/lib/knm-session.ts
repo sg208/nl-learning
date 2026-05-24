@@ -1,3 +1,5 @@
+const KNM_TABS = new Set(['home', 'topics', 'whowhat', 'exam']);
+
 export type KnmSnapshot = {
   tab: 'home' | 'topics' | 'whowhat' | 'exam';
   selectedTopicId: string | null;
@@ -39,11 +41,28 @@ export const persistKnmLiveSession = (knm: KnmSnapshot): void => {
   sessionStorage.setItem(LIVE_SESSION_KEY, JSON.stringify(knm));
 };
 
+export const validateKnmSnapshot = (snapshot: unknown): snapshot is KnmSnapshot => {
+  if (!snapshot || typeof snapshot !== 'object') return false;
+  const candidate = snapshot as KnmSnapshot;
+  if (!KNM_TABS.has(candidate.tab)) return false;
+  if (typeof candidate.current !== 'number' || candidate.current < 0) return false;
+  if (candidate.selectedTopicId !== null && typeof candidate.selectedTopicId !== 'string') {
+    return false;
+  }
+  if (typeof candidate.submitted !== 'boolean' || typeof candidate.reviewing !== 'boolean') {
+    return false;
+  }
+  if (typeof candidate.timeLeft !== 'number') return false;
+  if (Array.isArray(candidate.exam) && candidate.current >= candidate.exam.length) return false;
+  return true;
+};
+
 export const readKnmLiveSession = (): KnmSnapshot | null => {
   const raw = sessionStorage.getItem(LIVE_SESSION_KEY);
   if (!raw) return null;
   try {
-    return JSON.parse(raw) as KnmSnapshot;
+    const parsed: unknown = JSON.parse(raw);
+    return validateKnmSnapshot(parsed) ? parsed : null;
   } catch {
     return null;
   }
