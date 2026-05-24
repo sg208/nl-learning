@@ -15,6 +15,7 @@ export const state: AppState = {
   timeLeft: EXAM_DURATION,
   timerHandle: null,
   reviewing: false,
+  scrollToNoteHeading: null,
 };
 
 export const getKnmSnapshot = (): KnmSnapshot => ({
@@ -27,6 +28,7 @@ export const getKnmSnapshot = (): KnmSnapshot => ({
   submitted: state.submitted,
   timeLeft: state.timeLeft,
   reviewing: state.reviewing,
+  scrollToNoteHeading: state.scrollToNoteHeading,
 });
 
 export const isValidSnapshot = validateKnmSnapshot;
@@ -41,12 +43,18 @@ export const applyKnmSnapshot = (
     ? (TOPICS.find((topic) => topic.id === snapshot.selectedTopicId) ?? null)
     : null;
   state.examConfig = snapshot.examConfig;
-  state.exam = snapshot.exam;
+  state.exam = snapshot.exam
+    ? snapshot.exam.map((question) => ({
+        ...question,
+        noteHeadings: question.noteHeadings ?? [],
+      }))
+    : null;
   state.answers = snapshot.answers;
   state.current = snapshot.current;
   state.submitted = snapshot.submitted;
   state.timeLeft = snapshot.timeLeft;
   state.reviewing = snapshot.reviewing;
+  state.scrollToNoteHeading = snapshot.scrollToNoteHeading ?? null;
   state.timerHandle = null;
   refreshExamTopicLabels();
   if (state.examConfig && state.exam && !state.submitted) {

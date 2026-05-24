@@ -30,7 +30,7 @@ export const renderTopicsList = (): HTMLDivElement => {
     const btn = el('button', {
       className: 'list-card-btn',
       style: { borderLeftColor: topic.color },
-      onClick: () => setState({ selectedTopic: topic }),
+      onClick: () => setState({ selectedTopic: topic, scrollToNoteHeading: null }),
     });
     btn.appendChild(el('span', { className: 'list-card-icon' }, topic.icon));
     const info = el('div', { className: 'list-card-info' });

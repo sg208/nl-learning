@@ -30,6 +30,20 @@
   line-height: 1.65;
 }
 
+#knm-app .note-tip {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  margin-top: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-left: 3px solid var(--knm-accent, #e63946);
+  background: rgb(255 255 255 / 0.04);
+  color: rgb(255 255 255 / 0.85);
+}
+
+#knm-app .note-first-steps .body-text {
+  font-size: 0.9375rem;
+}
+
 #knm-app .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
@@ -374,4 +388,32 @@
   line-height: 1.5;
   margin-top: 0.375rem;
   font-style: italic;
+}
+
+#knm-app .study-note-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  background: transparent;
+  border: 1px solid var(--color-teal);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+#knm-app .study-note-link:hover {
+  background: color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+#knm-app .study-note-link:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+#knm-app .exam-coverage-label {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
 }

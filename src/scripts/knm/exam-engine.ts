@@ -1,4 +1,5 @@
 import { QUESTION_BANK } from '~/data/knm/question-bank';
+import { getQuestionNoteHeadings } from '~/data/knm/question-concept-map';
 import { TOPICS } from '~/data/knm/topics';
 import { getKnmLang, getTopicLabel } from '~/lib/knm-content';
 import { persistKnmLiveSession } from '~/lib/knm-session';
@@ -22,7 +23,8 @@ export const buildExam = (examNumber: number, variantIdx: number): ExamQuestion[
   const exam: ExamQuestion[] = [];
   const examKey = String(examNumber) as '1' | '2' | '3';
   for (const topic of TOPICS) {
-    for (const q of QUESTION_BANK[topic.id][examKey]) {
+    const topicQuestions = QUESTION_BANK[topic.id][examKey];
+    topicQuestions.forEach((q, index) => {
       const correct = q.options[q.answer];
       const opts = shuffle(q.options);
       exam.push({
@@ -34,8 +36,9 @@ export const buildExam = (examNumber: number, variantIdx: number): ExamQuestion[
         answer: opts.indexOf(correct),
         explanation: q.explanation,
         explanationEn: q.explanationEn,
+        noteHeadings: getQuestionNoteHeadings(topic.id, examKey, index),
       });
-    }
+    });
   }
   return shuffle(exam);
 };
@@ -99,6 +102,7 @@ export const resetTabViewState = (tab: TabId): void => {
     current: 0,
     submitted: false,
     reviewing: false,
+    scrollToNoteHeading: null,
     timeLeft: EXAM_DURATION,
     timerHandle: null,
   });

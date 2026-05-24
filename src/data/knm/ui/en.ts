@@ -38,6 +38,9 @@ export const en: KnmUiStrings = {
     cultuur: 'LOW',
   },
   backToTopics: '← Back to topics',
+  noteTipLabel: 'Common mistake:',
+  examCoverage: (covered, total) => `Exam covers ${covered}/${total} study cards`,
+  studyNoteLink: 'Read study note →',
   whoIntro: 'Many exam questions ask "where should this person go?". Memorise this table.',
   whoHighlight: 'CRUCIAL DISTINCTION',
   whoUWV:

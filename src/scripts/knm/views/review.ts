@@ -1,12 +1,14 @@
-import { getKnmLang, getLocalizedText } from '~/lib/knm-content';
+import { getKnmLang, getLocalizedText, getStudyHeading } from '~/lib/knm-content';
 
 import { el } from '../dom/el';
+import { openStudyNote } from '../open-study-note';
 import { setState } from '../set-state';
 import { state } from '../state';
 import { t } from '../ui-strings';
 
 export const renderReview = (): HTMLDivElement => {
   const u = t();
+  const lang = getKnmLang();
   const { exam, answers } = state;
   if (!exam) return el('div');
 
@@ -54,9 +56,26 @@ export const renderReview = (): HTMLDivElement => {
       el(
         'div',
         { className: 'review-explanation' },
-        getLocalizedText(q.explanation, q.explanationEn, getKnmLang()),
+        getLocalizedText(q.explanation, q.explanationEn, lang),
       ),
     );
+
+    const primaryNote = q.noteHeadings?.[0];
+    if (primaryNote) {
+      const noteLabel = getStudyHeading(primaryNote, lang);
+      card.appendChild(
+        el(
+          'button',
+          {
+            type: 'button',
+            className: 'study-note-link',
+            onClick: () => openStudyNote(q.topic, primaryNote),
+          },
+          `${u.studyNoteLink} ${noteLabel}`,
+        ),
+      );
+    }
+
     div.appendChild(card);
   }
   div.appendChild(el('div', { className: 'spacer' }));

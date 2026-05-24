@@ -27,6 +27,13 @@ describe('buildExam', () => {
     }
   });
 
+  it('links each question to at least one study note', () => {
+    const exam = buildExam(1, 0);
+    for (const question of exam) {
+      expect(question.noteHeadings.length).toBeGreaterThan(0);
+    }
+  });
+
   it('uses different wording variants from the question bank', () => {
     const examA = buildExam(1, 0);
     const examB = buildExam(1, 1);

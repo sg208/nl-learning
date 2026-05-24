@@ -71,16 +71,15 @@ export const werkQuestions = {
   '2': [
     {
       variants: [
-        'Hoe lang mag een wettelijke proeftijd in een arbeidscontract maximaal duren?',
-        'Wat is de maximale proeftijd bij een vast contract?',
-        'Maximale wettelijke proeftijd in maanden?',
+        'Hoeveel weken moet u minimaal hebben gewerkt voor recht op WW?',
+        'Wat is de wekeneis voor een WW-uitkering?',
+        'Minimaal aantal gewerkte weken in de laatste 36 weken voor WW?',
       ],
-      options: ['1 maand', '2 maanden', '3 maanden', '6 maanden'],
+      options: ['13 van 26', '26 van 36', '36 van 52', '52 van 78'],
       answer: 1,
-      explanation:
-        'Bij een contract voor onbepaalde tijd of langer dan 2 jaar is de proeftijd maximaal 2 maanden.',
+      explanation: 'Voor WW moet u minimaal 26 van de laatste 36 weken hebben gewerkt (wekeneis).',
       explanationEn:
-        'For a permanent contract or one lasting over 2 years, the probationary period is at most 2 months.',
+        'For WW you must have worked at least 26 of the last 36 weeks (weeks-worked requirement).',
     },
     {
       variants: [
@@ -169,21 +168,21 @@ export const werkQuestions = {
     },
     {
       variants: [
-        'U heeft een 0-urencontract. Bent u verzekerd voor ziekte?',
-        'Wat zijn uw rechten bij ziekte met een 0-urencontract?',
-        'Oproep-/0-uren-contract en ziek geworden: wat geldt?',
+        "U bent ZZP'er en uw opdrachten stoppen. Heeft u automatisch recht op WW?",
+        'Als zelfstandige zonder opdrachten — automatisch WW?',
+        "ZZP'er zonder werk: recht op WW-uitkering?",
       ],
       options: [
-        'Geen rechten',
-        'Recht op loondoorbetaling tijdens de oproep / via Ziektewet UWV',
-        'Alleen via huisarts',
-        'Alleen via Belastingdienst',
+        'Ja, automatisch',
+        "Nee — ZZP'ers hebben geen automatisch WW-recht",
+        'Alleen via UWV na 1 jaar',
+        'Alleen via gemeente direct',
       ],
       answer: 1,
       explanation:
-        'Bij 0-uren is er beperkte loondoorbetaling; vaak loopt het via de Ziektewet bij UWV.',
+        "ZZP'ers zijn geen werknemers — geen automatisch WW. Zelf BTW-aangifte. Bij geen inkomen: mogelijk bijstand via gemeente.",
       explanationEn:
-        'With a zero-hours contract there is limited sick pay; it often runs via the Sickness Benefits Act (Ziektewet) at UWV.',
+        'Self-employed workers are not employees — no automatic WW. You file your own VAT return. Without income: possible social assistance via municipality.',
     },
     {
       variants: [

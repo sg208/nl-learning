@@ -14,7 +14,7 @@ Astro 6 static, Tailwind v4, EN `/` + NL `/nl/...`, KNM client app in `src/scrip
 
 ## Key paths
 
-- `src/pages/` routes; `src/data/knm/questions|study-notes|ui/`; `src/lib/knm-session.ts` sessionStorage
+- `src/pages/` routes; `src/data/knm/questions|study-notes|ui/`; `knm-facts.ts`; `question-concept-map.ts`; `src/lib/knm-session.ts` sessionStorage
 - `src/i18n/legal/` legal copy — ask before editing
 
 ## Conventions
