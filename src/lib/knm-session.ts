@@ -76,6 +76,10 @@ export const consumeLocaleHandoff = (): LocaleHandoff | null => {
 
 export const restoreScroll = (scrollY: number): void => {
   requestAnimationFrame(() => {
-    window.scrollTo(0, scrollY);
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo({ top: scrollY, left: 0, behavior: 'auto' });
+    root.style.scrollBehavior = previous;
   });
 };

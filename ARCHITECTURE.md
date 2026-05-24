@@ -35,12 +35,12 @@ flowchart LR
 
 Shell pages (`src/pages/knm/`, `src/pages/nl/knm/`) mount an empty `#knm-app` div and load `src/scripts/knm-app.ts`.
 
-| Concern | Implementation |
-| ------- | ---------------- |
-| Content | Typed modules under `src/data/knm/` (questions, topics, notes, UI strings) |
-| Rendering | Vanilla TS DOM updates — text nodes only for user-facing content |
-| Session | `src/lib/knm-session.ts` — `sessionStorage` for live exam state and EN/NL locale handoff |
-| Tabs / exam | ARIA tab pattern, `aria-live` for feedback, timed mock exams |
+| Concern     | Implementation                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| Content     | Typed modules under `src/data/knm/` (questions, topics, notes, UI strings)               |
+| Rendering   | Vanilla TS DOM updates — text nodes only for user-facing content                         |
+| Session     | `src/lib/knm-session.ts` — `sessionStorage` for live exam state and EN/NL locale handoff |
+| Tabs / exam | ARIA tab pattern, `aria-live` for feedback, timed mock exams                             |
 
 Data is bundled at build time (no runtime API for question bank).
 
@@ -50,11 +50,11 @@ Data is bundled at build time (no runtime API for question bank).
 
 ## PWA & offline
 
-| File | Role |
-| ---- | ---- |
-| `public/sw.js` | Versioned caches; navigate = network-first with `/offline` fallback; static assets = cache-first |
-| `public/sw-register.js` | Registration; unregisters on localhost during dev |
-| `public/manifest.webmanifest` | Install metadata |
+| File                          | Role                                                                                             |
+| ----------------------------- | ------------------------------------------------------------------------------------------------ |
+| `public/sw.js`                | Versioned caches; navigate = network-first with `/offline` fallback; static assets = cache-first |
+| `public/sw-register.js`       | Registration; unregisters on localhost during dev                                                |
+| `public/manifest.webmanifest` | Install metadata                                                                                 |
 
 Dev server bypasses the service worker; test offline with `npm run build` + `npm start`.
 

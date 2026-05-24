@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="nllearn.ing">
+  <rect width="512" height="512" fill="#0c1018" />
+  <text
+    x="128"
+    y="292"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="168"
+    font-weight="700"
+    letter-spacing="-0.05em"
+    fill="#f2ebe0"
+  >
+    nl
+  </text>
+  <circle cx="332" cy="286" r="28" fill="#e63946" />
+  <text
+    x="368"
+    y="292"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="88"
+    font-weight="700"
+    letter-spacing="-0.02em"
+    fill="#e63946"
+  >
+    ing
+  </text>
+</svg>

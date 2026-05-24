@@ -1,4 +1,4 @@
-const VERSION = 'nl-learning-v5';
+const VERSION = 'nllearn-ing-v1';
 const PAGE_CACHE = `${VERSION}-pages`;
 const ASSET_CACHE = `${VERSION}-assets`;
 const OFFLINE_URL = '/offline';
