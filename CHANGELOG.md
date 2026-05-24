@@ -28,6 +28,8 @@ All notable changes to this project are documented in this file.
 
 - Refactor KNM into modular `src/scripts/knm/` (state, exam engine, tabs, views, render registry) and remove monolithic `knm-app.ts`.
 - Split KNM data into per-topic modules (`questions/`, `study-notes/`, `ui/`, `translations.ts`) and legal copy into `src/i18n/legal/`.
+- Expand KNM study notes (~90 cards): Eerste stappen per topic, optional mistake tips, and gap-fill content across all eight topics.
+- Add `knm-facts.ts` (2026 eigen risico / huurprijsgrens), `question-concept-map.ts`, exam review study-note links, topic coverage badge, and content-quality Vitest guards.
 - Split KNM styles into `src/styles/knm/` with view CSS classes replacing inline styles; add shared `KnmPage.astro`, `locale-handoff.ts`, and `site-menu.ts`.
 - Harden session restore with `validateKnmSnapshot`; add Vitest for exam engine and snapshot validation; split CDN upload helpers.
 

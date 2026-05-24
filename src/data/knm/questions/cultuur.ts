@@ -141,21 +141,21 @@ export const cultuurQuestions = {
     },
     {
       variants: [
-        "Wat is een 'verjaardagskalender' typisch Nederlands voor?",
-        "Waar hangt een 'verjaardagskalender' in Nederlandse huizen vaak?",
-        'Welke functie heeft de verjaardagskalender in huis?',
+        'Welke beweeglijke feestdagen vallen in het voorjaar of begin zomer?',
+        'Pasen, Hemelvaartsdag en Pinksteren — wanneer vallen die?',
+        'Welke feestdagen na Koningsdag zijn geen vaste datum?',
       ],
       options: [
-        'Een agenda voor werk',
-        'Een kalender met verjaardagen, vaak op het toilet',
-        'Een religieus voorwerp',
-        'Een sportplanning',
+        'Alleen Kerst en Oudejaar',
+        'Pasen, Hemelvaartsdag en Pinksteren',
+        'Alleen Sinterklaas',
+        'Alleen Dodenherdenking en Bevrijdingsdag',
       ],
       answer: 1,
       explanation:
-        'Veel Nederlanders hebben een verjaardagskalender, vaak op het toilet — een culturele rariteit.',
+        'Pasen, Hemelvaartsdag en Pinksteren zijn beweeglijke feestdagen — de datum verschilt elk jaar.',
       explanationEn:
-        'Many Dutch people keep a birthday calendar, often in the toilet — a cultural curiosity.',
+        'Easter, Ascension Day and Pentecost are movable public holidays — the date changes each year.',
     },
   ],
   '3': [

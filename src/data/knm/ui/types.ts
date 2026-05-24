@@ -27,6 +27,9 @@ export type KnmUiStrings = {
   topicsSubtitle: (count: number) => string;
   priorityLabels: Record<string, string>;
   backToTopics: string;
+  noteTipLabel: string;
+  examCoverage: (covered: number, total: number) => string;
+  studyNoteLink: string;
   whoIntro: string;
   whoHighlight: string;
   whoUWV: string;

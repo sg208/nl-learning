@@ -15,6 +15,7 @@ export type ExamQuestion = {
   answer: number;
   explanation: string;
   explanationEn?: string;
+  noteHeadings: readonly string[];
 };
 
 export type AppState = {
@@ -28,6 +29,7 @@ export type AppState = {
   timeLeft: number;
   timerHandle: ReturnType<typeof setInterval> | null;
   reviewing: boolean;
+  scrollToNoteHeading: string | null;
 };
 
 export type StatePatch = Partial<AppState>;

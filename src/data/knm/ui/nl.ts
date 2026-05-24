@@ -38,6 +38,9 @@ export const nl: KnmUiStrings = {
     cultuur: 'LAAG',
   },
   backToTopics: "← Terug naar thema's",
+  noteTipLabel: 'Veelgemaakte fout:',
+  examCoverage: (covered, total) => `Examen dekt ${covered}/${total} studiekaarten`,
+  studyNoteLink: 'Lees studienotitie →',
   whoIntro:
     'Veel examenvragen vragen "waar moet deze persoon heen?". Leer deze tabel uit het hoofd.',
   whoHighlight: 'CRUCIAAL ONDERSCHEID',

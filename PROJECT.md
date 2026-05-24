@@ -19,28 +19,30 @@ Agent-oriented reference for stack, paths, and conventions.
 
 ## Key paths
 
-| Path                                  | Purpose                                          |
-| ------------------------------------- | ------------------------------------------------ |
-| `src/pages/`                          | Astro routes                                     |
-| `src/pages/knm/`, `src/pages/nl/knm/` | KNM routes (via `KnmPage.astro`)                 |
-| `src/data/knm/questions/`             | Question bank (per-topic files + `index.ts`)     |
-| `src/data/knm/study-notes/`           | Study notes (per-topic files + `index.ts`)       |
-| `src/data/knm/ui/`                    | KNM UI strings (`nl.ts`, `en.ts`)                |
-| `src/data/knm/translations.ts`        | EN heading/label maps for study & who-does-what  |
-| `src/scripts/knm/`                    | KNM client app (state, exam engine, tabs, views) |
-| `src/scripts/locale-handoff.ts`       | Shared locale-switch session handoff             |
-| `src/styles/knm/`                     | KNM scoped CSS (tokens, layout, tabs, exam)      |
-| `src/lib/knm-session.ts`              | Locale handoff + live session (`sessionStorage`) |
-| `src/lib/knm-content.ts`              | KNM locale/topic helpers                         |
-| `src/lib/i18n.ts`                     | Locale types and path helpers                    |
-| `src/components/KnmPage.astro`        | Shared EN/NL KNM page shell                      |
-| `src/components/LocaleSwitch.astro`   | EN/NL pill (header + mobile)                     |
-| `src/i18n/legal/`                     | Legal page copy (per-page modules)               |
-| `src/config/site.ts`                  | Site name, nav, footer links                     |
-| `scripts/upload-to-cdn.mjs`           | CDN upload orchestrator                          |
-| `scripts/collect-files.mjs`           | Recursive dist file collector                    |
-| `scripts/upload-batch.mjs`            | Bunny CDN batch upload + purge                   |
-| `ai-rules/`                           | Shared agent rules (Cursor, Claude, Copilot)     |
+| Path                                   | Purpose                                               |
+| -------------------------------------- | ----------------------------------------------------- |
+| `src/pages/`                           | Astro routes                                          |
+| `src/pages/knm/`, `src/pages/nl/knm/`  | KNM routes (via `KnmPage.astro`)                      |
+| `src/data/knm/questions/`              | Question bank (per-topic files + `index.ts`)          |
+| `src/data/knm/study-notes/`            | Study notes (per-topic files + `index.ts`, ~90 cards) |
+| `src/data/knm/knm-facts.ts`            | Year-sensitive amounts (eigen risico, huurprijsgrens) |
+| `src/data/knm/question-concept-map.ts` | Question → study-note heading links                   |
+| `src/data/knm/ui/`                     | KNM UI strings (`nl.ts`, `en.ts`)                     |
+| `src/data/knm/translations.ts`         | EN heading/label maps for study & who-does-what       |
+| `src/scripts/knm/`                     | KNM client app (state, exam engine, tabs, views)      |
+| `src/scripts/locale-handoff.ts`        | Shared locale-switch session handoff                  |
+| `src/styles/knm/`                      | KNM scoped CSS (tokens, layout, tabs, exam)           |
+| `src/lib/knm-session.ts`               | Locale handoff + live session (`sessionStorage`)      |
+| `src/lib/knm-content.ts`               | KNM locale/topic helpers                              |
+| `src/lib/i18n.ts`                      | Locale types and path helpers                         |
+| `src/components/KnmPage.astro`         | Shared EN/NL KNM page shell                           |
+| `src/components/LocaleSwitch.astro`    | EN/NL pill (header + mobile)                          |
+| `src/i18n/legal/`                      | Legal page copy (per-page modules)                    |
+| `src/config/site.ts`                   | Site name, nav, footer links                          |
+| `scripts/upload-to-cdn.mjs`            | CDN upload orchestrator                               |
+| `scripts/collect-files.mjs`            | Recursive dist file collector                         |
+| `scripts/upload-batch.mjs`             | Bunny CDN batch upload + purge                        |
+| `ai-rules/`                            | Shared agent rules (Cursor, Claude, Copilot)          |
 
 ## Conventions
 

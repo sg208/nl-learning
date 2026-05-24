@@ -1,3 +1,4 @@
+import { KNM_FACTS } from '../knm-facts';
 import type { TopicQuestions } from './types';
 
 export const gezondheidQuestions = {
@@ -122,16 +123,14 @@ export const gezondheidQuestions = {
     },
     {
       variants: [
-        'Wat is het wettelijk eigen risico voor de basiszorgverzekering (per 2024)?',
-        'Hoeveel betaalt u zelf voordat uw zorgverzekering vergoedt (2024)?',
-        'Hoogte van het verplicht eigen risico per jaar in 2024?',
+        `Wat is het wettelijk eigen risico voor de basiszorgverzekering (per ${KNM_FACTS.year})?`,
+        `Hoeveel betaalt u zelf voordat uw zorgverzekering vergoedt (${KNM_FACTS.year})?`,
+        `Hoogte van het verplicht eigen risico per jaar in ${KNM_FACTS.year}?`,
       ],
-      options: ['€ 0', '€ 200', '€ 385', '€ 500'],
+      options: ['€ 0', '€ 200', KNM_FACTS.eigenRisicoFormatted, '€ 500'],
       answer: 2,
-      explanation:
-        'Het verplicht eigen risico is € 385 per jaar (2024). Wat u boven dit bedrag aan zorg gebruikt, wordt vergoed.',
-      explanationEn:
-        'The mandatory deductible (eigen risico) is €385 per year (2024). Healthcare costs above this are covered.',
+      explanation: `Het verplicht eigen risico is ${KNM_FACTS.eigenRisicoFormatted} per jaar (${KNM_FACTS.year}). Wat u boven dit bedrag aan zorg gebruikt, wordt vergoed.`,
+      explanationEn: `The mandatory deductible (eigen risico) is ${KNM_FACTS.eigenRisicoFormatted} per year (${KNM_FACTS.year}). Healthcare costs above this are covered.`,
     },
     {
       variants: [
@@ -225,20 +224,16 @@ export const gezondheidQuestions = {
     },
     {
       variants: [
-        'U gaat verhuizen en wilt uw huisarts veranderen. Wat doet u?',
-        'Bij verhuizing naar ander gebied — hoe regelt u een nieuwe huisarts?',
-        'Andere stad, andere huisarts: welke stap?',
+        'U voelt zich suïcidaal en wilt met iemand praten. Welk nummer belt u?',
+        'Welk telefoonnummer is voor zelfmoordpreventie?',
+        'U heeft hulp nodig bij suïcidale gedachten — welk nummer?',
       ],
-      options: [
-        'Niets — uw huidige huisarts blijft automatisch',
-        'U schrijft zich in bij een huisarts in de buurt van uw nieuwe woonadres',
-        'U vraagt het de Belastingdienst',
-        'U wacht tot u ziek wordt',
-      ],
+      options: ['112', '113', '144', 'Huisartsenpost (HAP)'],
       answer: 1,
       explanation:
-        'U moet zich actief inschrijven bij een huisartsenpraktijk in uw nieuwe woonomgeving.',
-      explanationEn: 'You must actively register with a GP practice in your new residential area.',
+        '113 is de zelfmoordpreventielijn — geen 112-situatie, maar wel directe hulp bij suïcidale gedachten.',
+      explanationEn:
+        '113 is the suicide prevention line — not a 112 emergency, but immediate help for suicidal thoughts.',
     },
   ],
 } as const satisfies TopicQuestions;

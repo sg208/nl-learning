@@ -13,12 +13,14 @@ export type KnmSnapshot = {
     answer: number;
     explanation: string;
     explanationEn?: string;
+    noteHeadings?: readonly string[];
   }> | null;
   answers: Record<number, number>;
   current: number;
   submitted: boolean;
   timeLeft: number;
   reviewing: boolean;
+  scrollToNoteHeading?: string | null;
 };
 
 export type LocaleHandoff = {

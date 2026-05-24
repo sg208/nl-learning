@@ -1,3 +1,4 @@
+import { KNM_FACTS } from '../knm-facts';
 import type { TopicQuestions } from './types';
 
 export const wonenQuestions = {
@@ -66,20 +67,14 @@ export const wonenQuestions = {
     },
     {
       variants: [
-        'Welke borg vraagt een verhuurder gangbaar bij aanvang?',
-        'Hoeveel borg mag een verhuurder maximaal vragen?',
-        'Welk bedrag is redelijk als borg bij een huurcontract?',
+        'Uw huur is boven de huurprijsgrens voor sociale huur. Hoe heet dit type huur?',
+        'Particuliere huur boven de sociale huurgrens — wat is dat?',
+        'Geen sociale huurwoning: welke sector huurt u dan?',
       ],
-      options: [
-        'Eén tot maximaal twee maanden huur',
-        'Half jaar huur',
-        'Geen borg toegestaan',
-        'Drie maanden huur of meer',
-      ],
-      answer: 0,
-      explanation: 'Gebruikelijk en redelijk is één tot twee maanden kale huur als borg.',
-      explanationEn:
-        "A deposit of one to two months' bare rent is customary and considered reasonable.",
+      options: ['Sociale huurwoning', 'Vrije sector huur', 'Koopwoning', 'Anti-kraak'],
+      answer: 1,
+      explanation: `Boven de huurprijsgrens (${KNM_FACTS.socialeHuurGrensFormatted}) heet het vrije sector huur — particuliere verhuurder, geen huurtoeslag.`,
+      explanationEn: `Above the rent ceiling (${KNM_FACTS.socialeHuurGrensFormatted}) it is private-sector rental — private landlord, no rent allowance.`,
     },
   ],
   '2': [
