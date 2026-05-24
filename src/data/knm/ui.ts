@@ -6,6 +6,7 @@ export type KnmUiStrings = {
   subtitle: string;
   toggleLabel: string;
   tabNavLabel: string;
+  tabNavClose: string;
   tabHome: string;
   tabTopics: string;
   tabWho: string;
@@ -64,7 +65,8 @@ export const UI: Record<KnmLang, KnmUiStrings> = {
     subtitle: '40 vragen · 45 minuten · Slaagnorm ~26/40 (65%)',
     toggleLabel: 'UITLEG',
     tabNavLabel: 'KNM onderdelen',
-    tabHome: '🏠 Home',
+    tabNavClose: 'Sluit navigatie',
+    tabHome: '🏠 Overzicht',
     tabTopics: '📚 Onderwerpen',
     tabWho: '🗂️ Wie doet wat',
     tabExam: '📝 Mock Examen',
@@ -142,7 +144,8 @@ export const UI: Record<KnmLang, KnmUiStrings> = {
     subtitle: '40 questions · 45 minutes · Pass mark ~26/40 (65%)',
     toggleLabel: 'EXPLANATION',
     tabNavLabel: 'KNM sections',
-    tabHome: '🏠 Home',
+    tabNavClose: 'Close navigation',
+    tabHome: '🏠 Overview',
     tabTopics: '📚 Topics',
     tabWho: '🗂️ Who does what',
     tabExam: '📝 Mock Exam',

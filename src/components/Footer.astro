@@ -13,9 +13,7 @@ const { locale } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<footer
-  class="relative z-10 mt-24 border-t border-[var(--rule)] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-0"
->
+<footer class="relative mt-24 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
   <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
     <div class="grid gap-10 sm:grid-cols-[minmax(0,1fr)_2fr]">
       <section>

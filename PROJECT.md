@@ -19,19 +19,19 @@ Agent-oriented reference for stack, paths, and conventions.
 
 ## Key paths
 
-| Path | Purpose |
-| ---- | ------- |
-| `src/pages/` | Astro routes |
-| `src/pages/knm/`, `src/pages/nl/knm/` | KNM shell pages |
-| `src/data/knm/` | Question bank, topics, study notes, UI strings |
-| `src/lib/knm-session.ts` | Locale handoff + live session (`sessionStorage`) |
-| `src/lib/knm-content.ts` | Content helpers for KNM data |
-| `src/lib/i18n.ts` | Locale types and path helpers |
-| `src/components/LocaleSwitch.astro` | EN/NL pill (header + mobile) |
-| `src/i18n/legal.ts` | Legal page copy |
-| `src/config/site.ts` | Site name, nav, footer links |
-| `scripts/upload-to-cdn.mjs` | Production upload + cache purge |
-| `ai-rules/` | Shared agent rules (Cursor, Claude, Copilot) |
+| Path                                  | Purpose                                          |
+| ------------------------------------- | ------------------------------------------------ |
+| `src/pages/`                          | Astro routes                                     |
+| `src/pages/knm/`, `src/pages/nl/knm/` | KNM shell pages                                  |
+| `src/data/knm/`                       | Question bank, topics, study notes, UI strings   |
+| `src/lib/knm-session.ts`              | Locale handoff + live session (`sessionStorage`) |
+| `src/lib/knm-content.ts`              | Content helpers for KNM data                     |
+| `src/lib/i18n.ts`                     | Locale types and path helpers                    |
+| `src/components/LocaleSwitch.astro`   | EN/NL pill (header + mobile)                     |
+| `src/i18n/legal.ts`                   | Legal page copy                                  |
+| `src/config/site.ts`                  | Site name, nav, footer links                     |
+| `scripts/upload-to-cdn.mjs`           | Production upload + cache purge                  |
+| `ai-rules/`                           | Shared agent rules (Cursor, Claude, Copilot)     |
 
 ## Conventions
 

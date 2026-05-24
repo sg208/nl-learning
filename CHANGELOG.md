@@ -21,3 +21,12 @@ All notable changes to this project are documented in this file.
 - KNM page uses a semantic `<h1>`, ARIA tabs pattern, disabled prev/next controls, and live region announcements for submit/timer expiry.
 - Service worker no longer caches wrong HTML for all routes in local preview (`serve` without SPA fallback).
 - Removed unused `html()` innerHTML helper; allowlisted DOM props in KNM renderer.
+- KNM mobile nav uses a bottom-sheet section picker; sticky nav appears only after the header scrolls away; footer no longer overlaps the sticky bar.
+- Locale switch restores scroll position instantly (no smooth-scroll animation).
+- Mobile floating locale pill uses a dark elevation ring instead of accent glow that blended with primary buttons.
+
+### Changed
+
+- Site config, manifest, and PWA icons updated for `nllearn.ing` domain; header wordmark remains NL.Learning.
+- KNM home tab label renamed to Overview / Overzicht.
+- Added `npm run icons` script to regenerate PWA PNGs from SVG sources.

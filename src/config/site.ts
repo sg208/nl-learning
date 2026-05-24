@@ -3,7 +3,7 @@ import type { Locale } from '~/lib/i18n';
 type NavItem = { href: string; label: Record<Locale, string> };
 
 export const siteConfig = {
-  name: 'NL Learning',
+  name: 'nllearn.ing',
   tagline: {
     en: 'Learn Dutch society — clearly, at your pace.',
     nl: 'Leer de Nederlandse maatschappij — helder, in je eigen tempo.',
@@ -13,7 +13,7 @@ export const siteConfig = {
     nl: 'Gratis, toegankelijke oefening voor KNM en inburgering. Gemaakt voor nieuwkomers die grote tekst, duidelijk contrast en offline studeren willen.',
   },
   themeColor: '#e63946',
-  author: 'NL Learning',
+  author: 'nllearn.ing',
   nav: [
     {
       href: '/',

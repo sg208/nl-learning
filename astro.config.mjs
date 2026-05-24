@@ -9,7 +9,7 @@ if (!envSiteUrl && isBuild && process.env.NODE_ENV !== 'development') {
     'SITE_URL must be set when building for production (canonical URL, OG, and sitemap all depend on it).',
   );
 }
-const SITE_URL = envSiteUrl ?? 'https://nl-learning.example.com';
+const SITE_URL = envSiteUrl ?? 'https://nllearn.ing';
 
 export default defineConfig({
   site: SITE_URL,

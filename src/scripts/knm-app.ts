@@ -155,6 +155,122 @@ const TAB_IDS = ['home', 'topics', 'whowhat', 'exam'] as const;
 type TabId = (typeof TAB_IDS)[number];
 
 let focusTabAfterRender: TabId | null = null;
+let stickyTabsVisible = false;
+let tabsObserver: IntersectionObserver | null = null;
+let stickyTabsResizeObserver: ResizeObserver | null = null;
+let tabNavMedia: MediaQueryList | null = null;
+
+const MOBILE_TAB_NAV = '(max-width: 767px)';
+
+function isMobileTabNav(): boolean {
+  return window.matchMedia(MOBILE_TAB_NAV).matches;
+}
+
+function getTabDefs(): Array<{ id: TabId; label: string }> {
+  const u = t();
+  return [
+    { id: 'home', label: u.tabHome },
+    { id: 'topics', label: u.tabTopics },
+    { id: 'whowhat', label: u.tabWho },
+    { id: 'exam', label: u.tabExam },
+  ];
+}
+
+let navSheetTriggerId: string | null = null;
+
+function setNavSheetExpanded(triggerId: string | null, open: boolean): void {
+  for (const trigger of root.querySelectorAll<HTMLButtonElement>('.tab-select-trigger')) {
+    trigger.setAttribute('aria-expanded', trigger.id === triggerId && open ? 'true' : 'false');
+  }
+}
+
+function closeNavSheet(): void {
+  const dialog = document.getElementById('knm-nav-sheet') as HTMLDialogElement | null;
+  if (dialog?.open) dialog.close();
+}
+
+function openNavSheet(triggerId: string): void {
+  if (!isMobileTabNav()) return;
+  const dialog = document.getElementById('knm-nav-sheet') as HTMLDialogElement | null;
+  const trigger = document.getElementById(triggerId) as HTMLButtonElement | null;
+  if (!dialog || !trigger || trigger.disabled) return;
+
+  navSheetTriggerId = triggerId;
+  dialog.removeAttribute('hidden');
+  dialog.showModal();
+  setNavSheetExpanded(triggerId, true);
+  dialog.querySelector<HTMLButtonElement>('.knm-nav-sheet-option.active')?.focus();
+}
+
+function bindNavSheet(dialog: HTMLDialogElement): void {
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) closeNavSheet();
+  });
+  dialog.addEventListener('close', () => {
+    dialog.setAttribute('hidden', '');
+    setNavSheetExpanded(null, false);
+    document.getElementById(navSheetTriggerId ?? '')?.focus();
+    navSheetTriggerId = null;
+  });
+}
+
+function renderNavSheet(): HTMLDialogElement {
+  const u = t();
+  const dialog = el('dialog', {
+    id: 'knm-nav-sheet',
+    className: 'knm-nav-sheet',
+    hidden: true,
+    ariaLabelledby: 'knm-nav-sheet-title',
+  }) as HTMLDialogElement;
+
+  const panel = el('div', { className: 'knm-nav-sheet-panel' });
+  const header = el('div', { className: 'knm-nav-sheet-header' });
+  header.appendChild(
+    el('h2', { id: 'knm-nav-sheet-title', className: 'knm-nav-sheet-title' }, u.tabNavLabel),
+  );
+  header.appendChild(
+    el(
+      'button',
+      {
+        type: 'button',
+        className: 'knm-nav-sheet-close',
+        ariaLabel: u.tabNavClose,
+        onClick: closeNavSheet,
+      },
+      '×',
+    ),
+  );
+  panel.appendChild(header);
+
+  const list = el('div', {
+    className: 'knm-nav-sheet-list',
+    role: 'listbox',
+    ariaLabel: u.tabNavLabel,
+  });
+  for (const tb of getTabDefs()) {
+    const isSelected = state.tab === tb.id;
+    list.appendChild(
+      el(
+        'button',
+        {
+          type: 'button',
+          role: 'option',
+          className: 'knm-nav-sheet-option' + (isSelected ? ' active' : ''),
+          ariaSelected: isSelected,
+          onClick: () => {
+            closeNavSheet();
+            if (tb.id !== state.tab) resetTabViewState(tb.id);
+          },
+        },
+        tb.label,
+      ),
+    );
+  }
+  panel.appendChild(list);
+  dialog.appendChild(panel);
+  bindNavSheet(dialog);
+  return dialog;
+}
 
 function isValidSnapshot(snapshot: unknown): snapshot is KnmSnapshot {
   if (!snapshot || typeof snapshot !== 'object') return false;
@@ -211,6 +327,170 @@ function handleTabListKeydown(event: KeyboardEvent): void {
   resetTabViewState(nextTab);
 }
 
+function getSiteHeaderHeight(): number {
+  const header = document.querySelector('body > header');
+  return header?.getBoundingClientRect().height ?? 72;
+}
+
+function isHeaderInnerInView(headerInner: Element, siteTop: number): boolean {
+  return headerInner.getBoundingClientRect().bottom > siteTop;
+}
+
+function syncTabNavA11y(stickyVisible: boolean): void {
+  const inlineNav = root.querySelector('.tab-nav-inline');
+  const stickyBar = root.querySelector('.tabs-sticky');
+  const panel = document.getElementById('knm-tabpanel');
+  if (!inlineNav || !stickyBar || !panel) return;
+
+  stickyTabsVisible = stickyVisible;
+  stickyBar.hidden = !stickyVisible;
+  stickyBar.setAttribute('aria-hidden', stickyVisible ? 'false' : 'true');
+  inlineNav.setAttribute('aria-hidden', stickyVisible ? 'true' : 'false');
+
+  if (isMobileTabNav()) {
+    panel.setAttribute('aria-labelledby', stickyVisible ? 'knm-nav-sticky' : 'knm-nav-inline');
+    for (const trigger of root.querySelectorAll<HTMLButtonElement>('.tab-select-trigger')) {
+      const inSticky = Boolean(trigger.closest('.tabs-sticky'));
+      trigger.disabled = stickyVisible ? !inSticky : inSticky;
+    }
+    for (const tablist of root.querySelectorAll<HTMLElement>('.tabs-desktop')) {
+      tablist.setAttribute('aria-hidden', 'true');
+    }
+    return;
+  }
+
+  for (const trigger of root.querySelectorAll<HTMLButtonElement>('.tab-select-trigger')) {
+    trigger.disabled = true;
+  }
+  for (const tablist of root.querySelectorAll<HTMLElement>('.tabs-desktop')) {
+    tablist.removeAttribute('aria-hidden');
+  }
+
+  panel.setAttribute(
+    'aria-labelledby',
+    stickyVisible ? `knm-tab-sticky-${state.tab}` : `knm-tab-${state.tab}`,
+  );
+
+  for (const btn of root.querySelectorAll<HTMLButtonElement>('.tab-btn')) {
+    const inSticky = Boolean(btn.closest('.tabs-sticky'));
+    const selected = btn.getAttribute('aria-selected') === 'true';
+    if (stickyVisible) {
+      btn.tabIndex = inSticky && selected ? 0 : -1;
+      if (inSticky) btn.setAttribute('aria-controls', 'knm-tabpanel');
+      else btn.removeAttribute('aria-controls');
+    } else {
+      btn.tabIndex = !inSticky && selected ? 0 : -1;
+      if (!inSticky) btn.setAttribute('aria-controls', 'knm-tabpanel');
+      else btn.removeAttribute('aria-controls');
+    }
+  }
+}
+
+function setupStickyTabs(): void {
+  tabsObserver?.disconnect();
+  const headerInner = root.querySelector('.header-inner');
+  const stickyBar = root.querySelector('.tabs-sticky');
+  if (!headerInner || !stickyBar) return;
+
+  const siteTop = getSiteHeaderHeight();
+  document.documentElement.style.setProperty('--site-header-height', `${siteTop}px`);
+  root.style.setProperty('--knm-sticky-top', `${siteTop}px`);
+  stickyBar.style.setProperty('--knm-sticky-top', `${siteTop}px`);
+
+  tabsObserver = new IntersectionObserver(
+    ([entry]) => {
+      syncTabNavA11y(!entry.isIntersecting);
+    },
+    { rootMargin: `-${siteTop}px 0px 0px 0px`, threshold: 0 },
+  );
+  tabsObserver.observe(headerInner);
+  syncTabNavA11y(!isHeaderInnerInView(headerInner, siteTop));
+}
+
+function handleTabNavViewportChange(): void {
+  closeNavSheet();
+  setupStickyTabs();
+}
+
+function bindTabNavLayout(): void {
+  const header = document.querySelector('body > header');
+  if (!header) return;
+  stickyTabsResizeObserver?.disconnect();
+  stickyTabsResizeObserver = new ResizeObserver(() => setupStickyTabs());
+  stickyTabsResizeObserver.observe(header);
+
+  tabNavMedia?.removeEventListener('change', handleTabNavViewportChange);
+  tabNavMedia = window.matchMedia(MOBILE_TAB_NAV);
+  tabNavMedia.addEventListener('change', handleTabNavViewportChange);
+}
+
+function buildTabDropdown(mode: 'inline' | 'sticky'): HTMLDivElement {
+  const u = t();
+  const triggerId = mode === 'inline' ? 'knm-nav-inline' : 'knm-nav-sticky';
+  const current = getTabDefs().find((tb) => tb.id === state.tab);
+  const wrap = el('div', {
+    className: 'tab-dropdown',
+    role: 'navigation',
+    ariaLabel: u.tabNavLabel,
+  });
+  wrap.appendChild(
+    el(
+      'button',
+      {
+        id: triggerId,
+        type: 'button',
+        className: 'tab-select-trigger',
+        ariaControls: 'knm-tabpanel',
+        ariaHaspopup: 'dialog',
+        ariaExpanded: false,
+        onClick: () => openNavSheet(triggerId),
+      },
+      current?.label ?? u.tabHome,
+    ),
+  );
+  return wrap;
+}
+
+function buildTabList(mode: 'inline' | 'sticky'): HTMLDivElement {
+  const u = t();
+  const idPrefix = mode === 'inline' ? 'knm-tab' : 'knm-tab-sticky';
+  const tabs = el('div', {
+    className: 'tabs tabs-desktop',
+    role: 'tablist',
+    ariaLabel: u.tabNavLabel,
+    onKeydown: handleTabListKeydown,
+  });
+  for (const tb of getTabDefs()) {
+    const isSelected = state.tab === tb.id;
+    tabs.appendChild(
+      el(
+        'button',
+        {
+          type: 'button',
+          role: 'tab',
+          id: `${idPrefix}-${tb.id}`,
+          className: 'tab-btn' + (isSelected ? ' active' : ''),
+          ariaSelected: isSelected,
+          ariaControls: 'knm-tabpanel',
+          tabIndex: isSelected ? 0 : -1,
+          onClick: () => resetTabViewState(tb.id),
+        },
+        tb.label,
+      ),
+    );
+  }
+  return tabs;
+}
+
+function buildTabNav(mode: 'inline' | 'sticky'): HTMLDivElement {
+  const nav = el('div', {
+    className: mode === 'inline' ? 'tab-nav tab-nav-inline' : 'tab-nav',
+  });
+  nav.appendChild(buildTabDropdown(mode));
+  nav.appendChild(buildTabList(mode));
+  return nav;
+}
+
 function setState(patch) {
   Object.assign(state, patch);
   render();
@@ -234,6 +514,7 @@ function render() {
     }),
   );
   root.appendChild(renderHeader());
+  root.appendChild(renderTabsSticky());
   const main = el('div', {
     className: 'main',
     role: 'tabpanel',
@@ -247,9 +528,16 @@ function render() {
   else if (state.tab === 'exam')
     main.appendChild(state.examConfig ? renderExam() : renderExamPicker());
   root.appendChild(main);
+  root.appendChild(renderNavSheet());
+  setupStickyTabs();
 
   if (focusTabAfterRender) {
-    document.getElementById(`knm-tab-${focusTabAfterRender}`)?.focus();
+    if (isMobileTabNav()) {
+      document.getElementById(stickyTabsVisible ? 'knm-nav-sticky' : 'knm-nav-inline')?.focus();
+    } else {
+      const prefix = stickyTabsVisible ? 'knm-tab-sticky' : 'knm-tab';
+      document.getElementById(`${prefix}-${focusTabAfterRender}`)?.focus();
+    }
     focusTabAfterRender = null;
   }
 }
@@ -260,6 +548,9 @@ const EL_PROPS = new Set([
   'role',
   'tabIndex',
   'disabled',
+  'hidden',
+  'value',
+  'selected',
   'title',
   'lang',
   'href',
@@ -308,39 +599,15 @@ function renderHeader() {
   top.appendChild(titleDiv);
 
   inner.appendChild(top);
+  inner.appendChild(buildTabNav('inline'));
+  wrap.appendChild(inner);
+  return wrap;
+}
 
-  const tabs = el('div', {
-    className: 'tabs',
-    role: 'tablist',
-    ariaLabel: u.tabNavLabel,
-    onKeydown: handleTabListKeydown,
-  });
-  const tabDefs = [
-    { id: 'home' as const, label: u.tabHome },
-    { id: 'topics' as const, label: u.tabTopics },
-    { id: 'whowhat' as const, label: u.tabWho },
-    { id: 'exam' as const, label: u.tabExam },
-  ];
-  for (const tb of tabDefs) {
-    const isSelected = state.tab === tb.id;
-    tabs.appendChild(
-      el(
-        'button',
-        {
-          type: 'button',
-          role: 'tab',
-          id: `knm-tab-${tb.id}`,
-          className: 'tab-btn' + (isSelected ? ' active' : ''),
-          ariaSelected: isSelected,
-          ariaControls: 'knm-tabpanel',
-          tabIndex: isSelected ? 0 : -1,
-          onClick: () => resetTabViewState(tb.id),
-        },
-        tb.label,
-      ),
-    );
-  }
-  inner.appendChild(tabs);
+function renderTabsSticky(): HTMLDivElement {
+  const wrap = el('div', { className: 'tabs-sticky', hidden: true, ariaHidden: true });
+  const inner = el('div', { className: 'tabs-sticky-inner' });
+  inner.appendChild(buildTabNav('sticky'));
   wrap.appendChild(inner);
   return wrap;
 }
@@ -1256,8 +1523,10 @@ if (restored && isValidSnapshot(restored)) {
   applyKnmSnapshot(restored);
 }
 render();
+bindTabNavLayout();
 setKnmSnapshotReader(getKnmSnapshot);
 persistKnmLiveSession(getKnmSnapshot());
 if (handoff) {
   restoreScroll(handoff.scrollY);
+  requestAnimationFrame(() => setupStickyTabs());
 }

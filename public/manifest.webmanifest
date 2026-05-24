@@ -1,6 +1,6 @@
 {
-  "name": "NL Learning",
-  "short_name": "NL Learning",
+  "name": "nllearn.ing",
+  "short_name": "nllearn",
   "description": "Accessible KNM and civic integration study for newcomers in the Netherlands.",
   "start_url": "/",
   "scope": "/",

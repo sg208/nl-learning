@@ -30,9 +30,15 @@ const isFloat = variant === 'float';
               isFloat
                 ? 'min-h-[var(--touch-min)] min-w-[3.25rem] px-4 text-base'
                 : 'min-h-10 min-w-12 px-3 text-sm',
+              isFloat && lang === 'en' && 'rounded-l-full',
+              isFloat && lang === 'nl' && 'rounded-r-full',
               isActive
-                ? 'bg-[var(--accent)] text-white'
-                : 'text-[var(--muted)] hover:text-[var(--ink)]',
+                ? isFloat
+                  ? 'bg-[var(--accent)] text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.22)]'
+                  : 'bg-[var(--accent)] text-white'
+                : isFloat
+                  ? 'bg-[color-mix(in_oklch,var(--bg)_72%,transparent)] text-[var(--muted)] hover:text-[var(--ink)]'
+                  : 'text-[var(--muted)] hover:text-[var(--ink)]',
             ]}
           >
             {lang.toUpperCase()}
