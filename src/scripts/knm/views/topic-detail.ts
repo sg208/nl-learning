@@ -2,12 +2,30 @@ import { getTopicNoteCoverage } from '~/data/knm/question-concept-map';
 import { STUDY_NOTES } from '~/data/knm/study-notes';
 import type { StudyNote } from '~/data/knm/study-notes/types';
 import { getKnmLang, getLocalizedText, getStudyHeading, getTopicLabel } from '~/lib/knm-content';
+import type { KnmLang } from '~/data/knm/ui';
 import { persistKnmLiveSession } from '~/lib/knm-session';
 
 import { el } from '../dom/el';
 import { setState } from '../set-state';
 import { getKnmSnapshot, state } from '../state';
+import { syncKnmRoute } from '../sync-route';
 import { t } from '../ui-strings';
+
+const appendStudyNoteBody = (card: HTMLDivElement, note: StudyNote, lang: KnmLang): void => {
+  if (note.steps?.length) {
+    const list = el('ol', { className: 'dim format-list note-steps-list' });
+    const items = lang === 'nl' ? note.steps : (note.stepsEn ?? note.steps);
+    for (const step of items) {
+      list.appendChild(el('li', {}, step));
+    }
+    card.appendChild(list);
+    return;
+  }
+
+  card.appendChild(
+    el('div', { className: 'dim body-text' }, getLocalizedText(note.b ?? '', note.bEn, lang)),
+  );
+};
 
 export const renderTopicDetail = (): HTMLDivElement => {
   const topic = state.selectedTopic;
@@ -48,7 +66,7 @@ export const renderTopicDetail = (): HTMLDivElement => {
         getStudyHeading(n.h, lang),
       ),
     );
-    card.appendChild(el('div', { className: 'dim body-text' }, getLocalizedText(n.b, n.bEn, lang)));
+    appendStudyNoteBody(card, n, lang);
     const note = n as StudyNote;
     if (note.tip ?? note.tipEn) {
       const tipText = getLocalizedText(note.tip ?? '', note.tipEn, lang);
@@ -70,6 +88,7 @@ export const renderTopicDetail = (): HTMLDivElement => {
       card?.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
       state.scrollToNoteHeading = null;
       persistKnmLiveSession(getKnmSnapshot());
+      syncKnmRoute(getKnmSnapshot(), { scrollToNoteHeading: null });
     });
   }
 

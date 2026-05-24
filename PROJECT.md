@@ -33,6 +33,7 @@ Agent-oriented reference for stack, paths, and conventions.
 | `src/scripts/locale-handoff.ts`        | Shared locale-switch session handoff                  |
 | `src/styles/knm/`                      | KNM scoped CSS (tokens, layout, tabs, exam)           |
 | `src/lib/knm-session.ts`               | Locale handoff + live session (`sessionStorage`)      |
+| `src/lib/knm-route.ts`                 | KNM hash URL build/parse for tab and view deep links  |
 | `src/lib/knm-content.ts`               | KNM locale/topic helpers                              |
 | `src/lib/i18n.ts`                      | Locale types and path helpers                         |
 | `src/components/KnmPage.astro`         | Shared EN/NL KNM page shell                           |

@@ -3,8 +3,20 @@ import type { StudyNote } from './types';
 export const cultuurNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Wees op tijd — punctualiteit telt. 2) Directe feedback is normaal, niet persoonlijk bedoeld. 3) Zakelijk: handdruk. Vrienden/familie: drie kussen. 4) Op visite? Bloemen, wijn of bonbons meenemen. 5) Discriminatie? Meld bij Anti Discriminatie Bureau (ADB).',
-    bEn: '1) Be on time — punctuality matters. 2) Direct feedback is normal, not meant personally. 3) Business: handshake. Friends/family: three kisses. 4) Visiting? Bring flowers, wine or chocolates. 5) Discrimination? Report to Anti Discriminatie Bureau (ADB).',
+    steps: [
+      'Wees op tijd — punctualiteit telt.',
+      'Directe feedback is normaal, niet persoonlijk bedoeld.',
+      'Zakelijk: handdruk. Vrienden/familie: drie kussen.',
+      'Op visite? Bloemen, wijn of bonbons meenemen.',
+      'Discriminatie? Meld bij Anti Discriminatie Bureau (ADB).',
+    ],
+    stepsEn: [
+      'Be on time — punctuality matters.',
+      'Direct feedback is normal, not meant personally.',
+      'Business: handshake. Friends/family: three kisses.',
+      'Visiting? Bring flowers, wine or chocolates.',
+      'Discrimination? Report to Anti Discriminatie Bureau (ADB).',
+    ],
   },
   {
     h: 'Waarden',

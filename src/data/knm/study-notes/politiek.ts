@@ -3,8 +3,20 @@ import type { StudyNote } from './types';
 export const politiekNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Nederlandse staatsburger, 18+? Stemrecht Tweede Kamer. 2) Wetten: Staten-Generaal + regering. 3) Koning = ceremonieel; Minister-President leidt kabinet. 4) Gemeenteraadsverkiezingen: niet-Nederlanders na 5 jaar legaal verblijf. 5) Grondrechten staan in de Grondwet.',
-    bEn: '1) Dutch citizen, 18+? Vote in general elections (Tweede Kamer). 2) Laws: States General + government. 3) King = ceremonial; Prime Minister leads cabinet. 4) Municipal elections: non-Dutch after 5 years legal residence. 5) Fundamental rights are in the Grondwet (Constitution).',
+    steps: [
+      'Nederlandse staatsburger, 18+? Stemrecht Tweede Kamer.',
+      'Wetten: Staten-Generaal + regering.',
+      'Koning = ceremonieel; Minister-President leidt kabinet.',
+      'Gemeenteraadsverkiezingen: niet-Nederlanders na 5 jaar legaal verblijf.',
+      'Grondrechten staan in de Grondwet.',
+    ],
+    stepsEn: [
+      'Dutch citizen, 18+? Vote in general elections (Tweede Kamer).',
+      'Laws: States General + government.',
+      'King = ceremonial; Prime Minister leads cabinet.',
+      'Municipal elections: non-Dutch after 5 years legal residence.',
+      'Fundamental rights are in the Grondwet (Constitution).',
+    ],
   },
   {
     h: 'Constitutionele Monarchie',

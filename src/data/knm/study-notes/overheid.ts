@@ -3,8 +3,20 @@ import type { StudyNote } from './types';
 export const overheidNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Binnen 5 dagen inschrijven bij gemeente — u krijgt een BSN. 2) DigiD aanvragen via DigiD.nl voor online overheidsdiensten. 3) Toeslagen (huur/zorg/kinderopvang) via Belastingdienst. 4) Paspoort of ID? Gemeente. 5) Juridische hulp nodig? Juridisch Loket.',
-    bEn: '1) Register at the municipality within 5 days — you receive a BSN. 2) Apply for DigiD at DigiD.nl for online government services. 3) Allowances (rent/healthcare/childcare) via Belastingdienst. 4) Passport or ID? Municipality. 5) Need legal help? Juridisch Loket (Legal Aid Desk).',
+    steps: [
+      'Binnen 5 dagen inschrijven bij gemeente — u krijgt een BSN.',
+      'DigiD aanvragen via DigiD.nl voor online overheidsdiensten.',
+      'Toeslagen (huur/zorg/kinderopvang) via Belastingdienst.',
+      'Paspoort of ID? Gemeente.',
+      'Juridische hulp nodig? Juridisch Loket.',
+    ],
+    stepsEn: [
+      'Register at the municipality within 5 days — you receive a BSN.',
+      'Apply for DigiD at DigiD.nl for online government services.',
+      'Allowances (rent/healthcare/childcare) via Belastingdienst.',
+      'Passport or ID? Municipality.',
+      'Need legal help? Juridisch Loket (Legal Aid Desk).',
+    ],
   },
   {
     h: 'Gemeente',
