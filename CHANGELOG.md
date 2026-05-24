@@ -27,6 +27,8 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- SEO: hreflang alternates (`en`, `nl-NL`, `x-default`), `og:locale:alternate`, and auto `BreadcrumbList` JSON-LD on inner pages via shared `src/lib/seo.ts`.
+- Home JSON-LD uses `@graph` with linked `Organization` + `WebSite`; removed invalid `SearchAction` schema.
 - Site config, manifest, and PWA icons updated for `nllearn.ing` domain; header wordmark remains NL.Learning.
 - KNM home tab label renamed to Overview / Overzicht.
 - Added `npm run icons` script to regenerate PWA PNGs from SVG sources.

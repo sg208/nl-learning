@@ -3,6 +3,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import HomeHero from '~/components/HomeHero.astro';
 import { siteConfig, tSite } from '~/config/site';
 import { localizedPath } from '~/lib/i18n';
+import { organizationJsonLd } from '~/lib/seo';
 
 const locale = 'nl' as const;
 
@@ -32,13 +33,21 @@ const copy = {
   sectionTitle: 'Wat je hier kunt leren',
 };
 
+const siteUrl = Astro.site?.toString() ?? '';
+const nlHomeUrl = `${siteUrl}/nl`;
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: siteConfig.name,
-  url: `${Astro.site?.toString() ?? ''}/nl`,
-  description: tSite('description', locale),
-  inLanguage: 'nl-NL',
+  '@graph': [
+    organizationJsonLd(siteUrl),
+    {
+      '@type': 'WebSite',
+      name: siteConfig.name,
+      url: nlHomeUrl,
+      description: tSite('description', locale),
+      inLanguage: 'nl-NL',
+      publisher: { '@id': `${siteUrl}/#org` },
+    },
+  ],
 };
 ---
 

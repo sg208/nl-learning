@@ -1,6 +1,7 @@
 ---
 import { siteConfig, tSite } from '~/config/site';
 import type { Locale } from '~/lib/i18n';
+import { breadcrumbJsonLd, getAlternateLinks, ogLocaleTags, serializeJsonLd } from '~/lib/seo';
 
 interface Props {
   title?: string;
@@ -29,17 +30,13 @@ const pageTitle = title ? `${title} — ${siteName}` : `${siteName} — ${tSite(
 const metaDescription = description ?? tSite('description', locale);
 const url = new URL(canonical ?? Astro.url.pathname, Astro.site ?? Astro.url);
 const ogImage = image ? new URL(image, Astro.site ?? Astro.url).toString() : undefined;
-const jsonLdBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-const htmlLang = locale === 'nl' ? 'nl' : 'en';
+const siteOrigin = (Astro.site ?? Astro.url).origin;
+const alternateLinks = !noindex ? getAlternateLinks(Astro.url.pathname, siteOrigin) : [];
+const alternateOgLocale = locale === 'nl' ? ogLocaleTags.en : ogLocaleTags.nl;
 
-function serializeJsonLd(block: Record<string, unknown>): string {
-  return JSON.stringify(block)
-    .replace(/</g, '\\u003c')
-    .replace(/>/g, '\\u003e')
-    .replace(/&/g, '\\u0026')
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
-}
+const pageJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const breadcrumbBlock = !noindex ? breadcrumbJsonLd(Astro.url.pathname, locale, siteOrigin) : null;
+const jsonLdBlocks = breadcrumbBlock ? [...pageJsonLd, breadcrumbBlock] : pageJsonLd;
 ---
 
 <title>{pageTitle}</title>
@@ -47,12 +44,19 @@ function serializeJsonLd(block: Record<string, unknown>): string {
 <link rel="canonical" href={url.toString()} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
+{
+  alternateLinks.map(({ hreflang, href }) => (
+    <link rel="alternate" hreflang={hreflang} href={href} />
+  ))
+}
+
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title ?? siteName} />
 <meta property="og:description" content={metaDescription} />
 <meta property="og:type" content={type} />
 <meta property="og:url" content={url.toString()} />
-<meta property="og:locale" content={htmlLang === 'nl' ? 'nl_NL' : 'en_US'} />
+<meta property="og:locale" content={ogLocaleTags[locale]} />
+{alternateLinks.length > 0 && <meta property="og:locale:alternate" content={alternateOgLocale} />}
 {ogImage && <meta property="og:image" content={ogImage} />}
 
 <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
