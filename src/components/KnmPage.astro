@@ -1,0 +1,51 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import type { Locale } from '~/lib/i18n';
+import '~/styles/knm.css';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const meta = {
+  en: {
+    title: 'KNM Practice',
+    description:
+      'Interactive KNM (Kennis van de Nederlandse Maatschappij) study app with topic notes, who-does-what reference, and timed mock exams.',
+  },
+  nl: {
+    title: 'KNM Oefenen',
+    description:
+      'Interactieve KNM-app met themanotities, wie-doet-wat-overzicht en getimede oefenexamens.',
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'KNM — Kennis van de Nederlandse Maatschappij',
+  description: meta[locale].description,
+  provider: {
+    '@type': 'Organization',
+    name: 'nllearn.ing',
+  },
+  inLanguage: ['nl-NL', 'en'],
+  educationalLevel: 'Beginner',
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={meta[locale].title}
+  description={meta[locale].description}
+  jsonLd={jsonLd}
+  fullBleed
+>
+  <div id="knm-app" class="relative z-10 min-h-[70vh]" data-locale={locale}></div>
+  <script>
+    import '~/scripts/knm/index.ts';
+  </script>
+</BaseLayout>

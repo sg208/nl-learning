@@ -1,0 +1,377 @@
+/* KNM view-specific layout utilities (replaces inline styles in views/*.ts) */
+
+#knm-app .card--spaced {
+  margin-bottom: 1rem;
+}
+
+#knm-app .card--tight {
+  margin-bottom: 0.625rem;
+}
+
+#knm-app .section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.625rem;
+}
+
+#knm-app .section-label.red {
+  letter-spacing: 0.1em;
+}
+
+#knm-app .intro-text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+#knm-app .body-text {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+#knm-app .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+#knm-app .stat-label {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+#knm-app .list-card-btn {
+  background: #1a1f2e;
+  border: 1px solid #2a2f3e;
+  border-left-width: 4px;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+  color: #e8e0d0;
+  font-family: inherit;
+  display: flex;
+  gap: 0.875rem;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.625rem;
+}
+
+#knm-app .list-card-icon {
+  font-size: 1.75rem;
+}
+
+#knm-app .list-card-info {
+  flex: 1;
+}
+
+#knm-app .list-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+#knm-app .list-card-desc {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+#knm-app .list-card-chevron {
+  font-size: 1.25rem;
+}
+
+#knm-app .title-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+#knm-app .priority-badge {
+  font-size: 0.6875rem;
+  padding: 0.1875rem 0.5rem;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  border-radius: 0.25rem;
+  background: color-mix(in oklch, var(--badge-color) 13%, transparent);
+  color: var(--badge-color);
+}
+
+#knm-app .tip-text {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+#knm-app .tip-text--sm {
+  margin-top: 0.75rem;
+}
+
+#knm-app .format-list {
+  font-size: 1rem;
+  line-height: 1.65;
+  padding-left: 1.25rem;
+}
+
+#knm-app .format-list strong {
+  color: #fff;
+}
+
+#knm-app .exam-picker-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.375rem;
+  line-height: 1.35;
+}
+
+#knm-app .exam-picker-desc {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  margin-bottom: 0.75rem;
+}
+
+#knm-app .btn-row-wrap {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#knm-app .wording-btn {
+  background: var(--color-coral);
+  color: #fff;
+  border: none;
+  padding: 0.625rem 1rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  min-height: 3rem;
+}
+
+#knm-app .exam-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+#knm-app .exam-top-right {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+}
+
+#knm-app .exam-meta {
+  font-size: 0.6875rem;
+}
+
+#knm-app .timer-display {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-teal);
+}
+
+#knm-app .timer-display.warning {
+  color: var(--color-coral);
+}
+
+#knm-app .question-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.625rem;
+}
+
+#knm-app .question-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #fff;
+  font-weight: 600;
+}
+
+#knm-app .option-letter {
+  margin-right: 0.5rem;
+}
+
+#knm-app .exam-nav-btns {
+  margin-bottom: 0.625rem;
+}
+
+#knm-app .half-btn--outline {
+  background: #1a1f2e;
+  border: 1px solid #2a2f3e;
+}
+
+#knm-app .big-btn--danger {
+  background: var(--color-coral);
+}
+
+#knm-app .big-btn--sky {
+  background: var(--color-sky);
+  margin-top: 0;
+  flex: 1;
+}
+
+#knm-app .big-btn--danger-flex {
+  background: var(--color-coral);
+  margin-top: 0;
+  flex: 1;
+}
+
+#knm-app .results-center {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+#knm-app .results-emoji {
+  font-size: 3.75rem;
+  margin-bottom: 0.625rem;
+}
+
+#knm-app .results-score {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+}
+
+#knm-app .results-score--pass {
+  color: var(--color-teal);
+}
+
+#knm-app .results-score--fail {
+  color: var(--color-coral);
+}
+
+#knm-app .results-meta {
+  font-size: 0.8125rem;
+  margin-bottom: 0.25rem;
+}
+
+#knm-app .results-status {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+#knm-app .results-status--pass {
+  color: var(--color-teal);
+}
+
+#knm-app .results-status--fail {
+  color: var(--color-coral);
+}
+
+#knm-app .topic-scores-card {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+#knm-app .topic-scores-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+#knm-app .topic-score-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.1875rem;
+}
+
+#knm-app .topic-title-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#knm-app .topic-icon-lg {
+  font-size: 2rem;
+}
+
+#knm-app .topic-heading {
+  margin: 0;
+  font-size: 1.375rem;
+  color: #fff;
+  line-height: 1.3;
+}
+
+#knm-app .note-heading {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+#knm-app .who-grid-card {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 9rem) 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+#knm-app .who-label {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+#knm-app .highlight-box {
+  margin-top: 1rem;
+  background: #1a1f2e;
+  border: 1px solid var(--color-coral);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+#knm-app .para-spaced {
+  margin-bottom: 0.5rem;
+}
+
+#knm-app .review-topic-meta {
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.25rem;
+}
+
+#knm-app .review-question {
+  font-size: 0.8125rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+#knm-app .review-answer {
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+#knm-app .review-answer--correct {
+  color: var(--color-teal);
+}
+
+#knm-app .review-answer--wrong {
+  color: var(--color-coral);
+}
+
+#knm-app .review-correct-answer {
+  font-size: 0.75rem;
+  color: var(--color-teal);
+  margin-bottom: 0.25rem;
+}
+
+#knm-app .review-explanation {
+  font-size: 0.75rem;
+  color: #8a8070;
+  line-height: 1.5;
+  margin-top: 0.375rem;
+  font-style: italic;
+}

@@ -18,6 +18,7 @@
     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,mjs,cjs,md,mdx,css,json}\"",
     "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,mjs,cjs,md,mdx,css,json}\"",
     "fix": "npm run lint:fix && npm run format",
+    "test": "vitest run",
     "icons": "node scripts/generate-pwa-icons.mjs"
   },
   "dependencies": {
@@ -39,9 +40,11 @@
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.5.0",
+    "jsdom": "^29.1.1",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "typescript-eslint": "^8.58.2"
+    "typescript-eslint": "^8.58.2",
+    "vitest": "^4.1.7"
   }
 }

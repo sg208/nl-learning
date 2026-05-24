@@ -1,0 +1,60 @@
+#knm-app .option-btn {
+  display: flex;
+  width: 100%;
+  min-height: 3.25rem;
+  margin-bottom: 0.5rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--knm-rule);
+  border-radius: var(--radius-card);
+  background: var(--knm-panel);
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+#knm-app .option-btn.selected {
+  border-color: var(--color-sky);
+  background: var(--color-panel-raised);
+  color: var(--knm-ink);
+}
+
+#knm-app .option-btn.correct {
+  border-color: var(--color-teal);
+  background: #1a2e20;
+  color: var(--color-teal);
+}
+
+#knm-app .option-btn.wrong {
+  border-color: var(--color-coral);
+  background: #2e1a1a;
+  color: var(--color-coral);
+}
+
+#knm-app .nav-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+#knm-app .nav-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.375rem;
+  background: var(--knm-rule);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#knm-app .nav-btn.answered {
+  background: var(--color-teal);
+}
+
+#knm-app .nav-btn.current {
+  background: var(--color-coral);
+}

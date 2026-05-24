@@ -23,9 +23,13 @@ All notable changes to this project are documented in this file.
 - Removed unused `html()` innerHTML helper; allowlisted DOM props in KNM renderer.
 - KNM mobile nav uses a bottom-sheet section picker; sticky nav appears only after the header scrolls away; footer no longer overlaps the sticky bar.
 - Locale switch restores scroll position instantly (no smooth-scroll animation).
-- Mobile floating locale pill uses a dark elevation ring instead of accent glow that blended with primary buttons.
 
 ### Changed
+
+- Refactor KNM into modular `src/scripts/knm/` (state, exam engine, tabs, views, render registry) and remove monolithic `knm-app.ts`.
+- Split KNM data into per-topic modules (`questions/`, `study-notes/`, `ui/`, `translations.ts`) and legal copy into `src/i18n/legal/`.
+- Split KNM styles into `src/styles/knm/` with view CSS classes replacing inline styles; add shared `KnmPage.astro`, `locale-handoff.ts`, and `site-menu.ts`.
+- Harden session restore with `validateKnmSnapshot`; add Vitest for exam engine and snapshot validation; split CDN upload helpers.
 
 - SEO: hreflang alternates (`en`, `nl-NL`, `x-default`), `og:locale:alternate`, and auto `BreadcrumbList` JSON-LD on inner pages via shared `src/lib/seo.ts`.
 - Home JSON-LD uses `@graph` with linked `Organization` + `WebSite`; removed invalid `SearchAction` schema.

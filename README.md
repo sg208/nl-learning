@@ -18,6 +18,7 @@ SITE_URL=https://your-domain.example npm run build
 npm run preview
 npm start
 npm run check    # astro check + tsc
+npm test         # vitest
 npm run fix      # eslint --fix + prettier
 ```
 
@@ -49,6 +50,7 @@ If the submodule is not configured yet, rules are vendored in `ai-rules/` at the
 ## Layout (top level)
 
 - `src/pages/` — routes (English at `/`, Dutch at `/nl/...`)
+- `src/scripts/knm/` — KNM client app (exam UI, tabs, views)
 - `src/data/knm/` — question bank and study content
 - `public/` — static assets, service worker, manifest
 - `ai-rules/` — Cursor / Claude / Copilot agent rules

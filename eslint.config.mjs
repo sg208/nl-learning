@@ -7,14 +7,7 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: [
-      'dist/**',
-      '.astro/**',
-      'node_modules/**',
-      'public/**',
-      'src/data/knm/question-bank.ts',
-      'src/scripts/knm-app.ts',
-    ],
+    ignores: ['dist/**', '.astro/**', 'node_modules/**', 'public/**'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

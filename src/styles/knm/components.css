@@ -1,0 +1,120 @@
+#knm-app .card {
+  background: var(--knm-panel);
+  border: 1px solid var(--knm-rule);
+  border-radius: var(--radius-card);
+  padding: 1.125rem;
+  margin-bottom: 0.875rem;
+}
+
+#knm-app .mono {
+  font-family: var(--font-mono);
+}
+
+#knm-app .red {
+  color: var(--color-coral);
+}
+
+#knm-app .green {
+  color: var(--color-teal);
+}
+
+#knm-app .blue {
+  color: var(--color-sky);
+}
+
+#knm-app .muted {
+  color: var(--knm-muted);
+}
+
+#knm-app .dim {
+  color: var(--color-ink-soft);
+}
+
+#knm-app .white {
+  color: var(--knm-ink);
+}
+
+#knm-app .grid4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  #knm-app .grid4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+#knm-app .text-center {
+  text-align: center;
+}
+
+#knm-app .big-btn {
+  width: 100%;
+  min-height: 3rem;
+  margin-top: 0.5rem;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: var(--radius-card);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#knm-app .row-btns {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+#knm-app .row-btns .big-btn {
+  margin-top: 0;
+}
+
+#knm-app .half-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#knm-app .half-btn {
+  flex: 1;
+  min-height: 3rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+#knm-app .result-card {
+  border: 1px solid var(--knm-rule);
+  border-radius: var(--radius-card);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+#knm-app .result-card.correct-card {
+  border-color: var(--color-teal);
+}
+
+#knm-app .result-card.wrong-card {
+  border-color: var(--color-coral);
+}
+
+#knm-app .back-btn {
+  min-height: 2.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-coral);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+#knm-app .bold-highlight {
+  color: var(--knm-ink);
+  font-weight: 700;
+}

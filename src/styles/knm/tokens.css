@@ -1,0 +1,14 @@
+/* KNM app — scoped study UI with large touch targets and WCAG-friendly contrast */
+#knm-app {
+  --knm-bg: var(--color-night);
+  --knm-panel: var(--color-panel);
+  --knm-ink: var(--color-ink);
+  --knm-muted: var(--color-muted);
+  --knm-rule: var(--color-rule);
+  font-family: var(--font-serif);
+}
+
+#knm-app button {
+  font-family: inherit;
+  cursor: pointer;
+}
