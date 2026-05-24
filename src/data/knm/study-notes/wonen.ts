@@ -4,8 +4,20 @@ import type { StudyNote } from './types';
 export const wonenNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Sociale huur? Vroeg inschrijven bij woningcorporatie (vanaf 18 jaar). 2) Huurtoeslag via Belastingdienst. 3) Schriftelijk huurcontract; borg meestal 1–2 maanden. 4) Probleem met verhuurder? Eerst schriftelijk, dan Huurcommissie. 5) Kopen? Hypotheek via bank + notaris.',
-    bEn: '1) Social housing? Register early with a woningcorporatie (housing association, from age 18). 2) Rent allowance (huurtoeslag) via Belastingdienst. 3) Written rental contract; deposit usually 1–2 months. 4) Problem with landlord? Write first, then Huurcommissie. 5) Buying? Mortgage via bank + notary.',
+    steps: [
+      'Sociale huur? Vroeg inschrijven bij woningcorporatie (vanaf 18 jaar).',
+      'Huurtoeslag via Belastingdienst.',
+      'Schriftelijk huurcontract; borg meestal 1–2 maanden.',
+      'Probleem met verhuurder? Eerst schriftelijk, dan Huurcommissie.',
+      'Kopen? Hypotheek via bank + notaris.',
+    ],
+    stepsEn: [
+      'Social housing? Register early with a woningcorporatie (housing association, from age 18).',
+      'Rent allowance (huurtoeslag) via Belastingdienst.',
+      'Written rental contract; deposit usually 1–2 months.',
+      'Problem with landlord? Write first, then Huurcommissie.',
+      'Buying? Mortgage via bank + notary.',
+    ],
   },
   {
     h: 'Sociale Huurwoning',

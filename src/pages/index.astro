@@ -3,6 +3,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import HomeHero from '~/components/HomeHero.astro';
 import { siteConfig, tSite } from '~/config/site';
 import { localizedPath } from '~/lib/i18n';
+import { KNM_ROUTE_HASH } from '~/lib/knm-route';
 import { organizationJsonLd } from '~/lib/seo';
 
 const locale = 'en' as const;
@@ -17,17 +18,17 @@ const copy = {
     {
       title: 'KNM mock exams',
       body: '40-question timed practice across 8 topics — the same shape as the real exam.',
-      href: '/knm',
+      href: localizedPath(`/knm${KNM_ROUTE_HASH.exam}`, locale),
     },
     {
       title: 'Study notes',
       body: 'Topic summaries for healthcare, work, government, housing, education, politics, history, and culture.',
-      href: '/knm',
+      href: localizedPath(`/knm${KNM_ROUTE_HASH.topics}`, locale),
     },
     {
       title: 'Who does what',
       body: 'A reference table for the most common question type: where should this person go?',
-      href: '/knm',
+      href: localizedPath(`/knm${KNM_ROUTE_HASH.whowhat}`, locale),
     },
   ],
 };

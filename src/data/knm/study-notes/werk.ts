@@ -3,8 +3,20 @@ import type { StudyNote } from './types';
 export const werkNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Vraag een schriftelijk arbeidscontract. 2) Baan kwijt met WW-recht? Meld u bij UWV, niet bij de gemeente. 3) Geen WW en geen inkomen? Bijstand via gemeente. 4) ZZP? Inschrijven bij KvK. 5) Belasting en toeslagen via Belastingdienst.',
-    bEn: '1) Get a written employment contract (arbeidscontract). 2) Lost your job with WW entitlement? Apply at UWV, not the municipality. 3) No WW and no income? Social assistance (bijstand) via municipality. 4) Self-employed (ZZP)? Register at KvK. 5) Tax and allowances (toeslagen) via Belastingdienst.',
+    steps: [
+      'Vraag een schriftelijk arbeidscontract.',
+      'Baan kwijt met WW-recht? Meld u bij UWV, niet bij de gemeente.',
+      'Geen WW en geen inkomen? Bijstand via gemeente.',
+      'ZZP? Inschrijven bij KvK.',
+      'Belasting en toeslagen via Belastingdienst.',
+    ],
+    stepsEn: [
+      'Get a written employment contract (arbeidscontract).',
+      'Lost your job with WW entitlement? Apply at UWV, not the municipality.',
+      'No WW and no income? Social assistance (bijstand) via municipality.',
+      'Self-employed (ZZP)? Register at KvK.',
+      'Tax and allowances (toeslagen) via Belastingdienst.',
+    ],
   },
   {
     h: 'Arbeidscontract',

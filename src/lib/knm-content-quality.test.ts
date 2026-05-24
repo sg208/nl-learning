@@ -19,8 +19,15 @@ describe('KNM content quality', () => {
   it('gives every study note NL/EN body text and EN heading', () => {
     for (const topic of TOPICS) {
       for (const note of STUDY_NOTES[topic.id]) {
-        expect(isNonEmpty(note.b), `${topic.id}/${note.h} missing b`).toBe(true);
-        expect(isNonEmpty(note.bEn), `${topic.id}/${note.h} missing bEn`).toBe(true);
+        if (note.h === 'Eerste stappen') {
+          expect(note.steps?.length, `${topic.id}/${note.h} missing steps`).toBeGreaterThan(0);
+          expect(note.stepsEn?.length, `${topic.id}/${note.h} missing stepsEn`).toBe(
+            note.steps?.length,
+          );
+        } else {
+          expect(isNonEmpty(note.b ?? ''), `${topic.id}/${note.h} missing b`).toBe(true);
+          expect(isNonEmpty(note.bEn ?? ''), `${topic.id}/${note.h} missing bEn`).toBe(true);
+        }
         expect(STUDY_HEADING_EN[note.h], `${topic.id}/${note.h} missing EN heading`).toBeTruthy();
       }
     }

@@ -1,7 +1,9 @@
 export type StudyNote = {
   readonly h: string;
-  readonly b: string;
-  readonly bEn: string;
+  readonly b?: string;
+  readonly bEn?: string;
+  readonly steps?: readonly string[];
+  readonly stepsEn?: readonly string[];
   readonly tip?: string;
   readonly tipEn?: string;
 };

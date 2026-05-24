@@ -3,8 +3,20 @@ import type { StudyNote } from './types';
 export const geschiedenisNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Onthoud: 4 mei Dodenherdenking, 5 mei Bevrijdingsdag. 2) WO2: inval 1940, bezetting tot 1945, Anne Frank, Hongerwinter. 3) Amsterdam = hoofdstad; Den Haag = regeringszetel. 4) 12 provincies; Flevoland jongste (1986). 5) Willem van Oranje = Vader des Vaderlands.',
-    bEn: '1) Remember: 4 May Remembrance Day, 5 May Liberation Day. 2) WWII: invasion 1940, occupation until 1945, Anne Frank, Hunger Winter. 3) Amsterdam = capital; The Hague = seat of government. 4) 12 provinces; Flevoland youngest (1986). 5) William of Orange = Father of the Fatherland.',
+    steps: [
+      'Onthoud: 4 mei Dodenherdenking, 5 mei Bevrijdingsdag.',
+      'WO2: inval 1940, bezetting tot 1945, Anne Frank, Hongerwinter.',
+      'Amsterdam = hoofdstad; Den Haag = regeringszetel.',
+      '12 provincies; Flevoland jongste (1986).',
+      'Willem van Oranje = Vader des Vaderlands.',
+    ],
+    stepsEn: [
+      'Remember: 4 May Remembrance Day, 5 May Liberation Day.',
+      'WWII: invasion 1940, occupation until 1945, Anne Frank, Hunger Winter.',
+      'Amsterdam = capital; The Hague = seat of government.',
+      '12 provinces; Flevoland youngest (1986).',
+      'William of Orange = Father of the Fatherland.',
+    ],
   },
   {
     h: 'Gouden Eeuw',

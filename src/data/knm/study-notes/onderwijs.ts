@@ -3,8 +3,20 @@ import type { StudyNote } from './types';
 export const onderwijsNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Basisschool vanaf 4 jaar; leerplicht vanaf 5. 2) Studiefinanciering hoger onderwijs via DUO. 3) Kinderopvangtoeslag via Belastingdienst voor werkende ouders. 4) Inburgering: examen via DUO; cursus vaak via gemeente. 5) Spijbelen? Leerplichtambtenaar van gemeente kan ingrijpen.',
-    bEn: '1) Primary school (basisschool) from age 4; compulsory from 5. 2) Higher-education finance via DUO. 3) Childcare benefit via Belastingdienst for working parents. 4) Integration: exam via DUO; course often via municipality. 5) Truancy? Municipal leerplichtambtenaar may intervene.',
+    steps: [
+      'Basisschool vanaf 4 jaar; leerplicht vanaf 5.',
+      'Studiefinanciering hoger onderwijs via DUO.',
+      'Kinderopvangtoeslag via Belastingdienst voor werkende ouders.',
+      'Inburgering: examen via DUO; cursus vaak via gemeente.',
+      'Spijbelen? Leerplichtambtenaar van gemeente kan ingrijpen.',
+    ],
+    stepsEn: [
+      'Primary school (basisschool) from age 4; compulsory from 5.',
+      'Higher-education finance via DUO.',
+      'Childcare benefit via Belastingdienst for working parents.',
+      'Integration: exam via DUO; course often via municipality.',
+      'Truancy? Municipal leerplichtambtenaar may intervene.',
+    ],
   },
   {
     h: 'Leerplicht',

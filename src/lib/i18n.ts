@@ -13,9 +13,14 @@ export const getLocaleFromPath = (pathname: string): Locale =>
   pathname === '/nl' || pathname.startsWith('/nl/') ? 'nl' : 'en';
 
 export const localizedPath = (path: string, locale: Locale): string => {
-  const normalized = path.startsWith('/') ? path : `/${path}`;
-  if (locale === defaultLocale) return normalized === '/' ? '/' : normalized;
-  return normalized === '/' ? '/nl' : `/nl${normalized}`;
+  const hashIndex = path.indexOf('#');
+  const pathname = hashIndex >= 0 ? path.slice(0, hashIndex) : path;
+  const hash = hashIndex >= 0 ? path.slice(hashIndex) : '';
+  const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  if (locale === defaultLocale) {
+    return `${normalized === '/' ? '/' : normalized}${hash}`;
+  }
+  return `${normalized === '/' ? '/nl' : `/nl${normalized}`}${hash}`;
 };
 
 export const switchLocalePath = (pathname: string, target: Locale): string => {

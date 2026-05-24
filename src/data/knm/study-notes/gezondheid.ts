@@ -4,8 +4,20 @@ import type { StudyNote } from './types';
 export const gezondheidNotes = [
   {
     h: 'Eerste stappen',
-    b: '1) Schrijf u in bij een huisarts in de buurt. 2) Sluit een basiszorgverzekering af — verplicht. 3) Niet levensbedreigend? Bel de huisarts, niet 112. 4) Recept? Naar de apotheek. 5) Kind 0–4 jaar? Vaccinaties via consultatiebureau.',
-    bEn: '1) Register with a GP (huisarts) near your home. 2) Take out basic health insurance (zorgverzekering) — it is mandatory. 3) Not life-threatening? Call your GP, not 112. 4) Prescription? Go to the apotheek (pharmacy). 5) Child aged 0–4? Vaccinations at the consultatiebureau (child health clinic).',
+    steps: [
+      'Schrijf u in bij een huisarts in de buurt.',
+      'Sluit een basiszorgverzekering af — verplicht.',
+      'Niet levensbedreigend? Bel de huisarts, niet 112.',
+      'Recept? Naar de apotheek.',
+      'Kind 0–4 jaar? Vaccinaties via consultatiebureau.',
+    ],
+    stepsEn: [
+      'Register with a GP (huisarts) near your home.',
+      'Take out basic health insurance (zorgverzekering) — it is mandatory.',
+      'Not life-threatening? Call your GP, not 112.',
+      'Prescription? Go to the apotheek (pharmacy).',
+      'Child aged 0–4? Vaccinations at the consultatiebureau (child health clinic).',
+    ],
   },
   {
     h: 'Huisarts',
