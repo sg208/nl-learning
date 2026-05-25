@@ -226,7 +226,7 @@
 
 #knm-app .tab-btn.active,
 #knm-app .tab-btn[aria-selected='true'] {
-  background: #d62839;
+  background: var(--color-coral-a11y);
   color: #fff;
 }
 
