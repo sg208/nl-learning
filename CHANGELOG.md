@@ -39,5 +39,6 @@ All notable changes to this project are documented in this file.
 - KNM home tab label renamed to Overview / Overzicht.
 - Added `npm run icons` script to regenerate PWA PNGs from SVG sources.
 - Playwright E2E smoke suite (`e2e/`, `npm run test:e2e`): KNM load, hash tabs, topic/exam deep links, EN↔NL locale handoff; preview on port 4173; CI workflow on PRs to `develop`.
+- Expand KNM E2E Phase 3: browser history, home cards, topic navigation, exam flow (answer/next/prev, stop, submit via session prefills), review study-note links, keyboard tab nav, axe scan on home; `@axe-core/playwright` dev dep; KNM contrast tweaks for active tab and section labels.
 - KNM First steps cards use ordered step lists instead of inline numbered paragraphs.
 - KNM URL hash routing syncs tab, topic, exam, and study-note views with the address bar; home page cards link to `#topics`, `#whowhat`, and `#exam`.
