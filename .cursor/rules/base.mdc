@@ -1,4 +1,4 @@
-description: Repo-local language-agnostic coding standards.
+description: Repo-local TypeScript and coding standards.
 alwaysApply: true
 ---
 
@@ -13,11 +13,12 @@ alwaysApply: true
 ## Scope
 
 - Keep changes narrowly scoped to the request.
-- Prefer clear names, small focused files, and arrow functions for non-trivial helpers and handlers.
+- Prefer clear names and small focused files.
 - Keep files around 120 lines when practical; split by responsibility when they grow.
 
 ## TypeScript
 
+- Prefer arrow functions for non-trivial helpers and handlers.
 - No `enum`.
 - No `any` unless a short inline comment explains why.
 - Prefer `unknown` for external data that still needs narrowing.

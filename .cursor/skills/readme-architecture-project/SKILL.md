@@ -62,9 +62,9 @@ Every tool-specific rules file should open with a **Doc map** section:
 ```markdown
 ## Doc map
 
-- **Setup & commands** → [README.md](../README.md)
-- **System design & deployment** → [ARCHITECTURE.md](../ARCHITECTURE.md)
-- **Stack, paths & conventions** → [PROJECT.md](../PROJECT.md)
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
 ```
 
 Adjust relative paths for the rule file location. Rules files hold **behavior** (lint, a11y, security, framework patterns). They do **not** restate stack tables or install steps — they link.
