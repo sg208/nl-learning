@@ -19,7 +19,7 @@ npm run check                                  # astro check + tsc
 
 - **baseURL:** `http://127.0.0.1:4173` (see `playwright.config.ts`)
 - **Build:** `webServer` runs `SITE_URL=<baseURL> npm run build && npm run preview:e2e`
-- **CI:** `.github/workflows/e2e.yml` on PRs to `develop`
+- **CI:** `.github/workflows/e2e.yml` on PRs to `develop` (GitHub Actions)
 
 ## URL patterns
 
