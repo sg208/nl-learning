@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Add repo-local Cursor rules for base, Astro, accessibility, and security guidance.
+- Add repo-local skills for `PROJECT.md`-first task startup and README/ARCHITECTURE/PROJECT doc-boundary maintenance.
+- Add root Copilot instructions that mirror the current project guidance.
+
+### Changed
+
+- Simplify `CLAUDE.md`, `PROJECT.md`, and `README.md` so agents start with minimal context and open deeper docs only when needed.
+- Replace stale legal-copy references with the current `src/i18n/legal/` directory.
+
 ## [0.1.0] — 2026-05-23
 
 ### Added
@@ -38,5 +51,7 @@ All notable changes to this project are documented in this file.
 - Site config, manifest, and PWA icons updated for `nllearn.ing` domain; header wordmark remains NL.Learning.
 - KNM home tab label renamed to Overview / Overzicht.
 - Added `npm run icons` script to regenerate PWA PNGs from SVG sources.
+- Playwright E2E smoke suite (`e2e/`, `npm run test:e2e`): KNM load, hash tabs, topic/exam deep links, EN↔NL locale handoff; preview on port 4173; CI workflow on PRs to `develop`.
+- Expand KNM E2E Phase 3: browser history, home cards, topic navigation, exam flow (answer/next/prev, stop, submit via session prefills), review study-note links, keyboard tab nav, axe scan on home; `@axe-core/playwright` dev dep; KNM contrast tweaks for active tab and section labels.
 - KNM First steps cards use ordered step lists instead of inline numbered paragraphs.
 - KNM URL hash routing syncs tab, topic, exam, and study-note views with the address bar; home page cards link to `#topics`, `#whowhat`, and `#exam`.

@@ -1,7 +1,11 @@
 # Project instructions
 
-Read [PROJECT.md](./PROJECT.md) first for stack and conventions.
-Read [ARCHITECTURE.md](./ARCHITECTURE.md) for system design and deployment.
-Read [README.md](./README.md) for setup and commands.
+Keep initial project context minimal.
 
-Detailed tool rules: see [ai-rules/CLAUDE.md](./ai-rules/CLAUDE.md).
+Read [PROJECT.md](./PROJECT.md) first before starting work.
+
+Then open deeper docs only when the task needs them:
+- [ARCHITECTURE.md](./ARCHITECTURE.md) for system design, deployment, PWA, i18n routing, or cross-cutting flows.
+- [README.md](./README.md) for setup, scripts, environment variables, or onboarding.
+
+Repo-local Cursor rules live in [`.cursor/rules/`](./.cursor/rules/).
