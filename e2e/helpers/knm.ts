@@ -48,6 +48,14 @@ export const getKnmTablist = (page: Page, locale: KnmLocale = 'en') =>
     name: locale === 'en' ? 'KNM sections' : 'KNM onderdelen',
   });
 
+export const clickKnmTab = async (
+  page: Page,
+  tabId: KnmTabId,
+  locale: KnmLocale = 'en',
+): Promise<void> => {
+  await getKnmTablist(page, locale).getByRole('tab', { name: TAB_LABELS[locale][tabId] }).click();
+};
+
 export const expectKnmTab = async (
   page: Page,
   tabId: KnmTabId,
