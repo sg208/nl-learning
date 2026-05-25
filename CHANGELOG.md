@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Add repo-local Cursor rules for base, Astro, accessibility, and security guidance.
+- Add repo-local skills for `PROJECT.md`-first task startup and README/ARCHITECTURE/PROJECT doc-boundary maintenance.
+- Add root Copilot instructions that mirror the current project guidance.
+
+### Changed
+
+- Simplify `CLAUDE.md`, `PROJECT.md`, and `README.md` so agents start with minimal context and open deeper docs only when needed.
+- Replace stale legal-copy references with the current `src/i18n/legal/` directory.
+
 ## [0.1.0] — 2026-05-23
 
 ### Added

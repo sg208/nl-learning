@@ -30,6 +30,8 @@ Agent-oriented reference for stack, paths, and conventions.
 | `src/data/knm/ui/`                     | KNM UI strings (`nl.ts`, `en.ts`)                     |
 | `src/data/knm/translations.ts`         | EN heading/label maps for study & who-does-what       |
 | `src/scripts/knm/`                     | KNM client app (state, exam engine, tabs, views)      |
+| `.cursor/skills/`                      | Repo-local agent skills for project workflows         |
+| `.cursor/rules/`                       | Repo-local Cursor rules (base, Astro, a11y, security) |
 | `src/scripts/locale-handoff.ts`        | Shared locale-switch session handoff                  |
 | `src/styles/knm/`                      | KNM scoped CSS (tokens, layout, tabs, exam)           |
 | `src/lib/knm-session.ts`               | Locale handoff + live session (`sessionStorage`)      |
@@ -45,7 +47,6 @@ Agent-oriented reference for stack, paths, and conventions.
 | `scripts/upload-batch.mjs`             | Bunny CDN batch upload + purge                        |
 | `e2e/`                                 | Playwright E2E (KNM navigation, exam, a11y)           |
 | `playwright.config.ts`                 | E2E config (`baseURL` port 4173)                      |
-| `ai-rules/`                            | Shared agent rules (Cursor, Claude, Copilot)          |
 
 ## Conventions
 
@@ -71,11 +72,12 @@ Agent-oriented reference for stack, paths, and conventions.
 ### Security & legal
 
 - No secrets in source; env vars for build and deploy only.
-- **Always ask before editing** legal wording in `src/i18n/legal.ts` or legal page routes.
+- **Always ask before editing** legal wording in `src/i18n/legal/` or legal page routes.
 
 ### Agent workflow
 
 - Read this file first for stack, paths, and conventions.
-- Read [ARCHITECTURE.md](./ARCHITECTURE.md) for flows, PWA, and deploy.
-- Read [README.md](./README.md) for scripts and env vars.
-- Tool-specific lint/security/a11y rules: `ai-rules/.cursor/rules/`.
+- Read matching repo-local skills in `.cursor/skills/` when the task calls for them.
+- Repo-local Cursor rules live in `.cursor/rules/`.
+- Read [ARCHITECTURE.md](./ARCHITECTURE.md) only for flows, PWA, deploy, or other cross-cutting design work.
+- Read [README.md](./README.md) only for scripts, env vars, or onboarding.
