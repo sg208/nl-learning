@@ -38,5 +38,6 @@ All notable changes to this project are documented in this file.
 - Site config, manifest, and PWA icons updated for `nllearn.ing` domain; header wordmark remains NL.Learning.
 - KNM home tab label renamed to Overview / Overzicht.
 - Added `npm run icons` script to regenerate PWA PNGs from SVG sources.
+- Playwright E2E smoke suite (`e2e/`, `npm run test:e2e`): KNM load, hash tabs, topic/exam deep links, EN↔NL locale handoff; preview on port 4173; CI workflow on PRs to `develop`.
 - KNM First steps cards use ordered step lists instead of inline numbered paragraphs.
 - KNM URL hash routing syncs tab, topic, exam, and study-note views with the address bar; home page cards link to `#topics`, `#whowhat`, and `#exam`.

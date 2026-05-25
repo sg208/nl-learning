@@ -9,4 +9,6 @@ dist
 .output
 .turbo
 coverage
+playwright-report/
+test-results/
 .todo/

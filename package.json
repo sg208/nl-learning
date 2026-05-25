@@ -19,6 +19,9 @@
     "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,mjs,cjs,md,mdx,css,json}\"",
     "fix": "npm run lint:fix && npm run format",
     "test": "vitest run",
+    "preview:e2e": "astro preview --port 4173 --host 127.0.0.1",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "icons": "node scripts/generate-pwa-icons.mjs"
   },
   "dependencies": {
@@ -34,6 +37,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.60.0",
     "astro-eslint-parser": "^1.4.0",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
