@@ -19,6 +19,7 @@ npm run preview
 npm start
 npm run check    # astro check + tsc
 npm test         # vitest
+npm run test:e2e # playwright (build + preview on port 4173)
 npm run fix      # eslint --fix + prettier
 ```
 
