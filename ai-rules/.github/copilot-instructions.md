@@ -15,7 +15,7 @@ Astro 6 static, Tailwind v4, EN `/` + NL `/nl/...`, KNM client app in `src/scrip
 ## Key paths
 
 - `src/pages/` routes; `src/data/knm/questions|study-notes|ui/`; `knm-facts.ts`; `question-concept-map.ts`; `src/lib/knm-session.ts` sessionStorage; `src/lib/knm-route.ts` hash deep links
-- `e2e/` Playwright smoke; `npm run test:e2e` (build + preview port 4173); CI on PRs to `develop`
+- `e2e/` Playwright E2E (navigation, exam, a11y); `npm run test:e2e` (build + preview port 4173); CI on PRs to `develop`
 - `src/i18n/legal/` legal copy — ask before editing
 
 ## Conventions

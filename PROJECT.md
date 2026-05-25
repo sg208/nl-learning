@@ -43,7 +43,7 @@ Agent-oriented reference for stack, paths, and conventions.
 | `scripts/upload-to-cdn.mjs`            | CDN upload orchestrator                               |
 | `scripts/collect-files.mjs`            | Recursive dist file collector                         |
 | `scripts/upload-batch.mjs`             | Bunny CDN batch upload + purge                        |
-| `e2e/`                                 | Playwright smoke E2E (KNM navigation)                 |
+| `e2e/`                                 | Playwright E2E (KNM navigation, exam, a11y)           |
 | `playwright.config.ts`                 | E2E config (`baseURL` port 4173)                      |
 | `ai-rules/`                            | Shared agent rules (Cursor, Claude, Copilot)          |
 
