@@ -38,23 +38,12 @@ Deploy secrets (names only — see [ARCHITECTURE.md](./ARCHITECTURE.md#deploymen
 - **`develop`** — default integration branch (CodeRabbit auto-review)
 - **`main`** — production deploy branch (GitHub Actions → Bunny CDN)
 
-## Agent rules
-
-Shared AI tool config lives in [`ai-rules/`](./ai-rules/). After clone:
-
-```bash
-git submodule update --init --recursive
-```
-
-If the submodule is not configured yet, rules are vendored in `ai-rules/` at the repo root.
-
 ## Layout (top level)
 
 - `src/pages/` — routes (English at `/`, Dutch at `/nl/...`)
 - `src/scripts/knm/` — KNM client app (exam UI, tabs, views)
 - `src/data/knm/` — question bank and study content
 - `public/` — static assets, service worker, manifest
-- `ai-rules/` — Cursor / Claude / Copilot agent rules
 
 ## License
 

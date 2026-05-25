@@ -1,0 +1,34 @@
+description: Repo-local TypeScript and coding standards.
+alwaysApply: true
+---
+
+# Base rules
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
+
+## Scope
+
+- Keep changes narrowly scoped to the request.
+- Prefer clear names and small focused files.
+- Keep files around 120 lines when practical; split by responsibility when they grow.
+
+## TypeScript
+
+- Prefer arrow functions for non-trivial helpers and handlers.
+- No `enum`.
+- No `any` unless a short inline comment explains why.
+- Prefer `unknown` for external data that still needs narrowing.
+
+## Working style
+
+- Read `PROJECT.md` first.
+- Prefer targeted file reads and searches over broad repository sweeps.
+- Add comments only when the intent is not obvious from the code itself.
+
+## Repo hygiene
+
+- Run `npm run fix` before pushing.

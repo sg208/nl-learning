@@ -1,0 +1,32 @@
+description: Repo-local Astro site conventions.
+alwaysApply: true
+---
+
+# Astro rules
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
+
+## Pages & layouts
+
+- Routes live in `src/pages/`; English is at the root and Dutch lives under `/nl/`.
+- Shared page chrome belongs in `src/layouts/`; reusable UI belongs in `src/components/`.
+- Use the `~/` import alias.
+
+## Client scripts
+
+- Keep interactive behavior in `src/scripts/*.ts`.
+- The KNM UI is a vanilla TypeScript app in `src/scripts/knm/`; do not add React or Vue here unless the task explicitly changes the stack.
+
+## i18n & styling
+
+- Locale comes from the path via `src/lib/i18n.ts`.
+- Tailwind v4 lives in `src/styles/global.css`; KNM-specific styling lives in `src/styles/knm/`.
+
+## PWA & build
+
+- Service worker behavior lives in `public/sw.js`; adjust cache versioning when caching changes.
+- `SITE_URL` is required for production builds because it powers canonical URLs, Open Graph metadata, and the sitemap.
