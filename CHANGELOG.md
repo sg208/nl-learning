@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- NL site home study cards no longer double-apply `localizedPath` (broken `/nl/nl/knm#…` links).
+- Remove duplicate About link from footer Legal column (About remains under Learn).
+
+### Added
+
+- E2E coverage for EN and NL site home cards linking into KNM tabs.
+
 ## [0.1.0] — 2026-05-23
 
 ### Added
