@@ -6,10 +6,9 @@ reviews:
   request_changes_workflow: true
   auto_review:
     enabled: true
-    # Auto-review only the default branch (develop). Do not add main — release
-    # PRs into main are intentionally skipped to save review time.
+    # Auto-review PRs targeting develop only. Pair with enabled: false on main.
     base_branches:
-      - "develop"
+      - "^develop$"
     auto_incremental_review: true
     auto_pause_after_reviewed_commits: 0
     drafts: false
