@@ -5,11 +5,6 @@ reviews:
   profile: chill
   request_changes_workflow: true
   auto_review:
-    enabled: true
-    # Auto-review only the default branch (develop). Do not add main — release
-    # PRs into main are intentionally skipped to save review time.
-    base_branches:
-      - "develop"
-    auto_incremental_review: true
-    auto_pause_after_reviewed_commits: 0
+    enabled: false
+    # No automatic reviews for PRs into main. Manual: @coderabbitai review
     drafts: false
