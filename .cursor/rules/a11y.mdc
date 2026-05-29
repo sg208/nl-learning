@@ -1,0 +1,37 @@
+description: Repo-local WCAG 2.1 / 2.2 AA guardrails.
+alwaysApply: true
+---
+
+# Accessibility rules
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
+
+## Core checks
+
+- Give every meaningful image a real `alt`; decorative images use `alt=""`.
+- Ensure icon-only controls have an accessible name.
+- Keep text, controls, and focus indicators at WCAG AA contrast.
+- Do not communicate meaning by color alone.
+
+## Keyboard & structure
+
+- Every interactive element must work with keyboard alone and have no keyboard trap.
+- Keep a visible focus style.
+- Use semantic elements first and keep heading levels in order.
+- Provide a skip link and a meaningful page title for each page.
+
+## Forms & dynamic UI
+
+- Every form control needs a real label; placeholders are not labels.
+- Tie helper or validation text to inputs with `aria-describedby` when needed.
+- Put important dynamic status updates in an `aria-live` region.
+
+## KNM specifics
+
+- Keep the KNM tabs aligned with the ARIA tabs pattern.
+- Render user-facing KNM content with text nodes, not `innerHTML`.
+- Announce exam feedback and timer expiry via live regions.

@@ -1,0 +1,32 @@
+description: Repo-local web security guardrails.
+alwaysApply: true
+---
+
+# Security rules
+
+## Doc map
+
+- **Setup & commands** → [README.md](../../README.md)
+- **System design & deployment** → [ARCHITECTURE.md](../../ARCHITECTURE.md)
+- **Stack, paths & conventions** → [PROJECT.md](../../PROJECT.md)
+
+## Secrets & logging
+
+- Never commit secrets, tokens, or credentials to source.
+- Do not log PII, session tokens, or other sensitive values.
+
+## Untrusted content
+
+- Avoid `innerHTML`, `eval`, `new Function`, and dynamic script injection.
+- Validate and encode untrusted values before putting them into URLs, HTML attributes, or external requests.
+
+## Network boundaries
+
+- Keep network access in typed wrappers or clearly isolated modules, not scattered through UI code.
+- Validate external API responses before trusting their shape.
+- Do not use `mode: "no-cors"` to hide CORS problems.
+
+## Dependencies & legal copy
+
+- Prefer maintained dependencies and address high-severity audit findings before release.
+- Ask before editing legal or privacy copy.
