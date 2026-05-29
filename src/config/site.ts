@@ -29,7 +29,6 @@ export const siteConfig = {
     },
   ] satisfies NavItem[],
   footerLinks: [
-    { href: '/about', label: { en: 'About', nl: 'Over ons' } },
     { href: '/accessibility', label: { en: 'Accessibility', nl: 'Toegankelijkheid' } },
     { href: '/privacy', label: { en: 'Privacy', nl: 'Privacy' } },
     { href: '/terms', label: { en: 'Terms', nl: 'Voorwaarden' } },
