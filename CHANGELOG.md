@@ -4,22 +4,30 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-10-31
+
+### Breaking changes
+
+- **pnpm replaces npm**: `package-lock.json` is gone and `packageManager` is `pnpm@10.34.8`. Run `pnpm install`; `npm ci` no longer works.
+- **Node 22.23.4 or newer**: `engines.node` is now `>=22.23.4`, which Astro 7 requires. `.nvmrc` still names major version 22.
+
 ### Added
 
-- Add repo-local Cursor rules for base, Astro, accessibility, and security guidance.
-- Add repo-local skills for `PROJECT.md`-first task startup and README/ARCHITECTURE/PROJECT doc-boundary maintenance.
-- Add root Copilot instructions that mirror the current project guidance.
-- E2E coverage for EN and NL site home cards linking into KNM tabs.
+- **MIT license**: new `LICENSE` file; `package.json` sets `"license": "MIT"`. The README still says this is not an official DUO product.
+- **Cursor and Copilot guidance**: repo-local Cursor rules, skills for `PROJECT.md`-first startup and doc maintenance, and `.github/copilot-instructions.md`.
+- **Home card E2E coverage**: EN and NL home cards are tested to open the right KNM tabs.
 
 ### Changed
 
-- Simplify `CLAUDE.md`, `PROJECT.md`, and `README.md` so agents start with minimal context and open deeper docs only when needed.
-- Replace stale legal-copy references with the current `src/i18n/legal/` directory.
+- **Astro 7**: upgraded from Astro 6, along with TypeScript 6, ESLint 10, Vitest 5 and jsdom 30. This clears the critical Astro advisory and every high advisory in `pnpm audit`.
+- **CI on pnpm**: `deploy.yml` and `e2e.yml` install with `pnpm install --frozen-lockfile`, and every action in `deploy.yml` is pinned to a commit SHA.
+- **Shorter agent docs**: `CLAUDE.md`, `PROJECT.md` and `README.md` were trimmed, and legal-copy references now point to `src/i18n/legal/`.
 
 ### Fixed
 
-- NL site home study cards no longer double-apply `localizedPath` (broken `/nl/nl/knm#…` links).
-- Remove duplicate About link from footer Legal column (About remains under Learn).
+- **NL home study cards**: links no longer apply `localizedPath` twice (they pointed to `/nl/nl/knm#…`).
+- **Footer**: the duplicate About link is gone from the Legal column; About stays under Learn.
+- **E2E preview**: `preview:e2e` passes `--ignore-lock` so Astro 7 keeps the preview server in the foreground for Playwright.
 
 ## [0.1.0] — 2026-05-23
 
