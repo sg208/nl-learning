@@ -15,7 +15,7 @@ export const uploadFile = async (filePath, distDir, storageAccessKey, isCI) => {
     body = await readFile(filePath);
   } catch (err) {
     const msg = `[cdn] ✗ read error  ${relativePath}: ${err.message}`;
-    if (isCI) throw new Error(msg);
+    if (isCI) throw new Error(msg, { cause: err });
     console.error(msg);
     return false;
   }
@@ -43,7 +43,7 @@ export const uploadFile = async (filePath, distDir, storageAccessKey, isCI) => {
     const msg = err.message.startsWith('[cdn]')
       ? err.message
       : `[cdn] ✗ network error  ${relativePath}: ${err.message}`;
-    if (isCI) throw new Error(msg);
+    if (isCI) throw new Error(msg, { cause: err });
     console.error(msg);
     return false;
   }
@@ -91,7 +91,7 @@ export const purgeCache = async (zoneId, apiKey, isCI) => {
     const msg = err.message.startsWith('[cdn]')
       ? err.message
       : `[cdn] ✗ cache purge network error: ${err.message}`;
-    if (isCI) throw new Error(msg);
+    if (isCI) throw new Error(msg, { cause: err });
     console.error(msg);
     return false;
   }

@@ -11,7 +11,7 @@ const handleTabListKeydown = (event: KeyboardEvent): void => {
   const currentIndex = TAB_IDS.indexOf(state.tab);
   if (currentIndex === -1) return;
 
-  let nextIndex: number | null = null;
+  let nextIndex: number;
   switch (event.key) {
     case 'ArrowLeft':
     case 'ArrowUp':

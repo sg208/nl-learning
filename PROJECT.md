@@ -9,7 +9,7 @@ Agent-oriented reference for stack, paths, and conventions.
 
 | Layer     | Choice                                                |
 | --------- | ----------------------------------------------------- |
-| Framework | Astro 6 (static output)                               |
+| Framework | Astro 7 (static output)                               |
 | Styling   | Tailwind CSS v4 (`src/styles/global.css`)             |
 | Fonts     | Sora (UI), Literata (body)                            |
 | i18n      | EN at `/`, NL at `/nl/...`                            |

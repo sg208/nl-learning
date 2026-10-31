@@ -7,7 +7,7 @@ Accessible, PWA-ready study site for non-Dutch speakers preparing for **KNM** (K
 
 ## Prerequisites
 
-- Node.js ≥ 20 (see `.nvmrc`)
+- Node.js ≥ 22.23.4 (see `.nvmrc`)
 - pnpm (version pinned in `package.json` `packageManager`; `corepack enable`)
 
 ## Commands
