@@ -48,4 +48,6 @@ Deploy secrets (names only — see [ARCHITECTURE.md](./ARCHITECTURE.md#deploymen
 
 ## License
 
-Private project. Study content is for educational practice; not an official DUO or government product.
+[MIT](./LICENSE) © 2026 Syailendra Ginting.
+
+Study content is for educational practice; not an official DUO or government product.
