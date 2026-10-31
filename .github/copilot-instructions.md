@@ -4,7 +4,7 @@ Full docs: `README.md` for setup and commands, `ARCHITECTURE.md` for system desi
 
 ## Stack
 
-Astro 6 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanilla TS app in `src/scripts/knm/`, PWA via `public/sw.js`, deploy on `main` through GitHub Actions to Bunny CDN.
+Astro 7 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanilla TS app in `src/scripts/knm/`, PWA via `public/sw.js`, deploy on `main` through GitHub Actions to Bunny CDN.
 
 ## Key paths
 
