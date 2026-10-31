@@ -68,7 +68,9 @@ const skipLabel = locale === 'nl' ? 'Ga naar inhoud' : 'Skip to content';
     <script is:inline src="/sw-register.js"></script>
   </head>
   <body class="antialiased">
-    <a href="#main" class="skip-link">{skipLabel}</a>
+    <a href="#main" class="skip-link">
+      {skipLabel}
+    </a>
     <Header locale={locale} />
     <main
       id="main"

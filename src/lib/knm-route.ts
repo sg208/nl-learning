@@ -44,28 +44,66 @@ export const buildKnmHash = (snapshot: KnmSnapshot): string => {
 };
 
 const parseExamRoute = (parts: string[]): KnmRoute | null => {
-  if (!parts[0]) return { tab: 'exam', selectedTopicId: null, scrollToNoteHeading: null, examConfig: null, submitted: false, reviewing: false };
+  if (!parts[0])
+    return {
+      tab: 'exam',
+      selectedTopicId: null,
+      scrollToNoteHeading: null,
+      examConfig: null,
+      submitted: false,
+      reviewing: false,
+    };
 
   const examNumber = Number(parts[0]);
   if (!Number.isFinite(examNumber)) return null;
 
-  const variant = VARIANT_LETTERS.indexOf((parts[1] ?? 'a').toLowerCase() as (typeof VARIANT_LETTERS)[number]);
+  const variant = VARIANT_LETTERS.indexOf(
+    (parts[1] ?? 'a').toLowerCase() as (typeof VARIANT_LETTERS)[number],
+  );
   const examConfig = { examNumber, variant: variant >= 0 ? variant : 0 };
 
   if (parts[2] === 'review') {
-    return { tab: 'exam', selectedTopicId: null, scrollToNoteHeading: null, examConfig, submitted: true, reviewing: true };
+    return {
+      tab: 'exam',
+      selectedTopicId: null,
+      scrollToNoteHeading: null,
+      examConfig,
+      submitted: true,
+      reviewing: true,
+    };
   }
   if (parts[2] === 'results') {
-    return { tab: 'exam', selectedTopicId: null, scrollToNoteHeading: null, examConfig, submitted: true, reviewing: false };
+    return {
+      tab: 'exam',
+      selectedTopicId: null,
+      scrollToNoteHeading: null,
+      examConfig,
+      submitted: true,
+      reviewing: false,
+    };
   }
 
-  return { tab: 'exam', selectedTopicId: null, scrollToNoteHeading: null, examConfig, submitted: false, reviewing: false };
+  return {
+    tab: 'exam',
+    selectedTopicId: null,
+    scrollToNoteHeading: null,
+    examConfig,
+    submitted: false,
+    reviewing: false,
+  };
 };
 
 export const parseKnmHash = (hash: string): KnmRoute | null => {
   const raw = hash.replace(/^#/, '').trim();
   if (!raw || raw === 'home') {
-    return { tab: 'home', selectedTopicId: null, scrollToNoteHeading: null, examConfig: null, submitted: false, reviewing: false };
+    return {
+      tab: 'home',
+      selectedTopicId: null,
+      scrollToNoteHeading: null,
+      examConfig: null,
+      submitted: false,
+      reviewing: false,
+    };
   }
 
   const [head, ...rest] = raw.split('/').map((part) => decodeURIComponent(part));
@@ -82,13 +120,27 @@ export const parseKnmHash = (hash: string): KnmRoute | null => {
   }
 
   if (head === 'whowhat') {
-    return { tab: 'whowhat', selectedTopicId: null, scrollToNoteHeading: null, examConfig: null, submitted: false, reviewing: false };
+    return {
+      tab: 'whowhat',
+      selectedTopicId: null,
+      scrollToNoteHeading: null,
+      examConfig: null,
+      submitted: false,
+      reviewing: false,
+    };
   }
 
   if (head === 'exam') return parseExamRoute(rest);
 
   if (head === 'home') {
-    return { tab: 'home', selectedTopicId: null, scrollToNoteHeading: null, examConfig: null, submitted: false, reviewing: false };
+    return {
+      tab: 'home',
+      selectedTopicId: null,
+      scrollToNoteHeading: null,
+      examConfig: null,
+      submitted: false,
+      reviewing: false,
+    };
   }
 
   return null;

@@ -69,14 +69,14 @@ Data is bundled at build time (no runtime API for question bank).
 | `public/sw-register.js`       | Registration; unregisters on localhost during dev                                                |
 | `public/manifest.webmanifest` | Install metadata                                                                                 |
 
-Dev server bypasses the service worker; test offline with `npm run build` + `npm start`.
+Dev server bypasses the service worker; test offline with `pnpm run build` + `pnpm start`.
 
 ## Deployment
 
 Workflow: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
 
 1. Trigger: push to `main` or `workflow_dispatch`
-2. `npm ci` → `npm run build` with secret `SITE_URL`
+2. `pnpm install --frozen-lockfile` → `pnpm run build` with secret `SITE_URL`
 3. `node scripts/upload-to-cdn.mjs` uploads `dist/` to Bunny storage (`nllearning-prod` zone), then purges the pull zone
 
 Required GitHub secrets: `SITE_URL`, `BUNNY_STORAGE_ACCESS_KEY`, `BUNNY_API_KEY`, `BUNNY_ZONE_ID`.

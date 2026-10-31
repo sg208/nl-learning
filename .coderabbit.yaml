@@ -5,6 +5,10 @@ reviews:
   profile: chill
   request_changes_workflow: true
   auto_review:
-    enabled: false
-    # No automatic reviews for PRs into main. Manual: @coderabbitai review
+    enabled: true
+    # Auto-review PRs targeting develop only. Pair with enabled: false on main.
+    base_branches:
+      - "^develop$"
+    auto_incremental_review: true
+    auto_pause_after_reviewed_commits: 0
     drafts: false

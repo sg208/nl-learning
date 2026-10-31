@@ -12,9 +12,7 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<header
-  class="sticky top-0 z-40 border-b border-[var(--rule)] bg-[color-mix(in_oklch,var(--bg)_88%,transparent)] backdrop-blur-md supports-[backdrop-filter]:bg-[color-mix(in_oklch,var(--bg)_72%,transparent)]"
->
+<header class="sticky top-0 z-40 border-b border-[var(--rule)] bg-[color-mix(in_oklch,var(--bg)_88%,transparent)] backdrop-blur-md supports-[backdrop-filter]:bg-[color-mix(in_oklch,var(--bg)_72%,transparent)]">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
     <SiteName locale={locale} />
 
@@ -58,9 +56,7 @@ const { locale } = Astro.props;
   aria-modal="true"
   class="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-[var(--bg)] text-[var(--ink)] backdrop:bg-[color-mix(in_oklch,var(--ink)_60%,transparent)] backdrop:backdrop-blur-sm open:flex open:flex-col"
 >
-  <div
-    class="flex items-center justify-between gap-4 border-b border-[var(--rule)] px-5 py-4 sm:px-8"
-  >
+  <div class="flex items-center justify-between gap-4 border-b border-[var(--rule)] px-5 py-4 sm:px-8">
     <h2 id="site-menu-title" class="text-xl tracking-tight">
       <SiteName locale={locale} />
     </h2>

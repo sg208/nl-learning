@@ -25,38 +25,38 @@ const legalHeading = siteConfig.navSections.legal[locale];
 <nav aria-labelledby={labelledby} aria-label={labelledby ? undefined : label}>
   <div class="grid gap-10 sm:grid-cols-2">
     <section aria-labelledby={learnId}>
-      <h2 id={learnId} class={headingClass}>{learnHeading}</h2>
+      <h2 id={learnId} class={headingClass}>
+        {learnHeading}
+      </h2>
       <ul class:list={['mt-3', spacing, textSize]}>
-        {
-          siteConfig.nav.map((link) => {
-            const href = localizedPath(link.href, locale);
-            return (
-              <li>
-                <a href={href} aria-current={currentPath === link.href ? 'page' : undefined}>
-                  {link.label[locale]}
-                </a>
-              </li>
-            );
-          })
-        }
+        {siteConfig.nav.map((link) => {
+          const href = localizedPath(link.href, locale);
+          return (
+            <li>
+              <a href={href} aria-current={currentPath === link.href ? 'page' : undefined}>
+                {link.label[locale]}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </section>
 
     <section aria-labelledby={legalId}>
-      <h2 id={legalId} class={headingClass}>{legalHeading}</h2>
+      <h2 id={legalId} class={headingClass}>
+        {legalHeading}
+      </h2>
       <ul class:list={['mt-3', spacing, textSize]}>
-        {
-          siteConfig.footerLinks.map((link) => {
-            const href = localizedPath(link.href, locale);
-            return (
-              <li>
-                <a href={href} aria-current={currentPath === link.href ? 'page' : undefined}>
-                  {link.label[locale]}
-                </a>
-              </li>
-            );
-          })
-        }
+        {siteConfig.footerLinks.map((link) => {
+          const href = localizedPath(link.href, locale);
+          return (
+            <li>
+              <a href={href} aria-current={currentPath === link.href ? 'page' : undefined}>
+                {link.label[locale]}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </section>
   </div>

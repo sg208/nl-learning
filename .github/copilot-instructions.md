@@ -4,7 +4,7 @@ Full docs: `README.md` for setup and commands, `ARCHITECTURE.md` for system desi
 
 ## Stack
 
-Astro 6 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanilla TS app in `src/scripts/knm/`, PWA via `public/sw.js`, deploy on `main` through GitHub Actions to Bunny CDN.
+Astro 7 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanilla TS app in `src/scripts/knm/`, PWA via `public/sw.js`, deploy on `main` through GitHub Actions to Bunny CDN.
 
 ## Key paths
 
@@ -21,7 +21,7 @@ Astro 6 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanill
 - Read `PROJECT.md` first; open `ARCHITECTURE.md` or `README.md` only when the task needs them.
 - WCAG 2.1 / 2.2 AA; KNM user content uses text nodes, not `innerHTML`.
 - No `enum`; no `any` without a short comment; prefer arrow functions for non-trivial helpers and handlers.
-- Keep files around 120 lines when practical; run `npm run fix` before pushing.
+- Keep files around 120 lines when practical; run `pnpm run fix` before pushing.
 
 ## Branches
 

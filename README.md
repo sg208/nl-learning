@@ -7,23 +7,24 @@ Accessible, PWA-ready study site for non-Dutch speakers preparing for **KNM** (K
 
 ## Prerequisites
 
-- Node.js ≥ 20 (see `.nvmrc`)
+- Node.js ≥ 22.23.4 (see `.nvmrc`)
+- pnpm (version pinned in `package.json` `packageManager`; `corepack enable`)
 
 ## Commands
 
 ```bash
-npm install
-npm run dev
-SITE_URL=https://your-domain.example npm run build
-npm run preview
-npm start
-npm run check    # astro check + tsc
-npm test         # vitest
-npm run test:e2e # playwright (build + preview on port 4173)
-npm run fix      # eslint --fix + prettier
+pnpm install
+pnpm run dev
+SITE_URL=https://your-domain.example pnpm run build
+pnpm run preview
+pnpm start
+pnpm run check    # astro check + tsc
+pnpm test         # vitest
+pnpm run test:e2e # playwright (build + preview on port 4173)
+pnpm run fix      # eslint --fix + prettier
 ```
 
-Use `npm run dev` during development (service workers are unregistered on localhost). For production-like local testing, run `npm run build` then `npm start` — do not use SPA fallback mode or stale SW caches will serve the wrong page.
+Use `pnpm run dev` during development (service workers are unregistered on localhost). For production-like local testing, run `pnpm run build` then `pnpm start` — do not use SPA fallback mode or stale SW caches will serve the wrong page.
 
 ## Environment
 
@@ -47,4 +48,6 @@ Deploy secrets (names only — see [ARCHITECTURE.md](./ARCHITECTURE.md#deploymen
 
 ## License
 
-Private project. Study content is for educational practice; not an official DUO or government product.
+[MIT](./LICENSE) © 2026 Syailendra Ginting.
+
+Study content is for educational practice; not an official DUO or government product.

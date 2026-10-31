@@ -26,7 +26,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `SITE_URL=${baseURL} npm run build && npm run preview:e2e`,
+    command: `SITE_URL=${baseURL} pnpm run build && pnpm run preview:e2e`,
     url: `${baseURL}/knm`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
