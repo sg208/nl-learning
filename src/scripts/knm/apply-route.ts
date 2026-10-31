@@ -10,12 +10,7 @@ const examConfigMatches = (
   left: { examNumber: number; variant: number } | null,
   right: { examNumber: number; variant: number } | null,
 ): boolean =>
-  Boolean(
-    left &&
-      right &&
-      left.examNumber === right.examNumber &&
-      left.variant === right.variant,
-  );
+  Boolean(left && right && left.examNumber === right.examNumber && left.variant === right.variant);
 
 const clearExamPatch = (): StatePatch => ({
   examConfig: null,

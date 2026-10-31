@@ -29,18 +29,14 @@ const year = new Date().getFullYear();
     <p class="mt-10 border-t border-[var(--rule)] pt-6 text-sm leading-relaxed text-[var(--muted)]">
       &copy; {year}
       {siteConfig.name}.
-      {
-        locale === 'en'
-          ? 'Study material is for practice only — not an official DUO or government product.'
-          : 'Studiemateriaal is alleen voor oefening — geen officieel DUO- of overheidsproduct.'
-      }
+      {locale === 'en'
+        ? 'Study material is for practice only — not an official DUO or government product.'
+        : 'Studiemateriaal is alleen voor oefening — geen officieel DUO- of overheidsproduct.'}
     </p>
   </div>
 </footer>
 
-<div
-  class="locale-float pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden"
->
+<div class="locale-float pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden">
   <nav
     aria-label={siteConfig.navSections.language[locale]}
     class="locale-float-pill pointer-events-auto"

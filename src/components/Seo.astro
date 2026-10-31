@@ -44,11 +44,9 @@ const jsonLdBlocks = breadcrumbBlock ? [...pageJsonLd, breadcrumbBlock] : pageJs
 <link rel="canonical" href={url.toString()} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-{
-  alternateLinks.map(({ hreflang, href }) => (
-    <link rel="alternate" hreflang={hreflang} href={href} />
-  ))
-}
+{alternateLinks.map(({ hreflang, href }) => (
+  <link rel="alternate" hreflang={hreflang} href={href} />
+))}
 
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title ?? siteName} />
@@ -64,8 +62,6 @@ const jsonLdBlocks = breadcrumbBlock ? [...pageJsonLd, breadcrumbBlock] : pageJs
 <meta name="twitter:description" content={metaDescription} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-{
-  jsonLdBlocks.map((block) => (
-    <script is:inline type="application/ld+json" set:html={serializeJsonLd(block)} />
-  ))
-}
+{jsonLdBlocks.map((block) => (
+  <script is:inline type="application/ld+json" set:html={serializeJsonLd(block)} />
+))}
