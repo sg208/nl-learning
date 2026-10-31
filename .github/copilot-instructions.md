@@ -21,7 +21,7 @@ Astro 6 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanill
 - Read `PROJECT.md` first; open `ARCHITECTURE.md` or `README.md` only when the task needs them.
 - WCAG 2.1 / 2.2 AA; KNM user content uses text nodes, not `innerHTML`.
 - No `enum`; no `any` without a short comment; prefer arrow functions for non-trivial helpers and handlers.
-- Keep files around 120 lines when practical; run `npm run fix` before pushing.
+- Keep files around 120 lines when practical; run `pnpm run fix` before pushing.
 
 ## Branches
 

@@ -56,7 +56,7 @@ Agent-oriented reference for stack, paths, and conventions.
 - No `any` without a short inline comment.
 - Prefer arrow functions for handlers and helpers.
 - Keep files ≤ ~120 lines (150 soft cap); split by responsibility.
-- Run `npm run fix` before pushing.
+- Run `pnpm run fix` before pushing.
 
 ### Astro
 
