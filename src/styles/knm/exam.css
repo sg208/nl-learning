@@ -74,6 +74,7 @@
 }
 
 #knm-app .nav-btn.answered {
+  border-color: var(--accent-text);
   background: var(--accent-tint);
   color: var(--accent-text);
 }

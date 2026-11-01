@@ -20,9 +20,16 @@ const viewRegistry: Record<TabId, () => HTMLElement> = {
   exam: () => (state.examConfig ? renderExam() : renderExamPicker()),
 };
 
+const restoreFocusById = (focusedId: string | null): void => {
+  if (!focusedId || document.activeElement !== document.body) return;
+  document.getElementById(focusedId)?.focus({ preventScroll: true });
+};
+
 export const render = (): void => {
   closeNavSheet();
   const root = getRoot();
+  const active = document.activeElement;
+  const focusedId = active instanceof HTMLElement && root.contains(active) ? active.id : null;
   while (root.firstChild) root.removeChild(root.firstChild);
   root.appendChild(
     el('div', {
@@ -44,5 +51,6 @@ export const render = (): void => {
   root.appendChild(main);
   root.appendChild(renderNavSheet());
   setupStickyTabs();
+  restoreFocusById(focusedId || null);
   focusTabAfterRenderIfNeeded();
 };

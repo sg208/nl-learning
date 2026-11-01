@@ -65,6 +65,7 @@ export const renderExam = (): HTMLDivElement => {
       el(
         'button',
         {
+          id: `knm-exam-nav-${i}`,
           className: cls,
           ariaLabel: navLabel,
           ariaCurrent: i === current ? 'true' : undefined,
@@ -88,6 +89,7 @@ export const renderExam = (): HTMLDivElement => {
   for (let idx = 0; idx < q.options.length; idx++) {
     const isSelected = answers[current] === idx;
     const btn = el('button', {
+      id: `knm-exam-option-${idx}`,
       className: 'option-btn' + (isSelected ? ' selected' : ''),
       ariaPressed: String(isSelected),
       onClick: () => {
@@ -107,6 +109,7 @@ export const renderExam = (): HTMLDivElement => {
     el(
       'button',
       {
+        id: 'knm-exam-prev',
         className: 'half-btn half-btn--outline',
         disabled: current === 0,
         onClick: () => {
@@ -120,6 +123,7 @@ export const renderExam = (): HTMLDivElement => {
     el(
       'button',
       {
+        id: 'knm-exam-next',
         className: 'half-btn half-btn--outline',
         disabled: current === exam.length - 1,
         onClick: () => {

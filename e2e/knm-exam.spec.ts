@@ -42,6 +42,22 @@ test.describe('KNM exam flow', () => {
     await expect(firstOption).toHaveClass(/selected/);
   });
 
+  test('keyboard focus stays on the control after answering and navigating', async ({ page }) => {
+    await startExam1A(page);
+
+    const secondOption = page.locator('.option-btn').nth(1);
+    await secondOption.focus();
+    await page.keyboard.press('Enter');
+    await expect(secondOption).toHaveAttribute('aria-pressed', 'true');
+    await expect(secondOption).toBeFocused();
+
+    const nextButton = page.getByRole('button', { name: 'Next →' });
+    await nextButton.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByText('QUESTION 2/40')).toBeVisible();
+    await expect(nextButton).toBeFocused();
+  });
+
   test('stop exam returns to #exam picker', async ({ page }) => {
     await startExam1A(page);
 
