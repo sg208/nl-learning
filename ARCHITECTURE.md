@@ -15,10 +15,6 @@ flowchart LR
     Dist --> Deploy[pnpm run deploy]
     Deploy --> Worker[Cloudflare Worker static assets]
   end
-  subgraph ci [CI on main]
-    Dist --> Upload[upload-to-cdn.mjs]
-    Upload --> Bunny[Bunny storage + purge]
-  end
   subgraph runtime [Browser]
     Worker --> Pages[HTML pages]
     Pages --> KNM[src/scripts/knm client UI]
@@ -78,23 +74,9 @@ Dev server bypasses the service worker; test offline with `pnpm run build` + `pn
 
 ### Live host: Cloudflare Worker
 
-The live site at https://nl-learning.engg.app is a Cloudflare Worker serving `dist/` as static assets (`wrangler.jsonc`: custom domain route, `404-page` not-found handling, no `workers.dev` or preview URLs). DNS for `engg.app` is on Cloudflare.
+The live site at https://nl-learning.engg.app is a Cloudflare Worker serving `dist/` as static assets (`wrangler.jsonc`: custom domain route, `404-page` not-found handling, `drop-trailing-slash` HTML handling to match `trailingSlash: 'never'`, no `workers.dev` or preview URLs). DNS for `engg.app` is on Cloudflare.
 
 `pnpm run deploy` builds with `SITE_URL=https://nl-learning.engg.app` and runs `wrangler deploy`. `wrangler` v4 is a devDependency; needs `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` in the environment (names only).
-
-### Bunny CDN workflow (not the live host)
-
-A GitHub Actions workflow also uploads the build to Bunny CDN. It does not serve nl-learning.engg.app.
-
-Workflow: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
-
-1. Trigger: push to `main` or `workflow_dispatch`
-2. `pnpm install --frozen-lockfile` → `pnpm run build` with secret `SITE_URL`
-3. `node scripts/upload-to-cdn.mjs` uploads `dist/` to Bunny storage (`nllearning-prod` zone), then purges the pull zone
-
-Required GitHub secrets: `SITE_URL`, `BUNNY_STORAGE_ACCESS_KEY`, `BUNNY_API_KEY`, `BUNNY_ZONE_ID`.
-
-Upload script fails the job in CI on upload/purge errors; logs only when run locally.
 
 ## Cross-cutting concerns
 

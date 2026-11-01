@@ -16,7 +16,6 @@ Agent-oriented reference for stack, paths, and conventions.
 | KNM app   | Vanilla TS client app (`src/scripts/knm/`)            |
 | PWA       | `public/sw.js`, `public/sw-register.js`, web manifest |
 | Hosting   | Cloudflare Worker static assets (`pnpm run deploy`)   |
-| Extra CI  | GitHub Actions → Bunny CDN on `main` (not live host)  |
 
 ## Key paths
 
@@ -43,9 +42,6 @@ Agent-oriented reference for stack, paths, and conventions.
 | `src/components/LocaleSwitch.astro`    | EN/NL pill (header + mobile)                          |
 | `src/i18n/legal/`                      | Legal page copy (per-page modules)                    |
 | `src/config/site.ts`                   | Site name, nav, footer links                          |
-| `scripts/upload-to-cdn.mjs`            | CDN upload orchestrator                               |
-| `scripts/collect-files.mjs`            | Recursive dist file collector                         |
-| `scripts/upload-batch.mjs`             | Bunny CDN batch upload + purge                        |
 | `e2e/`                                 | Playwright E2E (KNM navigation, exam, a11y)           |
 | `playwright.config.ts`                 | E2E config (`baseURL` port 4173)                      |
 

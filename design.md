@@ -22,12 +22,11 @@
 
 ## Hosting
 
-| target                                            | config                                                                                                   | trigger                    | serves live site |
-| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------- |
-| Cloudflare Worker, `https://nl-learning.engg.app` | `wrangler.jsonc` (assets `dist`, `404-page`, custom domain, `workers_dev: false`, `preview_urls: false`) | `pnpm run deploy` (manual) | yes              |
-| Bunny storage + purge                             | `.github/workflows/deploy.yml` · `scripts/upload-to-cdn.mjs`                                             | push `main`, manual        | no               |
+| target                                            | config                                                                                                                          | trigger                    | serves live site |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------- |
+| Cloudflare Worker, `https://nl-learning.engg.app` | `wrangler.jsonc` (assets `dist`, `404-page`, `drop-trailing-slash`, custom domain, `workers_dev: false`, `preview_urls: false`) | `pnpm run deploy` (manual) | yes              |
 
-- RETIRED: Vercel · Netlify · Railway · Cloudflare Pages · engg.me. NEVER document them as hosts.
+- RETIRED: Vercel · Netlify · Railway · Cloudflare Pages · Bunny CDN · engg.me. NEVER document them as hosts.
 - DEPLOY ENV: `wrangler` v4 (devDependency) · `CLOUDFLARE_API_TOKEN` · `CLOUDFLARE_ACCOUNT_ID` (names only).
 
 ## Key decisions
