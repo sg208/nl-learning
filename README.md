@@ -1,6 +1,6 @@
 # NL Learning
 
-A free study site for people who don't speak Dutch and are preparing for the **KNM** exam (Kennis van de Nederlandse Maatschappij) and civic integration in the Netherlands. It has study notes, a who-does-what reference and timed mock exams, in English and Dutch, with large text and offline support.
+A free study site for people who don't speak Dutch and are preparing for the **KNM** exam (Kennis van de Nederlandse Maatschappij) and civic integration in the Netherlands. It has study notes, a who-does-what reference and timed mock exams, in English and Dutch, with large text.
 
 Live: https://nl-learning.engg.app
 
@@ -8,7 +8,7 @@ More detail lives in [ARCHITECTURE.md](./ARCHITECTURE.md) (design, data flow, de
 
 ## Stack
 
-Astro 7 (static output), Tailwind CSS v4, a vanilla TypeScript client app for the KNM practice screens, and a service worker for offline use. Vitest for unit tests, Playwright with axe for end-to-end and accessibility tests.
+Astro 7 (static output), Tailwind CSS v4, a vanilla TypeScript client app for the KNM practice screens, and a service worker that caches static assets and shows an offline notice when the network drops. Vitest for unit tests, Playwright with axe for end-to-end and accessibility tests.
 
 ## Run it locally
 
@@ -57,12 +57,10 @@ pnpm run deploy
 
 This sets `SITE_URL`, builds, and runs `wrangler deploy`. Wrangler 4 is a dev dependency, so you only need `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the environment.
 
-A separate GitHub Actions workflow (`.github/workflows/deploy.yml`) uploads the build to Bunny CDN on every push to `main`. It is not what serves nl-learning.engg.app. Its secrets are `SITE_URL`, `BUNNY_STORAGE_ACCESS_KEY`, `BUNNY_API_KEY` and `BUNNY_ZONE_ID`.
-
 ## Branches
 
 - `develop`: integration branch. Pull requests into it get a CodeRabbit review and the Playwright suite.
-- `main`: release branch. Pushes trigger the Bunny CDN workflow.
+- `main`: release branch.
 
 ## Where things are
 

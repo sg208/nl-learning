@@ -9,8 +9,8 @@ export const siteConfig = {
     nl: 'Leer de Nederlandse maatschappij — helder, in je eigen tempo.',
   },
   description: {
-    en: 'Free, accessible practice for KNM (Kennis van de Nederlandse Maatschappij) and civic integration. Built for newcomers who want big text, clear contrast, and offline study.',
-    nl: 'Gratis, toegankelijke oefening voor KNM en inburgering. Gemaakt voor nieuwkomers die grote tekst, duidelijk contrast en offline studeren willen.',
+    en: 'Free, accessible practice for KNM (Kennis van de Nederlandse Maatschappij) and civic integration. Built for newcomers who want big text and clear contrast.',
+    nl: 'Gratis, toegankelijke oefening voor KNM en inburgering. Gemaakt voor nieuwkomers die grote tekst en duidelijk contrast willen.',
   },
   themeColor: { light: '#f6f5f1', dark: '#0e1424' },
   author: 'nllearn.ing',

@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.1] — 2026-11-01
+
+### Changed
+
+- **Bunny CDN upload removed**: the `.github/workflows/deploy.yml` workflow and its upload scripts are gone. The site is hosted only on the Cloudflare Worker at https://nl-learning.engg.app and deployed with `pnpm run deploy`.
+- **URLs without a trailing slash**: the Worker serves pages such as `/privacy` directly and redirects `/privacy/` to them (`html_handling: drop-trailing-slash` in `wrangler.jsonc`).
+
+### Fixed
+
+- **Offline wording**: the privacy pages (English and Dutch), the offline page, the home and about pages and the site description no longer say pages are cached for offline study. The service worker caches styles, scripts, fonts and images plus the `/offline` notice; pages load from the network.
+- **Service worker cache**: the cache version is now `nllearn-ing-v3`, so browsers clear the older caches on the next visit.
+
 ## [0.3.0] — 2026-11-01
 
 ### Added
@@ -10,7 +22,7 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
-- **Live host**: the site runs as a Cloudflare Worker at https://nl-learning.engg.app and is deployed with `pnpm run deploy`. The Bunny CDN workflow in `.github/workflows/deploy.yml` still runs on pushes to `main`, but it is no longer the live site.
+- **Live host**: the site runs as a Cloudflare Worker at https://nl-learning.engg.app and is deployed with `pnpm run deploy`. The Bunny CDN workflow (`.github/workflows/deploy.yml`) and its upload scripts are removed, and the Worker serves no-slash URLs directly.
 - **Accessibility, privacy and terms pages**: the English and Dutch copy now matches how the site works. There are no cookies or analytics, only `sessionStorage` and the service worker cache, Cloudflare hosts the site, and questions go to GitHub issues. Links on these pages are underlined, and Dutch links to English pages say "(Engels)".
 
 ## [0.2.0] — 2026-11-01
