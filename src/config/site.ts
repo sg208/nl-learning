@@ -12,7 +12,7 @@ export const siteConfig = {
     en: 'Free, accessible practice for KNM (Kennis van de Nederlandse Maatschappij) and civic integration. Built for newcomers who want big text, clear contrast, and offline study.',
     nl: 'Gratis, toegankelijke oefening voor KNM en inburgering. Gemaakt voor nieuwkomers die grote tekst, duidelijk contrast en offline studeren willen.',
   },
-  themeColor: '#e63946',
+  themeColor: { light: '#f6f5f1', dark: '#0e1424' },
   author: 'nllearn.ing',
   nav: [
     {

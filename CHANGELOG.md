@@ -2,7 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
-## [Unreleased]
+## [0.2.0] — 2026-11-01
+
+### Changed
+
+- **Design refresh**: a calm light theme with a matching dark theme that follows the system setting. Delft-blue accent, Literata headings, larger question and answer text, and body text at AAA contrast in both themes.
+- **Home page**: the exam's key numbers open the page, and the three study areas are full-width links. The 404, offline and legal pages use the same layout.
+- **Quiz states**: the selected answer shows a filled letter and `aria-pressed`. Answered questions get a border in the question grid and say so in its accessible names. Topic colours no longer carry text.
+- **Language switch**: it now sits in the header next to the menu button at every width. The floating mobile pill is gone, so it no longer covers content or focused controls.
+
+### Fixed
+
+- **Focus after answering**: choosing an answer or pressing Previous or Next keeps keyboard focus on that control. Before, the page re-render dropped focus to the top of the document.
+- **Focus under sticky bars**: keyboard focus no longer lands on quiz controls hidden behind the site header or the KNM tab bar, and a new exam scrolls back into view below them.
+- **Who does what**: no horizontal scroll on 360px screens.
+- **Long answers**: answer text wraps instead of overflowing.
+- **Footer**: missing spaces in the copyright line.
 
 ## [0.1.1] — 2026-10-31
 

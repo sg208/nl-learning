@@ -45,8 +45,17 @@ const skipLabel = locale === 'nl' ? 'Ga naar inhoud' : 'Skip to content';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content={siteConfig.themeColor} />
-    <meta name="color-scheme" content="dark" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content={siteConfig.themeColor.light}
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content={siteConfig.themeColor.dark}
+    />
+    <meta name="color-scheme" content="light dark" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -75,11 +84,7 @@ const skipLabel = locale === 'nl' ? 'Ga naar inhoud' : 'Skip to content';
     <main
       id="main"
       tabindex="-1"
-      class:list={[
-        fullBleed ? '' : 'mx-auto max-w-6xl px-5 sm:px-8',
-        'relative z-10 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:pb-20 md:pb-16',
-        mainPaddingClass,
-      ]}
+      class:list={[fullBleed ? '' : 'page-frame', 'relative z-10 pb-6', mainPaddingClass]}
     >
       <slot />
     </main>

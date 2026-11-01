@@ -20,9 +20,28 @@ const viewRegistry: Record<TabId, () => HTMLElement> = {
   exam: () => (state.examConfig ? renderExam() : renderExamPicker()),
 };
 
+// A disabled prev/next button cannot take focus, so hand it to its counterpart.
+const focusFallbackIds: Record<string, string> = {
+  'knm-exam-prev': 'knm-exam-next',
+  'knm-exam-next': 'knm-exam-prev',
+};
+
+const restoreFocusById = (focusedId: string | null): void => {
+  if (!focusedId || document.activeElement !== document.body) return;
+  const target = document.getElementById(focusedId);
+  if (target instanceof HTMLButtonElement && target.disabled) {
+    const sibling = focusFallbackIds[focusedId];
+    document.getElementById(sibling ?? '')?.focus({ preventScroll: true });
+    return;
+  }
+  target?.focus({ preventScroll: true });
+};
+
 export const render = (): void => {
   closeNavSheet();
   const root = getRoot();
+  const active = document.activeElement;
+  const focusedId = active instanceof HTMLElement && root.contains(active) ? active.id : null;
   while (root.firstChild) root.removeChild(root.firstChild);
   root.appendChild(
     el('div', {
@@ -44,5 +63,6 @@ export const render = (): void => {
   root.appendChild(main);
   root.appendChild(renderNavSheet());
   setupStickyTabs();
+  restoreFocusById(focusedId || null);
   focusTabAfterRenderIfNeeded();
 };

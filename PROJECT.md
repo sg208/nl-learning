@@ -10,8 +10,8 @@ Agent-oriented reference for stack, paths, and conventions.
 | Layer     | Choice                                                |
 | --------- | ----------------------------------------------------- |
 | Framework | Astro 7 (static output)                               |
-| Styling   | Tailwind CSS v4 (`src/styles/global.css`)             |
-| Fonts     | Sora (UI), Literata (body)                            |
+| Styling   | Tailwind CSS v4 (`src/styles/global.css`), light/dark |
+| Fonts     | Literata (body, headings), Sora (UI controls)         |
 | i18n      | EN at `/`, NL at `/nl/...`                            |
 | KNM app   | Vanilla TS client app (`src/scripts/knm/`)            |
 | PWA       | `public/sw.js`, `public/sw-register.js`, web manifest |
