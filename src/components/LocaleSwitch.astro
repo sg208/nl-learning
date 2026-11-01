@@ -5,13 +5,12 @@ import { switchLocalePath } from '~/lib/i18n';
 interface Props {
   locale: Locale;
   pathname: string;
-  variant?: 'inline' | 'float';
 }
 
-const { locale, pathname, variant = 'inline' } = Astro.props;
+const { locale, pathname } = Astro.props;
 ---
 
-<ul class="locale-switch" data-variant={variant}>
+<ul class="locale-switch">
   {(['en', 'nl'] as const).map((lang) => {
     const href = switchLocalePath(pathname, lang);
     const isActive = lang === locale;

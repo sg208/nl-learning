@@ -13,11 +13,11 @@ const { locale } = Astro.props;
 ---
 
 <header class="sticky top-0 z-40 border-b border-[var(--rule)] bg-[var(--bg)]">
-  <div class="page-frame flex items-center justify-between gap-4 py-3">
+  <div class="page-frame flex items-center justify-between gap-3 py-3">
     <SiteName locale={locale} />
 
-    <div class="flex items-center gap-3">
-      <nav aria-label={siteConfig.navSections.language[locale]} class="hidden md:block">
+    <div class="flex flex-none items-center gap-2 sm:gap-3">
+      <nav aria-label={siteConfig.navSections.language[locale]}>
         <LocaleSwitch locale={locale} pathname={Astro.url.pathname} />
       </nav>
 

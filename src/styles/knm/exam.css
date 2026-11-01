@@ -148,7 +148,9 @@
 }
 
 #knm-app .option-text {
+  min-width: 0;
   padding-top: 0.125rem;
+  overflow-wrap: anywhere;
 }
 
 #knm-app .option-btn.selected {

@@ -4,7 +4,7 @@
   --knm-ink: var(--ink);
   --knm-muted: var(--muted);
   --knm-rule: var(--rule);
-  --knm-frame: 76rem;
+  --knm-frame: calc(48rem + 2 * var(--gutter));
   font-family: var(--font-serif);
   color: var(--ink);
 }

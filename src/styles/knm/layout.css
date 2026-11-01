@@ -48,16 +48,8 @@
 }
 
 #knm-app .main {
-  max-width: calc(48rem + 2 * var(--gutter));
-  margin-inline: 0;
   padding-top: 1.75rem;
   padding-bottom: 3rem;
-}
-
-@media (min-width: 1100px) {
-  #knm-app .main {
-    margin-inline: max(0px, (100% - var(--knm-frame)) / 2);
-  }
 }
 
 #knm-app .spacer {

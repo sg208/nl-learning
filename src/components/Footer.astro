@@ -1,6 +1,5 @@
 ---
 import { siteConfig, tSite } from '~/config/site';
-import LocaleSwitch from './LocaleSwitch.astro';
 import NavLinks from './NavLinks.astro';
 import SiteName from './SiteName.astro';
 import type { Locale } from '~/lib/i18n';
@@ -18,7 +17,7 @@ const disclaimer =
 const copyright = `© ${year} ${siteConfig.name}. ${disclaimer}`;
 ---
 
-<footer class="relative mt-24 bg-[var(--surface)] pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] sm:mt-32 md:pb-0">
+<footer class="relative mt-24 bg-[var(--surface)] pb-[env(safe-area-inset-bottom,0px)] sm:mt-32">
   <div class="page-frame py-14 sm:py-20">
     <div class="grid gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
       <section>
@@ -36,12 +35,3 @@ const copyright = `© ${year} ${siteConfig.name}. ${disclaimer}`;
     <p class="mt-14 max-w-[70ch] text-base leading-relaxed text-[var(--muted)]">{copyright}</p>
   </div>
 </footer>
-
-<div class="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden">
-  <nav
-    aria-label={siteConfig.navSections.language[locale]}
-    class="locale-float-pill pointer-events-auto"
-  >
-    <LocaleSwitch locale={locale} pathname={Astro.url.pathname} variant="float" />
-  </nav>
-</div>
