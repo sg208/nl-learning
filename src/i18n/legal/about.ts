@@ -22,7 +22,7 @@ export const about: Record<'en' | 'nl', LegalPageContent> = {
       {
         heading: 'Our approach',
         paragraphs: [
-          'We prioritise accessibility: large text, strong contrast, keyboard-friendly controls, offline support, and plain language. The goal is study material you can actually use on a phone during a commute.',
+          'We prioritise accessibility: large text, strong contrast, keyboard-friendly controls and plain language. The goal is study material you can actually use on a phone during a commute.',
         ],
       },
     ],
@@ -48,7 +48,7 @@ export const about: Record<'en' | 'nl', LegalPageContent> = {
       {
         heading: 'Onze aanpak',
         paragraphs: [
-          'We geven prioriteit aan toegankelijkheid: grote tekst, sterk contrast, bediening met het toetsenbord, offline ondersteuning en duidelijke taal. Het doel is studiemateriaal dat je echt op je telefoon kunt gebruiken.',
+          'We geven prioriteit aan toegankelijkheid: grote tekst, sterk contrast, bediening met het toetsenbord en duidelijke taal. Het doel is studiemateriaal dat je echt op je telefoon kunt gebruiken.',
         ],
       },
     ],

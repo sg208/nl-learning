@@ -10,7 +10,7 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
-- **Live host**: the site runs as a Cloudflare Worker at https://nl-learning.engg.app and is deployed with `pnpm run deploy`. The Bunny CDN workflow in `.github/workflows/deploy.yml` still runs on pushes to `main`, but it is no longer the live site.
+- **Live host**: the site runs as a Cloudflare Worker at https://nl-learning.engg.app and is deployed with `pnpm run deploy`. The Bunny CDN workflow (`.github/workflows/deploy.yml`) and its upload scripts are removed, and the Worker serves no-slash URLs directly.
 - **Accessibility, privacy and terms pages**: the English and Dutch copy now matches how the site works. There are no cookies or analytics, only `sessionStorage` and the service worker cache, Cloudflare hosts the site, and questions go to GitHub issues. Links on these pages are underlined, and Dutch links to English pages say "(Engels)".
 
 ## [0.2.0] — 2026-11-01

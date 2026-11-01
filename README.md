@@ -1,6 +1,6 @@
 # NL Learning
 
-A free study site for people who don't speak Dutch and are preparing for the **KNM** exam (Kennis van de Nederlandse Maatschappij) and civic integration in the Netherlands. It has study notes, a who-does-what reference and timed mock exams, in English and Dutch, with large text and offline support.
+A free study site for people who don't speak Dutch and are preparing for the **KNM** exam (Kennis van de Nederlandse Maatschappij) and civic integration in the Netherlands. It has study notes, a who-does-what reference and timed mock exams, in English and Dutch, with large text.
 
 Live: https://nl-learning.engg.app
 
@@ -8,7 +8,7 @@ More detail lives in [ARCHITECTURE.md](./ARCHITECTURE.md) (design, data flow, de
 
 ## Stack
 
-Astro 7 (static output), Tailwind CSS v4, a vanilla TypeScript client app for the KNM practice screens, and a service worker for offline use. Vitest for unit tests, Playwright with axe for end-to-end and accessibility tests.
+Astro 7 (static output), Tailwind CSS v4, a vanilla TypeScript client app for the KNM practice screens, and a service worker that caches static assets and shows an offline notice when the network drops. Vitest for unit tests, Playwright with axe for end-to-end and accessibility tests.
 
 ## Run it locally
 

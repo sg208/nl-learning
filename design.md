@@ -18,7 +18,7 @@
 1. Build → `src/data/knm/` typed modules bundled into client JS → `dist/`.
 2. Browser → `#knm-app` renders via `el()` text nodes (`src/scripts/knm/dom/el.ts:48`).
 3. Exam state + EN/NL handoff → `sessionStorage` (`src/lib/knm-session.ts:43`, `src/lib/knm-session.ts:63`).
-4. Offline → service worker serves cached pages or `/offline`.
+4. Offline → service worker serves the cached `/offline` notice (pages are network-only).
 
 ## Hosting
 
