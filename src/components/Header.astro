@@ -12,8 +12,8 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 border-b border-[var(--rule)] bg-[color-mix(in_oklch,var(--bg)_88%,transparent)] backdrop-blur-md supports-[backdrop-filter]:bg-[color-mix(in_oklch,var(--bg)_72%,transparent)]">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+<header class="sticky top-0 z-40 border-b border-[var(--rule)] bg-[var(--bg)]">
+  <div class="page-frame flex items-center justify-between gap-4 py-3">
     <SiteName locale={locale} />
 
     <div class="flex items-center gap-3">
@@ -27,7 +27,7 @@ const { locale } = Astro.props;
         aria-label={siteConfig.ui.openMenu[locale]}
         aria-controls="site-menu"
         aria-expanded="false"
-        class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--rule)] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-ink)]"
+        class="icon-btn"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -54,17 +54,17 @@ const { locale } = Astro.props;
   hidden
   aria-labelledby="site-menu-title"
   aria-modal="true"
-  class="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-[var(--bg)] text-[var(--ink)] backdrop:bg-[color-mix(in_oklch,var(--ink)_60%,transparent)] backdrop:backdrop-blur-sm open:flex open:flex-col"
+  class="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-[var(--bg)] text-[var(--ink)] backdrop:bg-[color-mix(in_oklch,var(--ink)_55%,transparent)] open:flex open:flex-col"
 >
-  <div class="flex items-center justify-between gap-4 border-b border-[var(--rule)] px-5 py-4 sm:px-8">
-    <h2 id="site-menu-title" class="text-xl tracking-tight">
+  <div class="page-frame flex items-center justify-between gap-4 border-b border-[var(--rule)] py-3">
+    <h2 id="site-menu-title" class="text-xl">
       <SiteName locale={locale} />
     </h2>
     <button
       type="button"
       data-menu-close
       aria-label={siteConfig.ui.closeMenu[locale]}
-      class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--rule)] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-ink)]"
+      class="icon-btn"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +84,8 @@ const { locale } = Astro.props;
   </div>
 
   <div class="flex-1 overflow-y-auto">
-    <div class="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8">
-      <p class="max-w-md text-lg text-[var(--muted)]">{tSite('tagline', locale)}</p>
+    <div class="page-frame py-10">
+      <p class="max-w-md text-xl text-[var(--ink-soft)]">{tSite('tagline', locale)}</p>
 
       <div class="mt-10 sm:mt-14">
         <NavLinks locale={locale} label={siteConfig.ui.siteMenu[locale]} variant="menu" />

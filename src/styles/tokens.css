@@ -1,42 +1,122 @@
+/*
+ * Palette: Delft porcelain. A cool paper ground, a deep blue-black ink and one
+ * cobalt accent, used the way a two-colour print job would use them.
+ * Body text targets WCAG AAA (7:1) in both themes.
+ */
 @theme {
   --font-sans: 'Sora', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Literata Variable', 'Literata', Georgia, serif;
-  --font-display: 'Sora', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-display: 'Literata Variable', 'Literata', Georgia, serif;
 
-  --color-night: #0c1018;
-  --color-panel: #151b28;
-  --color-panel-raised: #1c2435;
-  --color-ink: #f2ebe0;
-  --color-ink-soft: #d8cfc0;
-  --color-muted: #9a9284;
-  --color-rule: #2a3347;
-  --color-coral: #e63946;
-  --color-coral-a11y: #d62839;
-  --color-coral-soft: #ff6b6b;
-  --color-teal: #2a9d8f;
-  --color-sky: #457b9d;
-  --color-gold: #e9c46a;
-
-  --radius-card: 0.875rem;
+  --radius-card: 0.375rem;
+  --radius-control: 0.375rem;
   --radius-pill: 999px;
-  --shadow-panel: 0 12px 40px -16px rgb(0 0 0 / 0.55);
-  --measure: 68ch;
+  --measure: 66ch;
 }
 
 :root {
-  color-scheme: dark;
-  --bg: var(--color-night);
-  --surface: var(--color-panel);
-  --surface-raised: var(--color-panel-raised);
-  --ink: var(--color-ink);
-  --ink-soft: var(--color-ink-soft);
-  --muted: var(--color-muted);
-  --rule: var(--color-rule);
-  --accent: var(--color-coral);
-  --accent-soft: var(--color-coral-soft);
-  --accent-ink: #ffb4ba;
-  --success: var(--color-teal);
-  --info: var(--color-sky);
+  color-scheme: light;
+  --bg: #f6f5f1;
+  --surface: #eceef1;
+  --surface-strong: #dfe4eb;
+  --surface-raised: #ffffff;
+  --ink: #121a2b;
+  --ink-soft: #2c3549;
+  --muted: #3f4859;
+  --rule: #d3d8e0;
+  --border-strong: #6f7a8f;
+  --accent: #1d4e9e;
+  --accent-hover: #153d80;
+  --accent-ink: #ffffff;
+  --accent-text: #1d4e9e;
+  --accent-tint: #dde6f5;
+  --field: #121a2b;
+  --field-alt: #1b2539;
+  --field-ink: #f3f5f9;
+  --field-muted: #c3cad8;
+  --success: #16603e;
+  --success-tint: #dcefe4;
+  --danger: #93321b;
+  --danger-tint: #f7e2dc;
+  --focus: #1d4e9e;
   --touch-min: 3rem;
+  --gutter: 1.25rem;
+
+  --topic-gezondheid: #b9503a;
+  --topic-werk: #2e7a58;
+  --topic-overheid: #1d4e9e;
+  --topic-wonen: #a87c22;
+  --topic-onderwijs: #3a7685;
+  --topic-politiek: #8a4560;
+  --topic-geschiedenis: #75654f;
+  --topic-cultuur: #c8691d;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0e1424;
+    --surface: #161e31;
+    --surface-strong: #1f2940;
+    --surface-raised: #1a2338;
+    --ink: #eef1f6;
+    --ink-soft: #d0d6e2;
+    --muted: #a9b2c4;
+    --rule: #2a344b;
+    --border-strong: #7c88a2;
+    --accent: #9dbbf2;
+    --accent-hover: #bcd0f6;
+    --accent-ink: #0b1120;
+    --accent-text: #a9c3f4;
+    --accent-tint: #1d2b4b;
+    --field: #e7ecf4;
+    --field-alt: #d9e0ec;
+    --field-ink: #0e1424;
+    --field-muted: #333d52;
+    --success: #86d3a8;
+    --success-tint: #13301f;
+    --danger: #f3a592;
+    --danger-tint: #3a1b15;
+    --focus: #bcd0f6;
+
+    --topic-gezondheid: #e08670;
+    --topic-werk: #6cbf96;
+    --topic-overheid: #8fb1ee;
+    --topic-wonen: #d9b25a;
+    --topic-onderwijs: #79b8c6;
+    --topic-politiek: #d58aa9;
+    --topic-geschiedenis: #b9a78d;
+    --topic-cultuur: #ee9f5c;
+  }
+}
+
+[data-topic='gezondheid'] {
+  --topic: var(--topic-gezondheid);
+}
+[data-topic='werk'] {
+  --topic: var(--topic-werk);
+}
+[data-topic='overheid'] {
+  --topic: var(--topic-overheid);
+}
+[data-topic='wonen'] {
+  --topic: var(--topic-wonen);
+}
+[data-topic='onderwijs'] {
+  --topic: var(--topic-onderwijs);
+}
+[data-topic='politiek'] {
+  --topic: var(--topic-politiek);
+}
+[data-topic='geschiedenis'] {
+  --topic: var(--topic-geschiedenis);
+}
+[data-topic='cultuur'] {
+  --topic: var(--topic-cultuur);
 }

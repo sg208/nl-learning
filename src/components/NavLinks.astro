@@ -12,10 +12,10 @@ interface Props {
 
 const { locale, labelledby, label, variant = 'footer' } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/^\/nl(?=\/|$)/, '') || '/';
-const textSize = variant === 'menu' ? 'text-lg' : 'text-base';
-const spacing = variant === 'menu' ? 'space-y-3' : 'space-y-2.5';
+const textSize = variant === 'menu' ? 'text-2xl' : 'text-lg';
+const spacing = variant === 'menu' ? 'space-y-3' : 'space-y-2';
 const headingClass =
-  'font-[family-name:var(--font-sans)] text-xs font-semibold tracking-[0.2em] text-[var(--muted)] uppercase';
+  'font-[family-name:var(--font-sans)] text-base font-semibold text-[var(--muted)]';
 const learnId = `${variant}-learn-heading`;
 const legalId = `${variant}-legal-heading`;
 const learnHeading = siteConfig.navSections.learn[locale];

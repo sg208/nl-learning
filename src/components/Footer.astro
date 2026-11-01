@@ -11,32 +11,33 @@ interface Props {
 
 const { locale } = Astro.props;
 const year = new Date().getFullYear();
+const disclaimer =
+  locale === 'en'
+    ? 'Study material is for practice only — not an official DUO or government product.'
+    : 'Studiemateriaal is alleen voor oefening — geen officieel DUO- of overheidsproduct.';
+const copyright = `© ${year} ${siteConfig.name}. ${disclaimer}`;
 ---
 
-<footer class="relative mt-24 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
-  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
-    <div class="grid gap-10 sm:grid-cols-[minmax(0,1fr)_2fr]">
+<footer class="relative mt-24 bg-[var(--surface)] pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] sm:mt-32 md:pb-0">
+  <div class="page-frame py-14 sm:py-20">
+    <div class="grid gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
       <section>
         <p>
           <SiteName locale={locale} />
         </p>
-        <p class="mt-3 max-w-sm text-base text-[var(--muted)]">{tSite('tagline', locale)}</p>
+        <p class="mt-6 max-w-[22ch] font-[family-name:var(--font-display)] text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] leading-[1.15] font-medium tracking-[-0.015em] text-[var(--ink)]">
+          {tSite('tagline', locale)}
+        </p>
       </section>
 
       <NavLinks locale={locale} label={siteConfig.ui.footerNav[locale]} variant="footer" />
     </div>
 
-    <p class="mt-10 border-t border-[var(--rule)] pt-6 text-sm leading-relaxed text-[var(--muted)]">
-      &copy; {year}
-      {siteConfig.name}.
-      {locale === 'en'
-        ? 'Study material is for practice only — not an official DUO or government product.'
-        : 'Studiemateriaal is alleen voor oefening — geen officieel DUO- of overheidsproduct.'}
-    </p>
+    <p class="mt-14 max-w-[70ch] text-base leading-relaxed text-[var(--muted)]">{copyright}</p>
   </div>
 </footer>
 
-<div class="locale-float pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden">
+<div class="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden">
   <nav
     aria-label={siteConfig.navSections.language[locale]}
     class="locale-float-pill pointer-events-auto"

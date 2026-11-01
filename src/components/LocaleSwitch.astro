@@ -9,10 +9,9 @@ interface Props {
 }
 
 const { locale, pathname, variant = 'inline' } = Astro.props;
-const isFloat = variant === 'float';
 ---
 
-<ul class:list={['flex overflow-hidden rounded-full', !isFloat && 'border border-[var(--rule)]']}>
+<ul class="locale-switch" data-variant={variant}>
   {(['en', 'nl'] as const).map((lang) => {
     const href = switchLocalePath(pathname, lang);
     const isActive = lang === locale;
@@ -24,21 +23,6 @@ const isFloat = variant === 'float';
           hreflang={lang}
           data-locale-switch
           aria-current={isActive ? 'true' : undefined}
-          class:list={[
-            'inline-flex items-center justify-center font-[family-name:var(--font-sans)] font-bold tracking-wide no-underline',
-            isFloat
-              ? 'min-h-[var(--touch-min)] min-w-[3.25rem] px-4 text-base'
-              : 'min-h-10 min-w-12 px-3 text-sm',
-            isFloat && lang === 'en' && 'rounded-l-full',
-            isFloat && lang === 'nl' && 'rounded-r-full',
-            isActive
-              ? isFloat
-                ? 'bg-[var(--accent)] text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.22)]'
-                : 'bg-[var(--accent)] text-white'
-              : isFloat
-                ? 'bg-[color-mix(in_oklch,var(--bg)_72%,transparent)] text-[var(--muted)] hover:text-[var(--ink)]'
-                : 'text-[var(--muted)] hover:text-[var(--ink)]',
-          ]}
         >
           {lang.toUpperCase()}
         </a>
