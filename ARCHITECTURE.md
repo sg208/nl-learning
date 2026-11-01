@@ -73,7 +73,7 @@ Dev server bypasses the service worker; test offline with `pnpm run build` + `pn
 
 ## Deployment
 
-The live site at https://nl-learning.engg.app is a Cloudflare Worker serving `dist/` as static assets (`wrangler.jsonc`), deployed with `pnpm deploy`. The GitHub Actions workflow below uploads the same build to Bunny CDN.
+The live site at https://nl-learning.engg.app is a Cloudflare Worker serving `dist/` as static assets (`wrangler.jsonc`), deployed with `pnpm run deploy`. The GitHub Actions workflow below uploads the same build to Bunny CDN.
 
 Workflow: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
 
