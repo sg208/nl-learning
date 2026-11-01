@@ -55,7 +55,7 @@ The live site is a Cloudflare Worker that serves `dist/` as static assets, confi
 pnpm run deploy
 ```
 
-This sets `SITE_URL`, builds, and runs `wrangler deploy`. It needs `wrangler` v4 installed globally and `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the environment.
+This sets `SITE_URL`, builds, and runs `wrangler deploy`. Wrangler 4 is a dev dependency, so you only need `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the environment.
 
 A separate GitHub Actions workflow (`.github/workflows/deploy.yml`) uploads the build to Bunny CDN on every push to `main`. It is not what serves nl-learning.engg.app. Its secrets are `SITE_URL`, `BUNNY_STORAGE_ACCESS_KEY`, `BUNNY_API_KEY` and `BUNNY_ZONE_ID`.
 

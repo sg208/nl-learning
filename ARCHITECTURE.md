@@ -80,7 +80,7 @@ Dev server bypasses the service worker; test offline with `pnpm run build` + `pn
 
 The live site at https://nl-learning.engg.app is a Cloudflare Worker serving `dist/` as static assets (`wrangler.jsonc`: custom domain route, `404-page` not-found handling, no `workers.dev` or preview URLs). DNS for `engg.app` is on Cloudflare.
 
-`pnpm run deploy` builds with `SITE_URL=https://nl-learning.engg.app` and runs `wrangler deploy`. Needs global `wrangler` v4 and `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` in the environment (names only).
+`pnpm run deploy` builds with `SITE_URL=https://nl-learning.engg.app` and runs `wrangler deploy`. `wrangler` v4 is a devDependency; needs `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` in the environment (names only).
 
 ### Bunny CDN workflow (not the live host)
 
