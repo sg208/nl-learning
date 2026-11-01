@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.0] — 2026-11-01
+
+### Added
+
+- **Source link in the footer**: every page links to the GitHub repository ("Source on GitHub", "Broncode op GitHub" in Dutch).
+
+### Changed
+
+- **Live host**: the site runs as a Cloudflare Worker at https://nl-learning.engg.app and is deployed with `pnpm run deploy`. The Bunny CDN workflow in `.github/workflows/deploy.yml` still runs on pushes to `main`, but it is no longer the live site.
+- **Accessibility, privacy and terms pages**: the English and Dutch copy now matches how the site works. There are no cookies or analytics, only `sessionStorage` and the service worker cache, Cloudflare hosts the site, and questions go to GitHub issues. Links on these pages are underlined, and Dutch links to English pages say "(Engels)".
+
 ## [0.2.0] — 2026-11-01
 
 ### Changed
