@@ -36,7 +36,7 @@ All notable changes to this project are documented in this file.
 
 - **Astro 7**: upgraded from Astro 6, along with TypeScript 6, ESLint 10, Vitest 5 and jsdom 30. This clears the critical Astro advisory and every high advisory in `pnpm audit`.
 - **CI on pnpm**: `deploy.yml` and `e2e.yml` install with `pnpm install --frozen-lockfile`, and every action in `deploy.yml` is pinned to a commit SHA.
-- **Shorter agent docs**: `CLAUDE.md`, `PROJECT.md` and `README.md` were trimmed, and legal-copy references now point to `src/i18n/legal/`.
+- **Shorter docs**: `PROJECT.md` and `README.md` were trimmed, and legal-copy references now point to `src/i18n/legal/`.
 
 ### Fixed
 
