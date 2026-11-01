@@ -29,6 +29,15 @@ const content = legalPages[page][locale];
         {block.paragraphs.map((paragraph) => (
           <p>{paragraph}</p>
         ))}
+        {block.links && (
+          <ul>
+            {block.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        )}
       </>
     ))}
   </div>
