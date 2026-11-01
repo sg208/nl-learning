@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.1] — 2026-11-01
+
+### Changed
+
+- **Bunny CDN upload removed**: the `.github/workflows/deploy.yml` workflow and its upload scripts are gone. The site is hosted only on the Cloudflare Worker at https://nl-learning.engg.app and deployed with `pnpm run deploy`.
+- **URLs without a trailing slash**: the Worker serves pages such as `/privacy` directly and redirects `/privacy/` to them (`html_handling: drop-trailing-slash` in `wrangler.jsonc`).
+
+### Fixed
+
+- **Offline wording**: the privacy pages (English and Dutch), the offline page, the home and about pages and the site description no longer say pages are cached for offline study. The service worker caches styles, scripts, fonts and images plus the `/offline` notice; pages load from the network.
+- **Service worker cache**: the cache version is now `nllearn-ing-v3`, so browsers clear the older caches on the next visit.
+
 ## [0.3.0] — 2026-11-01
 
 ### Added
