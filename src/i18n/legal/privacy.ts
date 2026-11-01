@@ -1,3 +1,4 @@
+import { siteConfig } from '~/config/site';
 import type { LegalPageContent } from './types';
 
 export const privacy: Record<'en' | 'nl', LegalPageContent> = {
@@ -5,39 +6,45 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
     title: 'Your privacy on NL Learning.',
     eyebrow: 'Privacy policy',
     intro:
-      'NL Learning is a free study site. We keep data collection to a minimum and do not sell personal information.',
+      'NL Learning has no accounts, no analytics, no ads and no cookies. Your study progress stays in your own browser.',
     blocks: [
       {
-        heading: 'What we store on your device',
+        heading: 'What stays on your device',
         paragraphs: [
-          'The KNM practice app may save study progress in session storage on your device so language switching and exam state can continue in the same browser tab. This data stays on your device and is cleared when you close the tab or browser session.',
-          'If you install or use the site as a PWA, a service worker may cache pages and assets locally so the site works offline. That cache stays on your device until your browser clears it or the site updates its cache version.',
+          'The KNM practice app keeps your current exam and your place on the page in session storage. That is how you can switch between English and Dutch without losing progress. Session storage belongs to one browser tab and is deleted when you close it.',
+          'The site registers a service worker that caches pages and files so you can keep studying offline. The cache stays in your browser until you clear it or a new version of the site replaces it.',
+          'None of this is sent to us. We have no server that could receive it.',
         ],
       },
       {
         heading: 'What we do not collect',
         paragraphs: [
-          'We do not require an account, email address, or payment details to use NL Learning. We do not run third-party advertising or analytics trackers on this site.',
-          'We do not ask for sensitive personal data through the study material or practice exams.',
+          'You do not need an account, email address or payment details. The site sets no cookies and runs no analytics, advertising or tracking scripts.',
+          'Fonts, icons and all study content are bundled with the site, so your browser does not contact other services such as font or image hosts while you use it.',
         ],
       },
       {
-        heading: 'Hosting and logs',
+        heading: 'Hosting',
         paragraphs: [
-          'The site is served as static files from our hosting provider. Standard server or CDN logs (such as IP address, browser type, and pages requested) may be processed briefly for security and reliability. We do not use those logs to profile visitors.',
+          'The site runs on Cloudflare. Like any web host, Cloudflare receives standard request data when your browser loads a page, such as your IP address, browser type and the page you asked for, and may keep it in logs for security and reliability. We do not use that data to build profiles of visitors. Cloudflare explains its own handling in its privacy policy.',
+        ],
+        links: [
+          { href: 'https://www.cloudflare.com/privacypolicy/', label: 'Cloudflare privacy policy' },
         ],
       },
       {
         heading: 'Your choices',
         paragraphs: [
-          'You can clear site data at any time through your browser settings (cookies, storage, and cached files). Unregistering the service worker removes offline cache for this site.',
-          'If you are in the EEA, UK, or California, you may have additional rights to access, delete, or object to processing of personal data. Contact us through the About page if you have a privacy request.',
+          'You can delete everything the site stores by clearing site data in your browser settings. Removing the service worker there also removes the offline cache.',
+          'Depending on where you live, you may have the right to ask what personal data is held about you, or to have it deleted. Because the site itself stores nothing about you, questions about request logs are best sent to Cloudflare.',
+          'For other questions, open an issue on GitHub. Issues are public, so please do not include personal details.',
         ],
+        links: [{ href: siteConfig.issuesUrl, label: 'Open an issue on GitHub' }],
       },
       {
         heading: 'Changes',
         paragraphs: [
-          'We may update this policy when the site changes. The effective date is the date shown on this page when published.',
+          'If the site starts storing or sending anything new, this page will be updated first. Last updated on 1 November 2026.',
         ],
       },
     ],
@@ -46,39 +53,48 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
     title: 'Jouw privacy op NL Learning.',
     eyebrow: 'Privacybeleid',
     intro:
-      'NL Learning is een gratis studiesite. We verzamelen zo min mogelijk gegevens en verkopen geen persoonsinformatie.',
+      'NL Learning heeft geen accounts, geen analytics, geen advertenties en geen cookies. Je studievoortgang blijft in je eigen browser.',
     blocks: [
       {
-        heading: 'Wat we op je apparaat opslaan',
+        heading: 'Wat er op je apparaat blijft',
         paragraphs: [
-          'De KNM-oefenapp kan studievoortgang in sessie-opslag op je apparaat bewaren, zodat taalwissel en examenstatus in hetzelfde browsertabblad behouden blijven. Deze gegevens blijven op je apparaat en worden gewist wanneer je het tabblad of de browsersessie sluit.',
-          "Als je de site als PWA installeert of gebruikt, kan een service worker pagina's en bestanden lokaal cachen zodat de site offline werkt. Die cache blijft op je apparaat totdat je browser deze wist of de site de cacheversie bijwerkt.",
+          'De KNM-oefenapp bewaart je lopende examen en je plek op de pagina in de sessieopslag van je browser. Zo kun je tussen Engels en Nederlands wisselen zonder je voortgang kwijt te raken. Die opslag hoort bij één tabblad en verdwijnt zodra je het sluit.',
+          "De site gebruikt een service worker die pagina's en bestanden in je browser bewaart, zodat je ook offline kunt studeren. Die cache blijft staan tot je hem zelf wist of een nieuwe versie van de site hem vervangt.",
+          'Niets hiervan wordt naar ons gestuurd. We hebben geen server die het zou kunnen ontvangen.',
         ],
       },
       {
         heading: 'Wat we niet verzamelen',
         paragraphs: [
-          'Je hebt geen account, e-mailadres of betaalgegevens nodig om NL Learning te gebruiken. We gebruiken geen advertentie- of analytics-trackers van derden op deze site.',
-          'We vragen geen gevoelige persoonsgegevens via het studiemateriaal of oefenexamens.',
+          'Je hebt geen account, e-mailadres of betaalgegevens nodig. De site plaatst geen cookies en gebruikt geen analytics, advertenties of trackers.',
+          'Lettertypen, pictogrammen en alle studiestof zitten in de site zelf. Je browser maakt tijdens het gebruik dus geen verbinding met andere diensten, zoals lettertype- of afbeeldingsservers.',
         ],
       },
       {
-        heading: 'Hosting en logbestanden',
+        heading: 'Hosting',
         paragraphs: [
-          "De site wordt als statische bestanden via onze hostingprovider geleverd. Standaard server- of CDN-logbestanden (zoals IP-adres, browsertype en opgevraagde pagina's) kunnen kort worden verwerkt voor beveiliging en betrouwbaarheid. We gebruiken die logs niet om bezoekers te profileren.",
+          'De site draait op Cloudflare. Zoals elke webhost ontvangt Cloudflare de gebruikelijke verzoekgegevens wanneer je browser een pagina laadt, zoals je IP-adres, je browsertype en de opgevraagde pagina. Cloudflare kan die gegevens in logbestanden bewaren voor beveiliging en betrouwbaarheid. Wij gebruiken ze niet om profielen van bezoekers te maken. Hoe Cloudflare er zelf mee omgaat, lees je in het privacybeleid van Cloudflare.',
+        ],
+        links: [
+          {
+            href: 'https://www.cloudflare.com/privacypolicy/',
+            label: 'Privacybeleid van Cloudflare (Engels)',
+          },
         ],
       },
       {
         heading: 'Jouw keuzes',
         paragraphs: [
-          'Je kunt sitegegevens op elk moment wissen via je browserinstellingen (cookies, opslag en gecachte bestanden). Het uitschrijven van de service worker verwijdert offline cache voor deze site.',
-          'Als je in de EER, het VK of Californië woont, heb je mogelijk extra rechten op inzage, verwijdering of bezwaar tegen verwerking van persoonsgegevens. Neem via de Over ons-pagina contact op voor een privacyverzoek.',
+          'Je kunt alles wat de site opslaat verwijderen door de sitegegevens te wissen in de instellingen van je browser. Als je daar ook de service worker verwijdert, is de offline cache weg.',
+          'Afhankelijk van waar je woont, heb je misschien het recht om te vragen welke persoonsgegevens er over je zijn, of om die te laten verwijderen. De site zelf bewaart niets over jou, dus vragen over logbestanden kun je het beste aan Cloudflare stellen.',
+          'Heb je een andere vraag? Maak dan een issue aan op GitHub. Issues zijn openbaar, dus zet er geen persoonlijke gegevens in.',
         ],
+        links: [{ href: siteConfig.issuesUrl, label: 'Issue aanmaken op GitHub (Engels)' }],
       },
       {
         heading: 'Wijzigingen',
         paragraphs: [
-          'We kunnen dit beleid bijwerken wanneer de site verandert. De ingangsdatum is de datum waarop deze pagina is gepubliceerd.',
+          'Als de site iets nieuws gaat opslaan of versturen, passen we deze pagina eerst aan. Laatst bijgewerkt op 1 november 2026.',
         ],
       },
     ],

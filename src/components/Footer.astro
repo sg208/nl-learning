@@ -32,6 +32,12 @@ const copyright = `© ${year} ${siteConfig.name}. ${disclaimer}`;
       <NavLinks locale={locale} label={siteConfig.ui.footerNav[locale]} variant="footer" />
     </div>
 
-    <p class="mt-14 max-w-[70ch] text-base leading-relaxed text-[var(--muted)]">{copyright}</p>
+    <p class="mt-14 text-lg">
+      <a href={siteConfig.repoUrl} class="underline">
+        {siteConfig.ui.sourceLink[locale]}
+        <span class="sr-only">{` ${siteConfig.ui.sourceLinkHint[locale]}`}</span>
+      </a>
+    </p>
+    <p class="mt-6 max-w-[70ch] text-base leading-relaxed text-[var(--muted)]">{copyright}</p>
   </div>
 </footer>

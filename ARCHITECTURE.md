@@ -11,13 +11,16 @@ flowchart LR
   subgraph build [Build]
     Astro[Astro static build] --> Dist[dist/]
   end
+  subgraph host [Live host]
+    Dist --> Deploy[pnpm run deploy]
+    Deploy --> Worker[Cloudflare Worker static assets]
+  end
   subgraph ci [CI on main]
     Dist --> Upload[upload-to-cdn.mjs]
-    Upload --> Bunny[Bunny storage]
-    Upload --> Purge[Pull-zone purge]
+    Upload --> Bunny[Bunny storage + purge]
   end
   subgraph runtime [Browser]
-    Bunny --> Pages[HTML pages]
+    Worker --> Pages[HTML pages]
     Pages --> KNM[src/scripts/knm client UI]
     KNM --> Data[src/data/knm at build time]
     SW[public/sw.js] --> Cache[Cache API]
@@ -73,6 +76,16 @@ Dev server bypasses the service worker; test offline with `pnpm run build` + `pn
 
 ## Deployment
 
+### Live host: Cloudflare Worker
+
+The live site at https://nl-learning.engg.app is a Cloudflare Worker serving `dist/` as static assets (`wrangler.jsonc`: custom domain route, `404-page` not-found handling, no `workers.dev` or preview URLs). DNS for `engg.app` is on Cloudflare.
+
+`pnpm run deploy` builds with `SITE_URL=https://nl-learning.engg.app` and runs `wrangler deploy`. `wrangler` v4 is a devDependency; needs `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` in the environment (names only).
+
+### Bunny CDN workflow (not the live host)
+
+A GitHub Actions workflow also uploads the build to Bunny CDN. It does not serve nl-learning.engg.app.
+
 Workflow: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
 
 1. Trigger: push to `main` or `workflow_dispatch`
@@ -87,4 +100,4 @@ Upload script fails the job in CI on upload/purge errors; logs only when run loc
 
 - **SEO:** per-page meta via `BaseLayout` + structured data on key routes (e.g. KNM course JSON-LD).
 - **Accessibility:** skip link, landmarks, large touch targets — conventions in [PROJECT.md](./PROJECT.md).
-- **Legal pages:** static Astro pages; copy sourced from `src/i18n/legal/`.
+- **Legal pages:** static Astro pages (about, accessibility, privacy, terms, disclaimer; EN + NL) rendered by `LegalPage.astro`; copy sourced from `src/i18n/legal/`. Blocks may carry `links`. Footer links them all plus the GitHub repo (`siteConfig.repoUrl`).

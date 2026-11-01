@@ -5,10 +5,12 @@ dist
 .env.local
 .DS_Store
 *.log
-.vercel
 .output
 .turbo
 coverage
 playwright-report/
 test-results/
 .todo/
+
+# wrangler
+.wrangler/
