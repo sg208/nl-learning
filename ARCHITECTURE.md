@@ -1,6 +1,6 @@
 # Architecture
 
-Static Astro site with a client-rendered KNM study app, bilingual routing, and offline-friendly PWA caching.
+Static Astro site with a client-rendered KNM study app, bilingual routing, and PWA asset caching.
 
 See [README.md](./README.md) for setup and commands. See [PROJECT.md](./PROJECT.md) for stack and conventions.
 
@@ -64,7 +64,7 @@ Data is bundled at build time (no runtime API for question bank).
 
 | File                          | Role                                                                                             |
 | ----------------------------- | ------------------------------------------------------------------------------------------------ |
-| `public/sw.js`                | Versioned caches; navigate = network-first with `/offline` fallback; static assets = cache-first |
+| `public/sw.js`                | Versioned caches; navigate = network-only with cached `/offline` fallback; static assets = stale-while-revalidate |
 | `public/sw-register.js`       | Registration; unregisters on localhost during dev                                                |
 | `public/manifest.webmanifest` | Install metadata                                                                                 |
 
