@@ -87,4 +87,4 @@ Upload script fails the job in CI on upload/purge errors; logs only when run loc
 
 - **SEO:** per-page meta via `BaseLayout` + structured data on key routes (e.g. KNM course JSON-LD).
 - **Accessibility:** skip link, landmarks, large touch targets — conventions in [PROJECT.md](./PROJECT.md).
-- **Legal pages:** static Astro pages; copy sourced from `src/i18n/legal.ts`.
+- **Legal pages:** static Astro pages; copy sourced from `src/i18n/legal/`.

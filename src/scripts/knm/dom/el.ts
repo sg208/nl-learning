@@ -25,6 +25,7 @@ const EL_PROPS = new Set([
 type ElProps = Record<string, unknown> & {
   className?: string;
   style?: Partial<CSSStyleDeclaration>;
+  dataset?: Record<string, string>;
 };
 
 export const el = <K extends keyof HTMLElementTagNameMap>(
@@ -36,6 +37,7 @@ export const el = <K extends keyof HTMLElementTagNameMap>(
   for (const [key, value] of Object.entries(props)) {
     if (key === 'className') element.className = value as string;
     else if (key === 'style' && typeof value === 'object') Object.assign(element.style, value);
+    else if (key === 'dataset' && typeof value === 'object') Object.assign(element.dataset, value);
     else if (key.startsWith('on'))
       element.addEventListener(key.slice(2).toLowerCase(), value as EventListener);
     else if (EL_PROPS.has(key) || key.startsWith('aria') || key.startsWith('data'))

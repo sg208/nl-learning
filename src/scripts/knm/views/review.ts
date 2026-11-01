@@ -31,12 +31,13 @@ export const renderReview = (): HTMLDivElement => {
 
     card.appendChild(
       el(
-        'div',
-        { className: 'mono review-topic-meta', style: { color: q.topicColor } },
-        q.topicLabel.toUpperCase() + ' · #' + (i + 1),
+        'p',
+        { className: 'review-topic-meta', dataset: { topic: q.topic } },
+        el('span', { className: 'swatch', ariaHidden: 'true' }),
+        `${q.topicLabel} · ${u.questionLabel(i + 1)}`,
       ),
     );
-    card.appendChild(el('div', { className: 'review-question' }, q.q));
+    card.appendChild(el('h2', { className: 'review-question' }, q.q));
     card.appendChild(
       el(
         'div',

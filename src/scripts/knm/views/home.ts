@@ -8,7 +8,7 @@ export const renderHome = (): HTMLDivElement => {
   const div = el('div');
 
   const statsCard = el('div', { className: 'card card--spaced' });
-  statsCard.appendChild(el('div', { className: 'mono red section-label' }, u.examFacts));
+  statsCard.appendChild(el('h2', { className: 'section-label' }, u.examFacts));
   const grid = el('div', { className: 'grid4' });
   const stats = [
     { v: '40', l: u.statQuestions },
@@ -26,40 +26,22 @@ export const renderHome = (): HTMLDivElement => {
   div.appendChild(statsCard);
 
   const actions = [
-    {
-      icon: '📚',
-      title: u.cardTopicsTitle,
-      desc: u.cardTopicsDesc,
-      color: '#2a9d8f',
-      tab: 'topics' as TabId,
-    },
-    {
-      icon: '🗂️',
-      title: u.cardWhoTitle,
-      desc: u.cardWhoDesc,
-      color: '#457b9d',
-      tab: 'whowhat' as TabId,
-    },
-    {
-      icon: '📝',
-      title: u.cardExamTitle,
-      desc: u.cardExamDesc,
-      color: '#e63946',
-      tab: 'exam' as TabId,
-    },
+    { title: u.cardTopicsTitle, desc: u.cardTopicsDesc, tab: 'topics' as TabId },
+    { title: u.cardWhoTitle, desc: u.cardWhoDesc, tab: 'whowhat' as TabId },
+    { title: u.cardExamTitle, desc: u.cardExamDesc, tab: 'exam' as TabId },
   ];
   for (const a of actions) {
     const btn = el('button', {
       className: 'list-card-btn',
-      style: { borderLeftColor: a.color },
+      dataset: { swatch: a.tab },
       onClick: () => resetTabViewState(a.tab),
     });
-    btn.appendChild(el('span', { className: 'list-card-icon' }, a.icon));
+    btn.appendChild(el('span', { className: 'swatch', ariaHidden: 'true' }));
     const info = el('div', { className: 'list-card-info' });
     info.appendChild(el('div', { className: 'list-card-title' }, a.title));
     info.appendChild(el('div', { className: 'muted list-card-desc' }, a.desc));
     btn.appendChild(info);
-    btn.appendChild(el('span', { className: 'muted list-card-chevron' }, '›'));
+    btn.appendChild(el('span', { className: 'list-card-chevron', ariaHidden: 'true' }, '→'));
     div.appendChild(btn);
   }
 

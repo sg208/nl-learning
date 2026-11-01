@@ -2,91 +2,61 @@
   width: 100%;
 }
 
-#knm-app .header-inner {
+#knm-app .header-inner,
+#knm-app .main,
+#knm-app .tabs-sticky-inner {
   width: 100%;
-  max-width: 72rem;
+  max-width: var(--knm-frame);
   margin-inline: auto;
-  padding: 1.5rem 1.5rem 1rem;
+  padding-inline: var(--gutter);
 }
 
-@media (min-width: 640px) {
-  #knm-app .header-inner {
-    padding: 2rem 2rem 1.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  #knm-app .header-inner {
-    padding-inline: 2.5rem;
-    padding-bottom: 1.5rem;
-  }
+#knm-app .header-inner {
+  padding-top: clamp(2rem, 1.25rem + 3vw, 4rem);
+  padding-bottom: 1rem;
 }
 
 #knm-app .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
-#knm-app .header-title {
-  flex: 1;
-  min-width: 0;
+  margin-bottom: 1.5rem;
 }
 
 #knm-app .tagline {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.14em;
-  color: var(--color-coral-soft);
-  text-transform: uppercase;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
   line-height: 1.4;
+  color: var(--muted);
 }
 
 #knm-app .app-title {
-  margin-top: 0.5rem;
-  margin-bottom: 0;
+  max-width: 22ch;
+  margin-top: 0.75rem;
   font-family: var(--font-display);
-  font-size: clamp(1.375rem, 4vw, 2rem);
-  font-weight: 700;
-  color: var(--knm-ink);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
 }
 
 #knm-app .subtitle {
-  margin-top: 0.625rem;
+  margin-top: 1rem;
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.55;
-  color: var(--color-ink-soft);
+  color: var(--ink-soft);
 }
 
 #knm-app .main {
-  width: 100%;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 1.75rem 1.5rem 3rem;
-}
-
-@media (min-width: 640px) {
-  #knm-app .main {
-    padding: 2rem 2rem 3.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  #knm-app .main {
-    padding-inline: 2.5rem;
-  }
+  padding-top: 1.75rem;
+  padding-bottom: 3rem;
 }
 
 #knm-app .spacer {
   height: 1.5rem;
 }
 
-#knm-app ul {
+#knm-app ul,
+#knm-app ol {
   padding-left: 1.25rem;
 }

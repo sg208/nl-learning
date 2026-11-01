@@ -1,0 +1,161 @@
+---
+import { localizedPath } from '~/lib/i18n';
+import type { Locale } from '~/lib/i18n';
+
+export type HomeStudyCard = {
+  title: string;
+  body: string;
+  href: string;
+};
+
+interface Props {
+  locale: Locale;
+  heading: string;
+  intro: string;
+  openLabel: string;
+  cards: HomeStudyCard[];
+}
+
+const { locale, heading, intro, openLabel, cards } = Astro.props;
+---
+
+<section aria-labelledby="learn-heading" class="study page-frame">
+  <div class="study__intro rise rise-1">
+    <h2 id="learn-heading" class="study__heading">
+      {heading}
+    </h2>
+    <p class="study__text">{intro}</p>
+  </div>
+
+  <ul class="study__rows">
+    {cards.map((card) => (
+      <li>
+        <a href={localizedPath(card.href, locale)} class="study__row">
+          <h3 class="study__title">{card.title}</h3>
+          <p class="study__body">{card.body}</p>
+          <span class="study__open" aria-hidden="true">
+            {openLabel} →
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .study {
+    display: grid;
+    margin-top: clamp(4.5rem, 3rem + 6vw, 9rem);
+  }
+
+  .study__intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+    background: var(--surface);
+  }
+
+  .study__heading {
+    max-width: 14ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 1.3rem + 2.2vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .study__text {
+    max-width: 32ch;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .study__row {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: var(--field);
+    color: var(--field-ink);
+    text-decoration: none;
+    transition: background-color 160ms ease;
+  }
+
+  .study__rows li:nth-child(even) .study__row {
+    background: var(--field-alt);
+  }
+
+  .study__row:hover,
+  .study__row:focus-visible {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .study__row:focus-visible {
+    outline-offset: -5px;
+    outline-color: var(--accent-ink);
+  }
+
+  .study__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .study__body {
+    max-width: 44ch;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .study__open {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .study__open {
+      transition: transform 160ms ease;
+    }
+
+    .study__row:hover .study__open {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .study {
+      grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+    }
+
+    .study__intro {
+      padding: 2.5rem;
+    }
+
+    .study__rows {
+      display: grid;
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+
+    .study__row {
+      height: 100%;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      grid-template-rows: auto 1fr;
+      column-gap: 2rem;
+      padding: 2rem 2.5rem;
+    }
+
+    .study__body {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    .study__open {
+      align-self: end;
+    }
+  }
+</style>

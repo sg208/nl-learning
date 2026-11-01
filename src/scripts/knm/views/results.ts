@@ -10,10 +10,15 @@ import { t } from '../ui-strings';
 import { renderReview } from './review';
 
 type TopicScore = {
+  id: string;
   correct: number;
   total: number;
   label: string;
-  color: string;
+};
+
+const scoreTone = ({ correct, total }: TopicScore): string => {
+  if (correct === total) return 'full';
+  return correct >= 3 ? 'ok' : 'low';
 };
 
 export const renderResults = (): HTMLDivElement => {
@@ -28,10 +33,10 @@ export const renderResults = (): HTMLDivElement => {
   const perTopic: Record<string, TopicScore> = {};
   for (const topic of TOPICS) {
     perTopic[topic.id] = {
+      id: topic.id,
       correct: 0,
       total: 0,
       label: getTopicLabel(topic, lang),
-      color: topic.color,
     };
   }
   exam.forEach((q, i) => {
@@ -40,7 +45,6 @@ export const renderResults = (): HTMLDivElement => {
   });
 
   const div = el('div', { className: 'results-center' });
-  div.appendChild(el('div', { className: 'results-emoji' }, passed ? '🎉' : '📖'));
   div.appendChild(
     el(
       'h2',
@@ -64,24 +68,31 @@ export const renderResults = (): HTMLDivElement => {
   );
 
   const topicCard = el('div', { className: 'card topic-scores-card' });
-  topicCard.appendChild(el('div', { className: 'mono muted topic-scores-label' }, u.scorePerTopic));
+  topicCard.appendChild(el('h3', { className: 'topic-scores-label' }, u.scorePerTopic));
+  const list = el('ul', { className: 'topic-score-list' });
   for (const tp of Object.values(perTopic)) {
-    const scoreColor =
-      tp.correct === tp.total ? '#2a9d8f' : tp.correct >= 3 ? '#c8bfb0' : '#e63946';
-    const row = el('div', { className: 'topic-score-row' });
-    row.appendChild(el('span', { style: { color: tp.color } }, tp.label));
+    const row = el('li', { className: 'topic-score-row', dataset: { topic: tp.id } });
+    const name = el('span', { className: 'topic-score-name' });
+    name.appendChild(el('span', { className: 'swatch', ariaHidden: 'true' }));
+    name.appendChild(document.createTextNode(tp.label));
+    row.appendChild(name);
     row.appendChild(
-      el('span', { className: 'mono', style: { color: scoreColor } }, `${tp.correct}/${tp.total}`),
+      el(
+        'span',
+        { className: `topic-score-value topic-score-value--${scoreTone(tp)}` },
+        `${tp.correct}/${tp.total}`,
+      ),
     );
-    topicCard.appendChild(row);
+    list.appendChild(row);
   }
+  topicCard.appendChild(list);
   div.appendChild(topicCard);
 
   const btnRow = el('div', { className: 'row-btns' });
   btnRow.appendChild(
     el(
       'button',
-      { className: 'big-btn big-btn--sky', onClick: () => setState({ reviewing: true }) },
+      { className: 'big-btn big-btn--secondary', onClick: () => setState({ reviewing: true }) },
       u.reviewBtn,
     ),
   );
@@ -89,7 +100,7 @@ export const renderResults = (): HTMLDivElement => {
     el(
       'button',
       {
-        className: 'big-btn big-btn--danger-flex',
+        className: 'big-btn big-btn--primary',
         onClick: () => {
           stopExamTimer();
           setState({

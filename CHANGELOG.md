@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **Design refresh**: a calm light theme with a matching dark theme that follows the system setting. Delft-blue accent, Literata headings, larger question and answer text, and body text at AAA contrast in both themes.
+- **Home page**: the exam's key numbers open the page, and the three study areas are full-width links.
+- **Quiz states**: the selected answer shows a filled letter and `aria-pressed`; answered questions say so in the question grid's accessible names; topic colours no longer carry text.
+
+### Fixed
+
+- **Who does what**: no horizontal scroll on 360px screens.
+- **Footer**: missing spaces in the copyright line.
+
 ## [0.1.1] — 2026-10-31
 
 ### Breaking changes

@@ -64,7 +64,7 @@ test.describe('KNM exam flow', () => {
     await expect(
       page.locator('#knm-app').getByRole('heading', { level: 2, name: '40 / 40' }),
     ).toBeVisible();
-    await expect(page.locator('#knm-app .results-status--pass')).toHaveText('PASSED ✓');
+    await expect(page.locator('#knm-app .results-status--pass')).toHaveText('Passed ✓');
     await expect(page.getByRole('button', { name: 'Review answers' })).toBeVisible();
   });
 });

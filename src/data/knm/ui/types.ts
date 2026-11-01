@@ -59,4 +59,5 @@ export type KnmUiStrings = {
   yourAnswer: string;
   correct: string;
   notAnswered: string;
+  answeredLabel: string;
 };

@@ -11,18 +11,18 @@ const { page, locale = 'en' } = Astro.props;
 const content = legalPages[page][locale];
 ---
 
-<article class="mx-auto max-w-3xl pt-6 sm:pt-10">
-  <header class="mb-10">
-    <p class="font-[family-name:var(--font-mono)] text-xs font-bold tracking-[0.25em] text-[var(--muted)] uppercase">
-      {content.eyebrow}
-    </p>
-    <h1 class="mt-4 font-[family-name:var(--font-display)] text-4xl leading-tight font-bold tracking-tight text-balance sm:text-5xl">
+<article class="legal pt-10 sm:pt-16">
+  <header class="legal__head">
+    <h1 class="font-[family-name:var(--font-display)] text-[clamp(2.125rem,1.4rem+2.6vw,3.5rem)] leading-[1.06] font-semibold tracking-[-0.025em]">
       {content.title}
     </h1>
-    <p class="mt-4 text-lg leading-relaxed text-[var(--muted)]">{content.intro}</p>
+    <p class="mt-3 font-[family-name:var(--font-sans)] text-base font-semibold text-[var(--muted)]">
+      {content.eyebrow}
+    </p>
+    <p class="mt-6 max-w-[48ch] text-xl leading-relaxed text-[var(--ink-soft)]">{content.intro}</p>
   </header>
 
-  <div class="prose">
+  <div class="prose legal__body">
     {content.blocks.map((block) => (
       <>
         {block.heading && <h2>{block.heading}</h2>}
@@ -33,3 +33,22 @@ const content = legalPages[page][locale];
     ))}
   </div>
 </article>
+
+<style>
+  .legal__head {
+    padding-bottom: 2.5rem;
+  }
+
+  @media (min-width: 960px) {
+    .legal {
+      display: grid;
+      grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+      column-gap: 2.5rem;
+      align-items: start;
+    }
+
+    .legal__body > :first-child {
+      margin-top: 0;
+    }
+  }
+</style>
