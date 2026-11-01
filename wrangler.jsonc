@@ -4,6 +4,9 @@
   "assets": {
     "directory": "dist",
     "not_found_handling": "404-page",
+    // astro.config.mjs uses trailingSlash: 'never', so serve /privacy from
+    // privacy/index.html directly and redirect /privacy/ to it
+    "html_handling": "drop-trailing-slash",
   },
   "routes": [{ "pattern": "nl-learning.engg.app", "custom_domain": true }],
   "workers_dev": false,

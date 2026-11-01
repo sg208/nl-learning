@@ -4,7 +4,7 @@ Full docs: `README.md` for setup and commands, `ARCHITECTURE.md` for system desi
 
 ## Stack
 
-Astro 7 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanilla TS app in `src/scripts/knm/`, PWA via `public/sw.js`, live at https://nl-learning.engg.app on a Cloudflare Worker (`wrangler.jsonc`, `pnpm run deploy`); a separate GitHub Actions workflow on `main` uploads to Bunny CDN.
+Astro 7 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanilla TS app in `src/scripts/knm/`, PWA via `public/sw.js`, live at https://nl-learning.engg.app on a Cloudflare Worker (`wrangler.jsonc`, `pnpm run deploy`).
 
 ## Key paths
 
@@ -26,4 +26,4 @@ Astro 7 static site, Tailwind v4, English at `/`, Dutch at `/nl/...`, KNM vanill
 ## Branches
 
 - `develop` is the integration branch.
-- `main` is the release branch; pushes trigger the Bunny CDN workflow. The live site is deployed with `pnpm run deploy`.
+- `main` is the release branch. The live site is deployed with `pnpm run deploy`.
