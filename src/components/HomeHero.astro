@@ -1,40 +1,41 @@
 ---
 import { localizedPath } from '~/lib/i18n';
 import type { Locale } from '~/lib/i18n';
+import HomeFacts, { type HomeFact } from './HomeFacts.astro';
 
 interface Props {
   locale: Locale;
-  eyebrow: string;
-  title: string;
+  audience: string;
+  titleLines: [string, string];
   lead: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  factsLabel: string;
+  facts: HomeFact[];
 }
 
-const { locale, eyebrow, title, lead, ctaPrimary, ctaSecondary } = Astro.props;
+const { locale, audience, titleLines, lead, ctaPrimary, ctaSecondary, factsLabel, facts } =
+  Astro.props;
 ---
 
-<section class="home-hero relative flex flex-col items-center px-0 pb-20 text-center sm:pb-24">
-  <div class="home-hero__glow pointer-events-none" aria-hidden="true"></div>
+<section class="home-hero" aria-labelledby="home-title">
+  <HomeFacts label={factsLabel} facts={facts} />
 
-  <div class="home-hero__content relative flex w-full max-w-3xl flex-col items-center">
-    <div class="rise flex items-center justify-center gap-3 sm:gap-4">
-      <span class="h-px w-8 bg-[var(--rule)] sm:w-12" aria-hidden="true"></span>
-      <p class="font-[family-name:var(--font-mono)] text-[0.6875rem] font-bold tracking-[0.28em] text-[var(--accent)] uppercase sm:text-xs">
-        {eyebrow}
-      </p>
-      <span class="h-px w-8 bg-[var(--rule)] sm:w-12" aria-hidden="true"></span>
-    </div>
-
-    <h1 class="rise rise-1 mx-auto mt-6 max-w-[18ch] font-[family-name:var(--font-display)] text-[clamp(2.125rem,6vw,3.75rem)] leading-[1.06] font-bold tracking-tight text-balance">
-      {title}
+  <div class="home-hero__body page-frame">
+    <h1 id="home-title" class="home-hero__title">
+      <span class="mask-line">
+        <span>{titleLines[0]}</span>
+      </span>{' '}
+      <span class="mask-line">
+        <span>{titleLines[1]}</span>
+      </span>
     </h1>
 
-    <p class="rise rise-2 mx-auto mt-6 max-w-[42ch] text-base leading-relaxed text-[var(--muted)] sm:mt-7 sm:text-lg sm:leading-relaxed">
-      {lead}
+    <p class="home-hero__lead rise rise-2">
+      <strong>{audience}</strong> {lead}
     </p>
 
-    <div class="rise rise-3 mt-9 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+    <div class="home-hero__actions rise rise-3">
       <a href={localizedPath('/knm', locale)} class="btn btn-primary">
         {ctaPrimary}
       </a>
@@ -46,23 +47,69 @@ const { locale, eyebrow, title, lead, ctaPrimary, ctaSecondary } = Astro.props;
 </section>
 
 <style>
-  .home-hero__glow {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: -1;
-    height: min(28rem, 70vw);
-    background:
-      radial-gradient(ellipse 70% 55% at 50% 0%, rgb(230 57 70 / 0.14), transparent 68%),
-      radial-gradient(ellipse 45% 40% at 50% 20%, rgb(42 157 143 / 0.08), transparent 72%);
+  .home-hero__body {
+    display: grid;
+    gap: 1.5rem;
+    padding-top: clamp(2rem, 1rem + 4vw, 5rem);
   }
 
-  .home-hero__content {
-    padding-top: 2rem;
+  .home-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.125rem, 1.1rem + 3.4vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+
+  .home-hero__lead {
+    max-width: 38ch;
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .home-hero__lead strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   @media (min-width: 640px) {
-    .home-hero__content {
-      padding-top: 2.5rem;
+    .home-hero__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .home-hero__body {
+      grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+      column-gap: 2.5rem;
+      row-gap: 2rem;
+      align-items: end;
+    }
+
+    .home-hero__title {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .home-hero__lead {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      align-self: end;
+      max-width: 30ch;
+    }
+
+    .home-hero__actions {
+      grid-column: 2;
+      grid-row: 2;
     }
   }
 </style>

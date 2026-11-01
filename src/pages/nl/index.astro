@@ -1,19 +1,34 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import HomeHero from '~/components/HomeHero.astro';
+import HomeStudy from '~/components/HomeStudy.astro';
+import type { HomeFact } from '~/components/HomeFacts.astro';
 import { siteConfig, tSite } from '~/config/site';
-import { localizedPath } from '~/lib/i18n';
 import { KNM_ROUTE_HASH } from '~/lib/knm-route';
 import { organizationJsonLd } from '~/lib/seo';
 
 const locale = 'nl' as const;
 
 const copy = {
-  eyebrow: 'Voor nieuwkomers in Nederland',
-  title: 'Leer de Nederlandse maatschappij — helder, in je eigen tempo.',
+  audience: 'Voor nieuwkomers in Nederland.',
+  titleLines: ['Leer de Nederlandse maatschappij —', 'helder, in je eigen tempo.'] as [
+    string,
+    string,
+  ],
   lead: 'Gratis KNM-oefening met grote tekst, hoog contrast en offline ondersteuning. Gemaakt voor mensen die zich voorbereiden op inburgering en uitleg in het Engels of Nederlands willen.',
   ctaPrimary: 'Start KNM-oefening',
   ctaSecondary: 'Over dit project',
+  factsLabel: 'Het KNM-examen in het kort',
+  facts: [
+    { value: '40', label: 'vragen per examen', tone: 'accent' },
+    { value: '45', label: 'minuten', tone: 'strong' },
+    { value: '26/40', label: 'goed om te slagen', tone: 'field' },
+    { value: '8', label: "thema's", tone: 'plain' },
+    { value: '9', label: 'versies van het oefenexamen', tone: 'tint' },
+    { value: '2', label: 'talen: Engels en Nederlands', tone: 'strong' },
+  ] satisfies HomeFact[],
+  sectionIntro: 'Drie manieren om te beginnen. Begin met de notities en test jezelf daarna.',
+  openLabel: 'Openen',
   cards: [
     {
       title: 'KNM oefenexamens',
@@ -52,40 +67,23 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout locale={locale} jsonLd={jsonLd}>
+<BaseLayout locale={locale} jsonLd={jsonLd} fullBleed>
   <HomeHero
     locale={locale}
-    eyebrow={copy.eyebrow}
-    title={copy.title}
+    audience={copy.audience}
+    titleLines={copy.titleLines}
     lead={copy.lead}
     ctaPrimary={copy.ctaPrimary}
     ctaSecondary={copy.ctaSecondary}
+    factsLabel={copy.factsLabel}
+    facts={copy.facts}
   />
 
-  <section aria-labelledby="learn-heading" class="rise rise-2 mt-8">
-    <div class="mb-8 border-b border-[var(--rule)] pb-4">
-      <h2
-        id="learn-heading"
-        class="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl"
-      >
-        {copy.sectionTitle}
-      </h2>
-    </div>
-    <ul class="grid gap-5 md:grid-cols-3">
-      {copy.cards.map((card) => (
-        <li class="h-full">
-          <a
-            href={localizedPath(card.href, locale)}
-            class="flex h-full flex-col rounded-[var(--radius-card)] border border-[var(--rule)] bg-[var(--surface)] p-5 no-underline transition-colors hover:border-[var(--info)]"
-          >
-            <h3 class="text-lg font-bold text-[var(--ink)]">{card.title}</h3>
-            <p class="mt-2 flex-1 text-base leading-relaxed text-[var(--muted)]">{card.body}</p>
-            <span class="mt-4 font-[family-name:var(--font-sans)] text-sm font-semibold text-[var(--accent-ink)]">
-              Open →
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+  <HomeStudy
+    locale={locale}
+    heading={copy.sectionTitle}
+    intro={copy.sectionIntro}
+    openLabel={copy.openLabel}
+    cards={copy.cards}
+  />
 </BaseLayout>

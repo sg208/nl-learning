@@ -1,0 +1,134 @@
+---
+export type HomeFact = {
+  value: string;
+  label: string;
+  tone: 'accent' | 'field' | 'tint' | 'plain' | 'strong';
+};
+
+interface Props {
+  label: string;
+  facts: HomeFact[];
+}
+
+const { label, facts } = Astro.props;
+---
+
+<section class="facts" aria-label={label}>
+  <ul class="facts__grid">
+    {facts.map((fact) => (
+      <li class:list={['facts__tile', `facts__tile--${fact.tone}`]}>
+        <span class="facts__value">{fact.value}</span>
+        <span class="facts__label">{fact.label}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .facts__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(5rem, auto);
+  }
+
+  .facts__tile {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    padding: 0.75rem var(--gutter) 0.75rem 1rem;
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  .facts__tile:nth-child(odd) {
+    padding-left: var(--gutter);
+  }
+
+  .facts__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 3.5rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .facts__label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  .facts__tile--accent {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .facts__tile--field {
+    background: var(--field);
+    color: var(--field-ink);
+  }
+
+  .facts__tile--tint {
+    background: var(--accent-tint);
+  }
+
+  .facts__tile--strong {
+    background: var(--surface-strong);
+  }
+
+  @media (min-width: 960px) {
+    .facts__grid {
+      height: clamp(15rem, 34vh, 20rem);
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: auto;
+    }
+
+    .facts__tile,
+    .facts__tile:nth-child(odd) {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .facts__tile:nth-child(1) {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+      padding-left: max(var(--gutter), (100vw - 76rem) / 2 + var(--gutter));
+    }
+
+    .facts__tile:nth-child(2) {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .facts__tile:nth-child(3) {
+      grid-column: 4 / span 2;
+      grid-row: 1;
+    }
+
+    .facts__tile:nth-child(4) {
+      grid-column: 6;
+      grid-row: 1 / span 2;
+    }
+
+    .facts__tile:nth-child(5) {
+      grid-column: 3 / span 2;
+      grid-row: 2;
+    }
+
+    .facts__tile:nth-child(6) {
+      grid-column: 5;
+      grid-row: 2;
+    }
+
+    .facts__tile:nth-child(1) .facts__value {
+      font-size: clamp(4rem, 2rem + 4vw, 6.5rem);
+    }
+
+    .facts__label {
+      font-size: 1rem;
+    }
+  }
+</style>
