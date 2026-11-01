@@ -15,7 +15,8 @@ Agent-oriented reference for stack, paths, and conventions.
 | i18n      | EN at `/`, NL at `/nl/...`                            |
 | KNM app   | Vanilla TS client app (`src/scripts/knm/`)            |
 | PWA       | `public/sw.js`, `public/sw-register.js`, web manifest |
-| Deploy    | GitHub Actions → Bunny CDN (`main`)                   |
+| Hosting   | Cloudflare Worker static assets (`pnpm run deploy`)   |
+| Extra CI  | GitHub Actions → Bunny CDN on `main` (not live host)  |
 
 ## Key paths
 

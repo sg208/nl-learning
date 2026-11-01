@@ -14,6 +14,8 @@ export const siteConfig = {
   },
   themeColor: { light: '#f6f5f1', dark: '#0e1424' },
   author: 'nllearn.ing',
+  repoUrl: 'https://github.com/sg208/nl-learning',
+  issuesUrl: 'https://github.com/sg208/nl-learning/issues',
   nav: [
     {
       href: '/',
@@ -44,6 +46,8 @@ export const siteConfig = {
     closeMenu: { en: 'Close menu', nl: 'Menu sluiten' },
     siteMenu: { en: 'Site menu', nl: 'Sitemenu' },
     footerNav: { en: 'Footer', nl: 'Voettekst' },
+    sourceLink: { en: 'Source on GitHub', nl: 'Broncode op GitHub' },
+    sourceLinkHint: { en: '(opens GitHub)', nl: '(opent GitHub)' },
   },
 } as const;
 

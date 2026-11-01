@@ -1,6 +1,8 @@
 import type { Locale } from '~/lib/i18n';
 
-type PageBlock = { heading?: string; paragraphs: string[] };
+export type PageLink = { href: string; label: string };
+
+type PageBlock = { heading?: string; paragraphs: string[]; links?: PageLink[] };
 
 export type LegalPageContent = {
   title: string;
