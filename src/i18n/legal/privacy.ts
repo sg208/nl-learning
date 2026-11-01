@@ -12,7 +12,7 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
         heading: 'What stays on your device',
         paragraphs: [
           'The KNM practice app keeps your current exam and your place on the page in session storage. That is how you can switch between English and Dutch without losing progress. Session storage belongs to one browser tab and is deleted when you close it.',
-          'The site registers a service worker that caches pages and files so you can keep studying offline. The cache stays in your browser until you clear it or a new version of the site replaces it.',
+          "The site registers a service worker. It keeps copies of the site's styles, scripts, fonts and images in your browser so pages load faster, plus a short notice page to show when you have no connection. Pages themselves always load from the internet. The cache stays in your browser until you clear it or a new version of the site replaces it.",
           'None of this is sent to us. We have no server that could receive it.',
         ],
       },
@@ -35,7 +35,7 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
       {
         heading: 'Your choices',
         paragraphs: [
-          'You can delete everything the site stores by clearing site data in your browser settings. Removing the service worker there also removes the offline cache.',
+          'You can delete everything the site stores, including the service worker and its cache, by clearing site data in your browser settings.',
           'Depending on where you live, you may have the right to ask what personal data is held about you, or to have it deleted. Because the site itself stores nothing about you, questions about request logs are best sent to Cloudflare.',
           'For other questions, open an issue on GitHub. Issues are public, so please do not include personal details.',
         ],
@@ -59,7 +59,7 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
         heading: 'Wat er op je apparaat blijft',
         paragraphs: [
           'De KNM-oefenapp bewaart je lopende examen en je plek op de pagina in de sessieopslag van je browser. Zo kun je tussen Engels en Nederlands wisselen zonder je voortgang kwijt te raken. Die opslag hoort bij één tabblad en verdwijnt zodra je het sluit.',
-          "De site gebruikt een service worker die pagina's en bestanden in je browser bewaart, zodat je ook offline kunt studeren. Die cache blijft staan tot je hem zelf wist of een nieuwe versie van de site hem vervangt.",
+          "De site gebruikt een service worker. Die bewaart de opmaak, scripts, lettertypen en afbeeldingen van de site in je browser, zodat pagina's sneller laden, plus een korte melding die je ziet als je geen verbinding hebt. De pagina's zelf komen altijd van internet. Die cache blijft staan tot je hem zelf wist of een nieuwe versie van de site hem vervangt.",
           'Niets hiervan wordt naar ons gestuurd. We hebben geen server die het zou kunnen ontvangen.',
         ],
       },
@@ -85,7 +85,7 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
       {
         heading: 'Jouw keuzes',
         paragraphs: [
-          'Je kunt alles wat de site opslaat verwijderen door de sitegegevens te wissen in de instellingen van je browser. Als je daar ook de service worker verwijdert, is de offline cache weg.',
+          'Je kunt alles wat de site opslaat, ook de service worker en zijn cache, verwijderen door de sitegegevens te wissen in de instellingen van je browser.',
           'Afhankelijk van waar je woont, heb je misschien het recht om te vragen welke persoonsgegevens er over je zijn, of om die te laten verwijderen. De site zelf bewaart niets over jou, dus vragen over logbestanden kun je het beste aan Cloudflare stellen.',
           'Heb je een andere vraag? Maak dan een issue aan op GitHub. Issues zijn openbaar, dus zet er geen persoonlijke gegevens in.',
         ],
