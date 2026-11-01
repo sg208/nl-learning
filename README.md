@@ -2,6 +2,8 @@
 
 Accessible, PWA-ready study site for non-Dutch speakers preparing for **KNM** (Kennis van de Nederlandse Maatschappij) and civic integration in the Netherlands.
 
+Live at https://nl-learning.engg.app, served by a Cloudflare Worker (static assets) on the sg208 account, configured in `wrangler.jsonc`. `pnpm deploy` sets `SITE_URL`, builds, and runs `wrangler deploy`; it needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the environment.
+
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** — system design, data flow, deployment
 - **[PROJECT.md](./PROJECT.md)** — stack, repo structure, conventions
 
