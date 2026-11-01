@@ -55,7 +55,7 @@ export const terms: Record<'en' | 'nl', LegalPageContent> = {
         paragraphs: [
           'De broncode staat op GitHub onder de MIT-licentie. Je mag de code gebruiken, kopiëren en aanpassen volgens de voorwaarden van die licentie.',
         ],
-        links: [{ href: siteConfig.repoUrl, label: 'Broncode van NL Learning op GitHub' }],
+        links: [{ href: siteConfig.repoUrl, label: 'Broncode van NL Learning op GitHub (Engels)' }],
       },
       {
         heading: 'Inhoud van anderen',

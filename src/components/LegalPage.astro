@@ -33,7 +33,9 @@ const content = legalPages[page][locale];
           <ul>
             {block.links.map((link) => (
               <li>
-                <a href={link.href}>{link.label}</a>
+                <a href={link.href} class="underline">
+                  {link.label}
+                </a>
               </li>
             ))}
           </ul>

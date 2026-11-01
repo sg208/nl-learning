@@ -89,7 +89,7 @@ export const privacy: Record<'en' | 'nl', LegalPageContent> = {
           'Afhankelijk van waar je woont, heb je misschien het recht om te vragen welke persoonsgegevens er over je zijn, of om die te laten verwijderen. De site zelf bewaart niets over jou, dus vragen over logbestanden kun je het beste aan Cloudflare stellen.',
           'Heb je een andere vraag? Maak dan een issue aan op GitHub. Issues zijn openbaar, dus zet er geen persoonlijke gegevens in.',
         ],
-        links: [{ href: siteConfig.issuesUrl, label: 'Issue aanmaken op GitHub' }],
+        links: [{ href: siteConfig.issuesUrl, label: 'Issue aanmaken op GitHub (Engels)' }],
       },
       {
         heading: 'Wijzigingen',

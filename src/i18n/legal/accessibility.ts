@@ -19,7 +19,7 @@ export const accessibility: Record<'en' | 'nl', LegalPageContent> = {
       {
         heading: 'How we test',
         paragraphs: [
-          'Automated Playwright tests check keyboard navigation in the KNM app and run axe accessibility checks on the KNM app and on the accessibility, privacy and terms pages in both languages. They run on every pull request.',
+          'Automated Playwright tests check keyboard navigation in the KNM app. They also run axe accessibility checks on the English KNM app and on the accessibility, privacy and terms pages in both languages. The tests run on every pull request to the develop branch.',
         ],
       },
       {
@@ -54,7 +54,7 @@ export const accessibility: Record<'en' | 'nl', LegalPageContent> = {
       {
         heading: 'Hoe we testen',
         paragraphs: [
-          "Geautomatiseerde Playwright-tests controleren de toetsenbordbediening van de KNM-app. Ook draaien ze axe-toegankelijkheidscontroles op de KNM-app en op de pagina's over toegankelijkheid, privacy en voorwaarden, in beide talen. De tests lopen bij elke pull request.",
+          "Geautomatiseerde Playwright-tests controleren de toetsenbordbediening van de KNM-app. Ook draaien ze axe-toegankelijkheidscontroles op de Engelse KNM-app en, in beide talen, op de pagina's over toegankelijkheid, privacy en voorwaarden. De tests lopen bij elke pull request naar de develop-branch.",
         ],
       },
       {
@@ -68,7 +68,7 @@ export const accessibility: Record<'en' | 'nl', LegalPageContent> = {
         paragraphs: [
           'Is iets lastig te gebruiken met zoom, een screenreader, het toetsenbord of door de kleuren? Maak dan een issue aan op GitHub. Vertel op welke pagina je was, wat je probeerde en waar je vastliep.',
         ],
-        links: [{ href: siteConfig.issuesUrl, label: 'Probleem melden op GitHub' }],
+        links: [{ href: siteConfig.issuesUrl, label: 'Probleem melden op GitHub (Engels)' }],
       },
     ],
   },
