@@ -108,3 +108,7 @@
   background: var(--ink);
   color: var(--bg);
 }
+
+.locale-switch a[aria-current='true']:focus-visible {
+  outline-color: var(--bg);
+}

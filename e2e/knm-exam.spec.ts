@@ -56,6 +56,13 @@ test.describe('KNM exam flow', () => {
     await page.keyboard.press('Enter');
     await expect(page.getByText('QUESTION 2/40')).toBeVisible();
     await expect(nextButton).toBeFocused();
+
+    const previousButton = page.getByRole('button', { name: '← Previous' });
+    await previousButton.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByText('QUESTION 1/40')).toBeVisible();
+    await expect(previousButton).toBeDisabled();
+    await expect(nextButton).toBeFocused();
   });
 
   test('stop exam returns to #exam picker', async ({ page }) => {

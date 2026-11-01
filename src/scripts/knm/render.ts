@@ -20,9 +20,21 @@ const viewRegistry: Record<TabId, () => HTMLElement> = {
   exam: () => (state.examConfig ? renderExam() : renderExamPicker()),
 };
 
+// A disabled prev/next button cannot take focus, so hand it to its counterpart.
+const focusFallbackIds: Record<string, string> = {
+  'knm-exam-prev': 'knm-exam-next',
+  'knm-exam-next': 'knm-exam-prev',
+};
+
 const restoreFocusById = (focusedId: string | null): void => {
   if (!focusedId || document.activeElement !== document.body) return;
-  document.getElementById(focusedId)?.focus({ preventScroll: true });
+  const target = document.getElementById(focusedId);
+  if (target instanceof HTMLButtonElement && target.disabled) {
+    const sibling = focusFallbackIds[focusedId];
+    document.getElementById(sibling ?? '')?.focus({ preventScroll: true });
+    return;
+  }
+  target?.focus({ preventScroll: true });
 };
 
 export const render = (): void => {
