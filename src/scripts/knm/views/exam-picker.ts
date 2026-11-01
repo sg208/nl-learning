@@ -10,7 +10,7 @@ export const renderExamPicker = (): HTMLDivElement => {
   const div = el('div');
 
   const fmtCard = el('div', { className: 'card card--spaced' });
-  fmtCard.appendChild(el('div', { className: 'mono red section-label' }, u.formatLabel));
+  fmtCard.appendChild(el('h2', { className: 'section-label' }, u.formatLabel));
   const ul = el('ul', { className: 'dim format-list' });
   for (const item of u.formatItems) {
     const li = el('li');
@@ -25,11 +25,11 @@ export const renderExamPicker = (): HTMLDivElement => {
   fmtCard.appendChild(ul);
   div.appendChild(fmtCard);
 
-  div.appendChild(el('div', { className: 'mono muted section-label' }, u.chooseLabel));
+  div.appendChild(el('h2', { className: 'section-label section-label--spaced' }, u.chooseLabel));
 
   for (const n of [1, 2, 3]) {
     const card = el('div', { className: 'card card--tight' });
-    card.appendChild(el('div', { className: 'exam-picker-title' }, u.examTitle(n)));
+    card.appendChild(el('h3', { className: 'exam-picker-title' }, u.examTitle(n)));
     card.appendChild(el('div', { className: 'muted exam-picker-desc' }, u.examDesc[n]));
     const btnRow = el('div', { className: 'btn-row-wrap' });
     for (let i = 0; i < 3; i++) {

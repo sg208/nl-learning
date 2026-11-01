@@ -45,8 +45,8 @@ export const renderTopicDetail = (): HTMLDivElement => {
     ),
   );
 
-  const titleRow = el('div', { className: 'topic-title-row' });
-  titleRow.appendChild(el('span', { className: 'topic-icon-lg' }, topic.icon));
+  const titleRow = el('div', { className: 'topic-title-row', dataset: { topic: topic.id } });
+  titleRow.appendChild(el('span', { className: 'swatch swatch--lg', ariaHidden: 'true' }));
   titleRow.appendChild(el('h2', { className: 'topic-heading' }, getTopicLabel(topic, lang)));
   div.appendChild(titleRow);
 
@@ -57,15 +57,9 @@ export const renderTopicDetail = (): HTMLDivElement => {
 
   for (const n of STUDY_NOTES[topic.id]) {
     const cardClass = n.h === 'Eerste stappen' ? 'card note-first-steps' : 'card';
-    const card = el('div', { className: cardClass });
+    const card = el('div', { className: cardClass, dataset: { topic: topic.id } });
     card.dataset.noteHeading = n.h;
-    card.appendChild(
-      el(
-        'div',
-        { className: 'note-heading', style: { color: topic.color } },
-        getStudyHeading(n.h, lang),
-      ),
-    );
+    card.appendChild(el('h3', { className: 'note-heading' }, getStudyHeading(n.h, lang)));
     appendStudyNoteBody(card, n, lang);
     const note = n as StudyNote;
     if (note.tip ?? note.tipEn) {

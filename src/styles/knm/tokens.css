@@ -1,14 +1,46 @@
-/* KNM app — scoped study UI with large touch targets and WCAG-friendly contrast */
+/* KNM app: scoped study UI with large touch targets and AAA body contrast */
 #knm-app {
-  --knm-bg: var(--color-night);
-  --knm-panel: var(--color-panel);
-  --knm-ink: var(--color-ink);
-  --knm-muted: var(--color-muted);
-  --knm-rule: var(--color-rule);
+  --knm-panel: var(--surface);
+  --knm-ink: var(--ink);
+  --knm-muted: var(--muted);
+  --knm-rule: var(--rule);
+  --knm-frame: 76rem;
   font-family: var(--font-serif);
+  color: var(--ink);
 }
 
 #knm-app button {
-  font-family: inherit;
+  font-family: var(--font-sans);
+  color: inherit;
   cursor: pointer;
+}
+
+#knm-app button:disabled {
+  cursor: not-allowed;
+}
+
+#knm-app [data-swatch='topics'] {
+  --topic: var(--topic-werk);
+}
+
+#knm-app [data-swatch='whowhat'] {
+  --topic: var(--topic-overheid);
+}
+
+#knm-app [data-swatch='exam'] {
+  --topic: var(--topic-cultuur);
+}
+
+#knm-app .swatch {
+  display: inline-block;
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 2px;
+  background: var(--topic, var(--accent));
+}
+
+#knm-app .swatch--lg {
+  width: 1.25rem;
+  height: 1.25rem;
 }

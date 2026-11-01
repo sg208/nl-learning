@@ -72,13 +72,17 @@ export const startExamTimer = (): void => {
     }
     const timerEl = document.getElementById('timer-display');
     if (timerEl) {
-      const minutes = Math.floor(state.timeLeft / 60);
-      const seconds = state.timeLeft % 60;
-      timerEl.textContent = `⏱ ${minutes}:${String(seconds).padStart(2, '0')}`;
+      timerEl.textContent = formatTimeLeft(state.timeLeft);
       timerEl.classList.toggle('warning', state.timeLeft < 300);
     }
   }, 1000);
   state.timerHandle = handle;
+};
+
+export const formatTimeLeft = (timeLeft: number): string => {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  return `${minutes}:${String(seconds).padStart(2, '0')}`;
 };
 
 export const refreshExamTopicLabels = (): void => {

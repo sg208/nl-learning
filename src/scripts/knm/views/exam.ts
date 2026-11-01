@@ -1,6 +1,6 @@
 import { announceKnm } from '../dom/announce';
 import { el } from '../dom/el';
-import { stopExamTimer } from '../exam-engine';
+import { formatTimeLeft, stopExamTimer } from '../exam-engine';
 import { setState } from '../set-state';
 import { state } from '../state';
 import { EXAM_DURATION } from '../types';
@@ -15,8 +15,6 @@ export const renderExam = (): HTMLDivElement => {
 
   const q = exam[current];
   const variantLetter = ['A', 'B', 'C'][examConfig.variant];
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
   const div = el('div');
 
   const topBar = el('div', { className: 'exam-top-bar' });
@@ -43,20 +41,16 @@ export const renderExam = (): HTMLDivElement => {
   );
   const rightSide = el('div', { className: 'exam-top-right' });
   rightSide.appendChild(
-    el(
-      'span',
-      { className: 'mono muted exam-meta' },
-      u.examLabel(examConfig.examNumber, variantLetter),
-    ),
+    el('span', { className: 'exam-meta' }, u.examLabel(examConfig.examNumber, variantLetter)),
   );
   rightSide.appendChild(
     el(
       'span',
       {
         id: 'timer-display',
-        className: 'mono timer-display' + (timeLeft < 300 ? ' warning' : ''),
+        className: 'timer-display' + (timeLeft < 300 ? ' warning' : ''),
       },
-      `⏱ ${minutes}:${String(seconds).padStart(2, '0')}`,
+      formatTimeLeft(timeLeft),
     ),
   );
   topBar.appendChild(rightSide);
@@ -64,13 +58,15 @@ export const renderExam = (): HTMLDivElement => {
 
   const navGrid = el('div', { className: 'nav-grid' });
   for (let i = 0; i < exam.length; i++) {
-    const cls = 'nav-btn' + (i === current ? ' current' : answers[i] != null ? ' answered' : '');
+    const isAnswered = answers[i] != null;
+    const cls = 'nav-btn' + (isAnswered ? ' answered' : '') + (i === current ? ' current' : '');
+    const navLabel = u.questionLabel(i + 1) + (isAnswered ? `, ${u.answeredLabel}` : '');
     navGrid.appendChild(
       el(
         'button',
         {
           className: cls,
-          ariaLabel: u.questionLabel(i + 1),
+          ariaLabel: navLabel,
           ariaCurrent: i === current ? 'true' : undefined,
           onClick: () => setState({ current: i }),
         },
@@ -80,34 +76,29 @@ export const renderExam = (): HTMLDivElement => {
   }
   div.appendChild(navGrid);
 
-  div.appendChild(
-    el(
-      'div',
-      {
-        className: 'mono question-meta',
-        style: { color: q.topicColor },
-      },
-      q.topicLabel.toUpperCase() + ' · ' + u.questionLabel(current + 1),
-    ),
-  );
+  const meta = el('p', { className: 'question-meta', dataset: { topic: q.topic } });
+  meta.appendChild(el('span', { className: 'swatch', ariaHidden: 'true' }));
+  meta.appendChild(document.createTextNode(`${q.topicLabel} · ${u.questionLabel(current + 1)}`));
+  div.appendChild(meta);
 
-  const qCard = el('div', { className: 'card card--tight' });
-  qCard.appendChild(el('p', { className: 'question-text' }, q.q));
+  const qCard = el('div', { className: 'question-card' });
+  qCard.appendChild(el('h2', { className: 'question-text' }, q.q));
   div.appendChild(qCard);
 
   for (let idx = 0; idx < q.options.length; idx++) {
     const isSelected = answers[current] === idx;
     const btn = el('button', {
       className: 'option-btn' + (isSelected ? ' selected' : ''),
+      ariaPressed: String(isSelected),
       onClick: () => {
         const newAnswers = { ...state.answers, [state.current]: idx };
         setState({ answers: newAnswers });
       },
     });
     btn.appendChild(
-      el('span', { className: 'mono muted option-letter' }, String.fromCharCode(65 + idx) + '.'),
+      el('span', { className: 'option-letter', ariaHidden: 'true' }, String.fromCharCode(65 + idx)),
     );
-    btn.appendChild(document.createTextNode(q.options[idx]));
+    btn.appendChild(el('span', { className: 'option-text' }, q.options[idx]));
     div.appendChild(btn);
   }
 
@@ -144,7 +135,7 @@ export const renderExam = (): HTMLDivElement => {
     el(
       'button',
       {
-        className: 'big-btn big-btn--danger',
+        className: 'big-btn big-btn--primary',
         onClick: () => {
           stopExamTimer();
           setState({ submitted: true, timerHandle: null });

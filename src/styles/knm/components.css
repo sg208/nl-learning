@@ -1,48 +1,13 @@
 #knm-app .card {
-  background: var(--knm-panel);
-  border: 1px solid var(--knm-rule);
+  margin-bottom: 1rem;
+  padding: 1.25rem;
   border-radius: var(--radius-card);
-  padding: 1.125rem;
-  margin-bottom: 0.875rem;
-}
-
-#knm-app .mono {
-  font-family: var(--font-mono);
-}
-
-#knm-app .red {
-  color: var(--color-coral);
-}
-
-#knm-app .green {
-  color: var(--color-teal);
-}
-
-#knm-app .blue {
-  color: var(--color-sky);
-}
-
-#knm-app .muted {
-  color: var(--knm-muted);
-}
-
-#knm-app .dim {
-  color: var(--color-ink-soft);
-}
-
-#knm-app .white {
-  color: var(--knm-ink);
-}
-
-#knm-app .grid4 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+  background: var(--surface);
 }
 
 @media (min-width: 640px) {
-  #knm-app .grid4 {
-    grid-template-columns: repeat(4, 1fr);
+  #knm-app .card {
+    padding: 1.5rem 1.75rem;
   }
 }
 
@@ -50,71 +15,148 @@
   text-align: center;
 }
 
-#knm-app .big-btn {
-  width: 100%;
-  min-height: 3rem;
-  margin-top: 0.5rem;
-  padding: 0.875rem 1rem;
-  border: none;
-  border-radius: var(--radius-card);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
+#knm-app .muted {
+  color: var(--muted);
+}
+
+#knm-app .dim {
+  color: var(--ink);
 }
 
 #knm-app .row-btns {
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+#knm-app .big-btn,
+#knm-app .half-btn,
+#knm-app .wording-btn {
+  display: inline-flex;
+  min-height: var(--touch-min);
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-control);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+#knm-app .big-btn:active:not(:disabled),
+#knm-app .half-btn:active:not(:disabled),
+#knm-app .wording-btn:active {
+  transform: translateY(1px);
+}
+
+#knm-app .big-btn {
+  width: 100%;
   margin-top: 0.75rem;
 }
 
 #knm-app .row-btns .big-btn {
+  flex: 1 1 12rem;
+  width: auto;
   margin-top: 0;
-}
-
-#knm-app .half-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 
 #knm-app .half-btn {
   flex: 1;
-  min-height: 3rem;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 0.5rem;
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 600;
 }
 
-#knm-app .result-card {
-  border: 1px solid var(--knm-rule);
-  border-radius: var(--radius-card);
-  padding: 1rem;
-  margin-bottom: 0.75rem;
+#knm-app .big-btn--primary,
+#knm-app .wording-btn {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
-#knm-app .result-card.correct-card {
-  border-color: var(--color-teal);
+#knm-app .big-btn--primary:hover,
+#knm-app .wording-btn:hover {
+  background: var(--accent-hover);
 }
 
-#knm-app .result-card.wrong-card {
-  border-color: var(--color-coral);
+#knm-app .big-btn--secondary,
+#knm-app .half-btn--outline {
+  border-color: var(--border-strong);
+  background: transparent;
+  color: var(--ink);
+}
+
+#knm-app .big-btn--secondary:hover,
+#knm-app .half-btn--outline:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: var(--surface);
+}
+
+#knm-app .half-btn:disabled {
+  border-color: var(--rule);
+  color: var(--muted);
 }
 
 #knm-app .back-btn {
-  min-height: 2.75rem;
+  display: inline-flex;
+  min-height: var(--touch-min);
+  align-items: center;
   margin-bottom: 0.75rem;
-  padding: 0;
+  padding: 0 0.25rem;
   border: none;
   background: none;
-  color: var(--color-coral);
-  font-size: 0.9375rem;
+  color: var(--accent-text);
+  font-size: 1rem;
   font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.25em;
+}
+
+#knm-app .back-btn:hover {
+  text-decoration-color: currentColor;
+}
+
+#knm-app .section-label {
+  margin-bottom: 0.875rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+#knm-app .section-label--spaced {
+  margin-top: 2rem;
+}
+
+#knm-app .intro-text {
+  max-width: 52ch;
+  margin-bottom: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+#knm-app .body-text {
+  font-size: 1.0625rem;
+  line-height: 1.65;
 }
 
 #knm-app .bold-highlight {
-  color: var(--knm-ink);
   font-weight: 700;
+}
+
+#knm-app .tip-text {
+  max-width: 60ch;
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+#knm-app .tip-text--sm {
+  margin-top: 1rem;
 }

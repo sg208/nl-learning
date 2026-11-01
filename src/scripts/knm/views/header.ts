@@ -9,9 +9,9 @@ export const renderHeader = (): HTMLDivElement => {
   const top = el('div', { className: 'header-top' });
 
   const titleDiv = el('div', { className: 'header-title' });
-  titleDiv.appendChild(el('div', { className: 'tagline' }, u.tagline));
+  titleDiv.appendChild(el('p', { className: 'tagline' }, u.tagline));
   titleDiv.appendChild(el('h1', { className: 'app-title' }, u.appTitle));
-  titleDiv.appendChild(el('div', { className: 'subtitle' }, u.subtitle));
+  titleDiv.appendChild(el('p', { className: 'subtitle' }, u.subtitle));
   top.appendChild(titleDiv);
 
   inner.appendChild(top);

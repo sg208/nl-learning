@@ -2,5 +2,7 @@
 @import './layout.css';
 @import './tabs.css';
 @import './components.css';
+@import './lists.css';
 @import './exam.css';
-@import './views.css';
+@import './notes.css';
+@import './results.css';
