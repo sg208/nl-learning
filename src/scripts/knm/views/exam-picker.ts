@@ -5,6 +5,20 @@ import { state } from '../state';
 import { EXAM_DURATION } from '../types';
 import { t } from '../ui-strings';
 
+// The picker is long, so a new exam would open scrolled past its top bar and
+// question navigator. Bring the panel back to just below the sticky bars
+// (html scroll-padding-top already accounts for their height).
+const scrollExamIntoView = (): void => {
+  requestAnimationFrame(() => {
+    const panel = document.getElementById('knm-tabpanel');
+    const scrollOffset =
+      parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    if (!panel || panel.getBoundingClientRect().top >= scrollOffset) return;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    panel.scrollIntoView({ behavior: isReducedMotion ? 'auto' : 'smooth', block: 'start' });
+  });
+};
+
 export const renderExamPicker = (): HTMLDivElement => {
   const u = t();
   const div = el('div');
@@ -51,6 +65,7 @@ export const renderExamPicker = (): HTMLDivElement => {
               state.timeLeft = EXAM_DURATION;
               startExamTimer();
               setState({});
+              scrollExamIntoView();
             },
           },
           u.wordingBtn(letter),

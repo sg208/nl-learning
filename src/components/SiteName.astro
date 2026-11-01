@@ -1,5 +1,4 @@
 ---
-import { siteConfig } from '~/config/site';
 import type { Locale } from '~/lib/i18n';
 import { localizedPath } from '~/lib/i18n';
 
@@ -10,11 +9,7 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<a
-  href={localizedPath('/', locale)}
-  class="inline-flex items-center gap-2.5 no-underline"
-  aria-label={siteConfig.name}
->
+<a href={localizedPath('/', locale)} class="inline-flex items-center gap-2.5 no-underline">
   <span
     class="inline-flex h-8 w-8 items-center justify-center rounded-[var(--radius-control)] bg-[var(--accent)] font-[family-name:var(--font-sans)] text-[0.9375rem] font-bold tracking-tight text-[var(--accent-ink)]"
     aria-hidden="true"

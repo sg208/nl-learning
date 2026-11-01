@@ -7,7 +7,7 @@ html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: var(--scroll-offset, 5.5rem);
 }
 
 body {

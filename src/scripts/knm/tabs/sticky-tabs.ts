@@ -21,6 +21,18 @@ const getSiteHeaderHeight = (): number => {
   return header?.getBoundingClientRect().height ?? 72;
 };
 
+// The sticky tab bar is hidden until the in-page tabs scroll away, but focus
+// scrolling must already clear it, so measure it while briefly un-hidden.
+const getStickyBarHeight = (stickyBar: HTMLElement): number => {
+  const wasHidden = stickyBar.hidden;
+  stickyBar.hidden = false;
+  const height = stickyBar.getBoundingClientRect().height;
+  stickyBar.hidden = wasHidden;
+  return height;
+};
+
+const SCROLL_GAP_PX = 16;
+
 const isHeaderInnerInView = (headerInner: Element, siteTop: number): boolean =>
   headerInner.getBoundingClientRect().bottom > siteTop;
 
@@ -84,6 +96,8 @@ export const setupStickyTabs = (): void => {
   document.documentElement.style.setProperty('--site-header-height', `${siteTop}px`);
   getRoot().style.setProperty('--knm-sticky-top', `${siteTop}px`);
   stickyBar.style.setProperty('--knm-sticky-top', `${siteTop}px`);
+  const scrollOffset = Math.ceil(siteTop + getStickyBarHeight(stickyBar) + SCROLL_GAP_PX);
+  document.documentElement.style.setProperty('--scroll-offset', `${scrollOffset}px`);
 
   const observer = new IntersectionObserver(
     ([entry]) => {
@@ -107,6 +121,8 @@ export const bindTabNavLayout = (): void => {
   stickyTabsResizeObserver?.disconnect();
   const resizeObserver = new ResizeObserver(() => setupStickyTabs());
   resizeObserver.observe(header);
+  const stickyInner = getRoot().querySelector('.tabs-sticky-inner');
+  if (stickyInner) resizeObserver.observe(stickyInner);
   setStickyTabsResizeObserver(resizeObserver);
 
   tabNavMedia?.removeEventListener('change', handleTabNavViewportChange);
