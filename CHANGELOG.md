@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.2] — 2026-11-02
+
+### Changed
+
+- **GitHub footer link is now an icon**: the "Source on GitHub" text link in the footer is replaced by a single GitHub icon (`src/components/Footer.astro`). It opens the repository in a new tab, and screen readers announce it as "Source code on GitHub (opens in a new tab)" (Dutch: "Broncode op GitHub (opent in een nieuw tabblad)").
+
 ## [0.3.1] — 2026-11-01
 
 ### Changed
