@@ -10,7 +10,7 @@
 - **I18N**: EN at `/`, NL at `/nl/...`; `prefixDefaultLocale: false` (`astro.config.mjs:18-24`). Sitemap alternates `en` / `nl-NL` (`astro.config.mjs:26-34`).
 - **KNM APP**: shell `src/pages/knm/index.astro` → `KnmPage.astro` → `#knm-app` (`src/components/KnmPage.astro:47`) mounted by `src/scripts/knm/index.ts`; views in `src/scripts/knm/views/`, orchestrated by `src/scripts/knm/render.ts`.
 - **LEGAL PAGES**: about · accessibility · privacy · terms · disclaimer, EN + NL, each a thin page over `LegalPage.astro` (`src/pages/privacy.astro:10`); copy in `src/i18n/legal/`.
-- **FOOTER**: `footerLinks` (`src/config/site.ts:33`) + GitHub repo link `repoUrl` (`src/config/site.ts:17`, `src/components/Footer.astro:36`). Covered by `e2e/site-legal.spec.ts`.
+- **FOOTER**: `footerLinks` (`src/config/site.ts:33`) + single GitHub icon link `repoUrl` (`src/config/site.ts:17`, `src/components/Footer.astro:35`). Covered by `e2e/site-legal.spec.ts`.
 - **PWA**: `public/sw.js` versioned caches (`public/sw.js:1-3`); navigations network-only with cached `/offline` fallback (`public/sw.js:36`, `public/sw.js:60`).
 
 ## Data flow

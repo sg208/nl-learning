@@ -46,8 +46,10 @@ export const siteConfig = {
     closeMenu: { en: 'Close menu', nl: 'Menu sluiten' },
     siteMenu: { en: 'Site menu', nl: 'Sitemenu' },
     footerNav: { en: 'Footer', nl: 'Voettekst' },
-    sourceLink: { en: 'Source on GitHub', nl: 'Broncode op GitHub' },
-    sourceLinkHint: { en: '(opens GitHub)', nl: '(opent GitHub)' },
+    sourceLink: {
+      en: 'Source code on GitHub (opens in a new tab)',
+      nl: 'Broncode op GitHub (opent in een nieuw tabblad)',
+    },
   },
 } as const;
 

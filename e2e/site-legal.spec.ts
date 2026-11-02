@@ -36,14 +36,21 @@ test.describe('legal pages', () => {
     });
   }
 
-  for (const home of ['/', '/nl']) {
-    test(`footer on ${home} links to the GitHub repo`, async ({ page }) => {
+  for (const { home, name } of [
+    { home: '/', name: 'Source code on GitHub (opens in a new tab)' },
+    { home: '/nl', name: 'Broncode op GitHub (opent in een nieuw tabblad)' },
+  ]) {
+    test(`footer on ${home} has one GitHub icon link to the repo`, async ({ page }) => {
       await page.goto(home);
-      const repoLink = page.getByRole('contentinfo').getByRole('link', { name: /GitHub/ });
+      const githubLinks = page.locator('a[href*="github.com"]').filter({ visible: true });
+      await expect(githubLinks).toHaveCount(1);
+      const repoLink = page.getByRole('contentinfo').getByRole('link', { name, exact: true });
       await expect(repoLink).toHaveAttribute('href', REPO_URL);
-      await expect(repoLink).toHaveAccessibleName(
-        /^(Source on GitHub \(opens GitHub\)|Broncode op GitHub \(opent GitHub\))$/,
-      );
+      await expect(repoLink).toHaveAttribute('target', '_blank');
+      await expect(repoLink).toHaveAttribute('rel', 'noopener noreferrer');
+      const box = await repoLink.boundingBox();
+      expect(box?.width).toBeGreaterThanOrEqual(24);
+      expect(box?.height).toBeGreaterThanOrEqual(24);
     });
   }
 });
