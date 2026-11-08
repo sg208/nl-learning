@@ -24,7 +24,10 @@ const clearExamPatch = (): StatePatch => ({
 });
 
 const patchForExamRoute = (route: KnmRoute): StatePatch => {
-  if (!route.examConfig) return clearExamPatch();
+  if (!route.examConfig) {
+    stopExamTimer();
+    return clearExamPatch();
+  }
 
   if (examConfigMatches(state.examConfig, route.examConfig) && state.exam) {
     return {
