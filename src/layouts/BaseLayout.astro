@@ -33,8 +33,12 @@ const {
   mainPadding = 'none',
 } = Astro.props;
 
-const mainPaddingClass =
-  mainPadding === 'hero' ? 'pt-8 sm:pt-10' : mainPadding === 'content' ? 'pt-6 sm:pt-8' : 'pt-0';
+const mainPaddingClasses = {
+  none: 'pt-0',
+  hero: 'pt-8 sm:pt-10',
+  content: 'pt-6 sm:pt-8',
+} as const;
+const mainPaddingClass = mainPaddingClasses[mainPadding];
 
 const htmlLang = locale === 'nl' ? 'nl' : 'en';
 const skipLabel = locale === 'nl' ? 'Ga naar inhoud' : 'Skip to content';

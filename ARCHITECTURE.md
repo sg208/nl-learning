@@ -62,11 +62,11 @@ Data is bundled at build time (no runtime API for question bank).
 
 ## PWA & offline
 
-| File                          | Role                                                                                             |
-| ----------------------------- | ------------------------------------------------------------------------------------------------ |
+| File                          | Role                                                                                                              |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `public/sw.js`                | Versioned caches; navigate = network-only with cached `/offline` fallback; static assets = stale-while-revalidate |
-| `public/sw-register.js`       | Registration; unregisters on localhost during dev                                                |
-| `public/manifest.webmanifest` | Install metadata                                                                                 |
+| `public/sw-register.js`       | Registration; unregisters on localhost during dev                                                                 |
+| `public/manifest.webmanifest` | Install metadata                                                                                                  |
 
 Dev server bypasses the service worker; test offline with `pnpm run build` + `pnpm start`.
 

@@ -1,11 +1,11 @@
-import { mkdir, readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const iconsDir = join(root, 'public', 'icons');
-mkdir(iconsDir, { recursive: true }, () => {});
+mkdirSync(iconsDir, { recursive: true });
 
 const favicon = readFileSync(join(root, 'public', 'favicon.svg'));
 const maskable = readFileSync(join(root, 'public', 'icons', 'icon-maskable.svg'));

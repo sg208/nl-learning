@@ -1,7 +1,6 @@
 import { el } from '../dom/el';
-import { buildExam, startExamTimer } from '../exam-engine';
+import { buildExam, startExamTimer, stopExamTimer } from '../exam-engine';
 import { setState } from '../set-state';
-import { state } from '../state';
 import { EXAM_DURATION } from '../types';
 import { t } from '../ui-strings';
 
@@ -52,19 +51,22 @@ export const renderExamPicker = (): HTMLDivElement => {
         el(
           'button',
           {
+            type: 'button',
             className: 'wording-btn',
+            // A real patch so syncKnmRoute pushes a history entry: Back returns to the picker.
             onClick: () => {
-              const exam = buildExam(n, i);
-              if (state.timerHandle) clearInterval(state.timerHandle);
-              state.examConfig = { examNumber: n, variant: i };
-              state.exam = exam;
-              state.answers = {};
-              state.current = 0;
-              state.submitted = false;
-              state.reviewing = false;
-              state.timeLeft = EXAM_DURATION;
+              stopExamTimer();
+              setState({
+                examConfig: { examNumber: n, variant: i },
+                exam: buildExam(n, i),
+                answers: {},
+                current: 0,
+                submitted: false,
+                reviewing: false,
+                timeLeft: EXAM_DURATION,
+                timerHandle: null,
+              });
               startExamTimer();
-              setState({});
               scrollExamIntoView();
             },
           },

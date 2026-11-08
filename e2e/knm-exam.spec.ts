@@ -90,4 +90,13 @@ test.describe('KNM exam flow', () => {
     await expect(page.locator('#knm-app .results-status--pass')).toHaveText('Passed ✓');
     await expect(page.getByRole('button', { name: 'Review answers' })).toBeVisible();
   });
+
+  test('browser back from a running exam returns to the picker', async ({ page }) => {
+    await startExam1A(page);
+
+    await page.goBack();
+
+    await expect(page).toHaveURL(/\/knm#exam$/);
+    await expect(page.getByRole('button', { name: 'Wording A →' }).first()).toBeVisible();
+  });
 });

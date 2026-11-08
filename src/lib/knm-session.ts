@@ -39,8 +39,34 @@ export const setKnmSnapshotReader = (reader: (() => KnmSnapshot) | undefined): v
   (window as KnmWindow).__nlLearningKnmSnapshot = reader;
 };
 
+// Storage access throws when the browser blocks it (privacy modes, blocked cookies).
+// Progress is best-effort, so a blocked store reads as empty and writes are dropped.
+const readSessionItem = (key: string): string | null => {
+  try {
+    return sessionStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+
+const writeSessionItem = (key: string, value: string): void => {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch {
+    // Blocked or full: keep the app running without saved progress.
+  }
+};
+
+const removeSessionItem = (key: string): void => {
+  try {
+    sessionStorage.removeItem(key);
+  } catch {
+    // Blocked: nothing was stored, so nothing to remove.
+  }
+};
+
 export const persistKnmLiveSession = (knm: KnmSnapshot): void => {
-  sessionStorage.setItem(LIVE_SESSION_KEY, JSON.stringify(knm));
+  writeSessionItem(LIVE_SESSION_KEY, JSON.stringify(knm));
 };
 
 export const validateKnmSnapshot = (snapshot: unknown): snapshot is KnmSnapshot => {
@@ -60,7 +86,7 @@ export const validateKnmSnapshot = (snapshot: unknown): snapshot is KnmSnapshot 
 };
 
 export const readKnmLiveSession = (): KnmSnapshot | null => {
-  const raw = sessionStorage.getItem(LIVE_SESSION_KEY);
+  const raw = readSessionItem(LIVE_SESSION_KEY);
   if (!raw) return null;
   try {
     const parsed: unknown = JSON.parse(raw);
@@ -75,7 +101,7 @@ export const persistLocaleHandoff = (knm?: KnmSnapshot): void => {
     scrollY: window.scrollY,
     knm: knm ?? readKnmLiveSession() ?? undefined,
   };
-  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  writeSessionItem(STORAGE_KEY, JSON.stringify(payload));
 };
 
 export const saveLocaleHandoff = (): void => {
@@ -85,11 +111,13 @@ export const saveLocaleHandoff = (): void => {
 };
 
 export const consumeLocaleHandoff = (): LocaleHandoff | null => {
-  const raw = sessionStorage.getItem(STORAGE_KEY);
+  const raw = readSessionItem(STORAGE_KEY);
   if (!raw) return null;
-  sessionStorage.removeItem(STORAGE_KEY);
+  removeSessionItem(STORAGE_KEY);
   try {
-    return JSON.parse(raw) as LocaleHandoff;
+    const parsed = JSON.parse(raw) as Partial<LocaleHandoff> | null;
+    if (typeof parsed?.scrollY !== 'number') return null;
+    return parsed as LocaleHandoff;
   } catch {
     return null;
   }

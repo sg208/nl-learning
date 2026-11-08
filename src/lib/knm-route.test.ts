@@ -83,3 +83,14 @@ describe('knm-route', () => {
     expect(parseKnmHash('#exam/3/c/review')?.reviewing).toBe(true);
   });
 });
+
+describe('parseKnmHash exam numbers', () => {
+  it('rejects exam numbers outside the question bank', () => {
+    expect(parseKnmHash('#exam/99/a')).toBeNull();
+    expect(parseKnmHash('#exam/0/a')).toBeNull();
+  });
+
+  it('accepts the last exam and wording', () => {
+    expect(parseKnmHash('#exam/3/c')).toMatchObject({ examConfig: { examNumber: 3, variant: 2 } });
+  });
+});

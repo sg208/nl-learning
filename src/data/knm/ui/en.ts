@@ -4,7 +4,6 @@ export const en: KnmUiStrings = {
   appTitle: 'Knowledge of Dutch Society (KNM)',
   tagline: 'Civic Integration · Netherlands · 2026',
   subtitle: '40 questions · 45 minutes · Pass mark ~26/40 (65%)',
-  toggleLabel: 'Explanation',
   tabNavLabel: 'KNM sections',
   tabNavClose: 'Close navigation',
   tabHome: 'Overview',
@@ -22,11 +21,11 @@ export const en: KnmUiStrings = {
   cardWhoTitle: 'Who does what',
   cardWhoDesc: "Reference table for the most common question type: 'where should this person go?'",
   cardExamTitle: 'Take a mock exam',
-  cardExamDesc: '3 exams × 3 wording variants = 9 unique runs. Order randomized every time.',
+  cardExamDesc: '3 exams × 3 wording variants = 9 unique runs. Order randomised every time.',
   homeTip:
     'Tip: also try the official DUO practice exam at inburgeren.nl for the exact video-based format.',
   topicsIntro: 'Study in this order. Healthcare, Work and Government appear most often.',
-  topicsSubtitle: (n) => `${n} topics · 3×5 practice questions`,
+  topicsSubtitle: (n) => `${n} study cards · 3×5 practice questions`,
   priorityLabels: {
     gezondheid: 'Most tested',
     werk: 'High',
