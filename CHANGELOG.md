@@ -4,12 +4,15 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+## [0.3.4] — 2026-11-08
+
 ### Fixed
 
 - **KNM works with storage blocked**: when the browser blocks `sessionStorage` (strict privacy settings), the KNM app still loads; progress is just not saved.
 - **Unknown exam links**: a link such as `/knm#exam/99/a` opens the KNM overview instead of a broken page. Only exams 1 to 3 are accepted.
 - **ARIA attributes on KNM controls**: `aria-labelledby`, `aria-controls` and `aria-haspopup` are now set on the elements that ask for them, so the mobile section sheet has a name and its button says it opens a dialog.
 - **Back button during an exam**: starting an exam adds a history entry, so Back returns to the exam picker.
+- **Exam timer after Back**: going Back to the exam picker stops the running exam timer, so starting another exam no longer runs two timers.
 - **robots.txt**: the `Sitemap:` line is now an absolute URL built from `SITE_URL`.
 - **Sitemap**: the noindex `/offline` page is no longer listed.
 - **Topic cards**: the subtitle counts study cards ("12 study cards") instead of calling them topics.
