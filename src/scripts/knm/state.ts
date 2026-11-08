@@ -1,6 +1,5 @@
 import { TOPICS } from '~/data/knm/topics';
 import type { KnmSnapshot } from '~/lib/knm-session';
-import { validateKnmSnapshot } from '~/lib/knm-session';
 
 import { EXAM_DURATION, type AppState } from './types';
 
@@ -30,8 +29,6 @@ export const getKnmSnapshot = (): KnmSnapshot => ({
   reviewing: state.reviewing,
   scrollToNoteHeading: state.scrollToNoteHeading,
 });
-
-export const isValidSnapshot = validateKnmSnapshot;
 
 export const applyKnmSnapshot = (
   snapshot: KnmSnapshot,

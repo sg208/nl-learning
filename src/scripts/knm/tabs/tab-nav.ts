@@ -53,7 +53,7 @@ const buildTabDropdown = (mode: 'inline' | 'sticky'): HTMLDivElement => {
         id: triggerId,
         type: 'button',
         className: 'tab-select-trigger',
-        ariaControls: 'knm-tabpanel',
+        ariaControls: 'knm-nav-sheet',
         ariaHaspopup: 'dialog',
         ariaExpanded: false,
         onClick: () => openNavSheet(triggerId),

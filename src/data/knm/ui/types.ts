@@ -4,7 +4,6 @@ export type KnmUiStrings = {
   appTitle: string;
   tagline: string;
   subtitle: string;
-  toggleLabel: string;
   tabNavLabel: string;
   tabNavClose: string;
   tabHome: string;

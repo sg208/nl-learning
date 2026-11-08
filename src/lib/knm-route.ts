@@ -1,6 +1,7 @@
 import type { KnmSnapshot } from '~/lib/knm-session';
 
 const VARIANT_LETTERS = ['a', 'b', 'c'] as const;
+const EXAM_NUMBERS: readonly number[] = [1, 2, 3];
 
 export const KNM_ROUTE_HASH = {
   home: '',
@@ -55,7 +56,7 @@ const parseExamRoute = (parts: string[]): KnmRoute | null => {
     };
 
   const examNumber = Number(parts[0]);
-  if (!Number.isFinite(examNumber)) return null;
+  if (!EXAM_NUMBERS.includes(examNumber)) return null;
 
   const variant = VARIANT_LETTERS.indexOf(
     (parts[1] ?? 'a').toLowerCase() as (typeof VARIANT_LETTERS)[number],

@@ -1,6 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
-import { validateKnmSnapshot, type KnmSnapshot } from '~/lib/knm-session';
+import {
+  consumeLocaleHandoff,
+  persistKnmLiveSession,
+  readKnmLiveSession,
+  validateKnmSnapshot,
+  type KnmSnapshot,
+} from '~/lib/knm-session';
 
 const validSnapshot: KnmSnapshot = {
   tab: 'exam',
@@ -45,5 +51,33 @@ describe('validateKnmSnapshot', () => {
 
   it('rejects invalid selectedTopicId type', () => {
     expect(validateKnmSnapshot({ ...validSnapshot, selectedTopicId: 1 })).toBe(false);
+  });
+});
+
+describe('session storage access', () => {
+  const originalStorage = Object.getOwnPropertyDescriptor(window, 'sessionStorage');
+
+  afterEach(() => {
+    if (originalStorage) Object.defineProperty(window, 'sessionStorage', originalStorage);
+    sessionStorage.clear();
+  });
+
+  it('treats blocked storage as empty instead of throwing', () => {
+    Object.defineProperty(window, 'sessionStorage', {
+      configurable: true,
+      get() {
+        throw new DOMException('blocked', 'SecurityError');
+      },
+    });
+
+    expect(readKnmLiveSession()).toBeNull();
+    expect(consumeLocaleHandoff()).toBeNull();
+    expect(() => persistKnmLiveSession(validSnapshot)).not.toThrow();
+  });
+
+  it('ignores a locale handoff without a numeric scroll position', () => {
+    sessionStorage.setItem('nl-learning-locale-handoff', JSON.stringify({ scrollY: 'top' }));
+
+    expect(consumeLocaleHandoff()).toBeNull();
   });
 });

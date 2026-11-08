@@ -4,11 +4,6 @@ export const locales = ['en', 'nl'] as const satisfies readonly Locale[];
 
 export const defaultLocale: Locale = 'en';
 
-export const localeLabels: Record<Locale, string> = {
-  en: 'English',
-  nl: 'Nederlands',
-};
-
 export const getLocaleFromPath = (pathname: string): Locale =>
   pathname === '/nl' || pathname.startsWith('/nl/') ? 'nl' : 'en';
 

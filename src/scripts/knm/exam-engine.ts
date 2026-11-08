@@ -1,5 +1,6 @@
 import { QUESTION_BANK } from '~/data/knm/question-bank';
 import { getQuestionNoteHeadings } from '~/data/knm/question-concept-map';
+import type { ExamKey } from '~/data/knm/questions/types';
 import { TOPICS } from '~/data/knm/topics';
 import { getKnmLang, getTopicLabel } from '~/lib/knm-content';
 import { persistKnmLiveSession } from '~/lib/knm-session';
@@ -21,9 +22,10 @@ const shuffle = <T>(items: readonly T[]): T[] => {
 export const buildExam = (examNumber: number, variantIdx: number): ExamQuestion[] => {
   const lang = getKnmLang();
   const exam: ExamQuestion[] = [];
-  const examKey = String(examNumber) as '1' | '2' | '3';
+  const examKey = String(examNumber) as ExamKey;
   for (const topic of TOPICS) {
-    const topicQuestions = QUESTION_BANK[topic.id][examKey];
+    // The route guard rejects unknown exams; an empty list keeps a bad call from throwing.
+    const topicQuestions = QUESTION_BANK[topic.id][examKey] ?? [];
     topicQuestions.forEach((q, index) => {
       const correct = q.options[q.answer];
       const opts = shuffle(q.options);

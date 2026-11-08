@@ -13,14 +13,12 @@ export const ogLocaleTags: Record<Locale, string> = {
 
 export type AlternateLink = { hreflang: string; href: string };
 
-const innerPageLabels: Record<string, Record<Locale, string>> = [
-  ...siteConfig.nav,
-  ...siteConfig.footerLinks,
-].reduce<Record<string, Record<Locale, string>>>((labels, item) => {
-  if (item.href === '/') return labels;
-  labels[item.href] = { en: item.label.en, nl: item.label.nl };
-  return labels;
-}, {});
+const innerPageLinks = [...siteConfig.nav, ...siteConfig.footerLinks].filter(
+  (item) => item.href !== '/',
+);
+const innerPageLabels: Record<string, Record<Locale, string>> = Object.fromEntries(
+  innerPageLinks.map((item) => [item.href, { en: item.label.en, nl: item.label.nl }]),
+);
 
 const homeLabels: Record<Locale, string> = siteConfig.nav[0].label;
 

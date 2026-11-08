@@ -4,7 +4,6 @@ export const nl: KnmUiStrings = {
   appTitle: 'Kennis van de Nederlandse Maatschappij',
   tagline: 'Inburgering · Nederland · 2026',
   subtitle: '40 vragen · 45 minuten · Slaagnorm ~26/40 (65%)',
-  toggleLabel: 'Uitleg',
   tabNavLabel: 'KNM onderdelen',
   tabNavClose: 'Sluit navigatie',
   tabHome: 'Overzicht',
@@ -26,7 +25,7 @@ export const nl: KnmUiStrings = {
   homeTip:
     'Tip: doe ook het officiële DUO oefenexamen op inburgeren.nl voor het echte videoformat.',
   topicsIntro: 'Leer in deze volgorde. Gezondheid, Werk en Overheid komen vaakst voor.',
-  topicsSubtitle: (n) => `${n} onderwerpen · 3×5 oefenvragen`,
+  topicsSubtitle: (n) => `${n} studiekaarten · 3×5 oefenvragen`,
   priorityLabels: {
     gezondheid: 'Meest getest',
     werk: 'Hoog',
